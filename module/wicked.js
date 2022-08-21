@@ -262,14 +262,14 @@ Hooks.once("ready", function() {
 Hooks.on("preCreateItem", (item, data, options, userId) => {
 
   // v0.7 code moved to createItem Hook
-  // WickedHelpers.removeDuplicatedItemType(data, item.parent);
+  // WickedHelpers.removeDuplicatedItemType(item, item.parent);
 
   return true;
 });
 
 Hooks.on("createItem", (item, options, userId) => {
 
-  WickedHelpers.removeDuplicatedItemType(item.data, item.parent);
+  WickedHelpers.removeDuplicatedItemType(item, item.parent);
 
   // Item Logic removed from Blades Module
   // WickedHelpers.callItemLogic(item.data, item.parent);
@@ -281,7 +281,7 @@ Hooks.on("createItem", (item, options, userId) => {
 Hooks.on("deleteItem", (item, options, userId) => {
 
   // Item Logic removed from Blades Module
-  // WickedHelpers.undoItemLogic(item.data, item.parent);
+  // WickedHelpers.undoItemLogic(item, item.parent);
 
   return true;
 });

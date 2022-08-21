@@ -16,7 +16,7 @@
         <td>
           {{!-- Dungeon Theme Info --}}
           <div>
-            {{#if actor.data.has_no_theme}}
+            {{#if system.has_no_theme}}
             {{localize "FITD.DungeonTheme"}}
             {{/if}}
             {{#each actor.items as |item id|}}
@@ -29,12 +29,12 @@
         </td>
         <td>
           <div id="dungeon-tier">
-            {{#multiboxes data.tier.value}}
-            <input type="radio" id="dungeon-{{actor._id}}-tier-0" name="data.tier.value" value="0" dtype="Radio">
+            {{#multiboxes system.tier.value}}
+            <input type="radio" id="dungeon-{{actor._id}}-tier-0" name="system.tier.value" value="0" dtype="Radio">
             <label class="black-label" for="dungeon-{{actor._id}}-tier-0">{{localize "FITD.Tier"}}</label>
 
-            {{#times_from_1 data.tier.max}}
-            <input type="radio" id="dungeon-{{../actor._id}}-tier-{{this}}" name="data.tier.value" value="{{this}}" dtype="Radio">
+            {{#times_from_1 system.tier.max}}
+            <input type="radio" id="dungeon-{{../actor._id}}-tier-{{this}}" name="system.tier.value" value="{{this}}" dtype="Radio">
             <label for="dungeon-{{../actor._id}}-tier-{{this}}"></label>
             {{/times_from_1}}
 
@@ -51,25 +51,25 @@
               <div class="flex-vertical">
                 <div class="item-special-feature">
                   <span class="item-body">
-                    <b class="item-open-editor">{{item.data.special_name}}:</b>
+                    <b class="item-open-editor">{{item.system.special_name}}:</b>
                   </span>
-                  {{item.data.special_feature}}
+                  {{item.system.special_feature}}
                   <div class="checkbox-container">
-                    {{#unless (eq item.data.theme_checkbox_1_text "")}}
+                    {{#unless (eq item.system.theme_checkbox_1_text "")}}
                     <div class="item-checkmark">
                       <div class="standard-checkbox">
-                        <input type="checkbox" id="item-{{item._id}}-thcbx1-checked" value="{{item.data.theme_checkbox_1_checked}}" {{checked item.data.theme_checkbox_1_checked}} data-property-to-set="theme_checkbox_1_checked">
+                        <input type="checkbox" id="item-{{item._id}}-thcbx1-checked" value="{{item.system.theme_checkbox_1_checked}}" {{checked item.system.theme_checkbox_1_checked}} data-property-to-set="theme_checkbox_1_checked">
                         <label for="item-{{item._id}}-thcbx1-checked"></label>
-                        {{item.data.theme_checkbox_1_text}}
+                        {{item.system.theme_checkbox_1_text}}
                       </div>
                     </div>
                     {{/unless}}
-                    {{#unless (eq item.data.theme_checkbox_2_text "")}}
+                    {{#unless (eq item.system.theme_checkbox_2_text "")}}
                     <div class="item-checkmark">
                       <div class="standard-checkbox">
-                        <input type="checkbox" id="item-{{item._id}}-thcbx2-checked" value="{{item.data.theme_checkbox_2_checked}}" {{checked item.data.theme_checkbox_2_checked}} data-property-to-set="theme_checkbox_2_checked">
+                        <input type="checkbox" id="item-{{item._id}}-thcbx2-checked" value="{{item.system.theme_checkbox_2_checked}}" {{checked item.system.theme_checkbox_2_checked}} data-property-to-set="theme_checkbox_2_checked">
                         <label for="item-{{item._id}}-thcbx2-checked"></label>
-                        {{item.data.theme_checkbox_2_text}}
+                        {{item.system.theme_checkbox_2_text}}
                       </div>
                     </div>
                     {{/unless}}
@@ -122,24 +122,24 @@
                 <div class="item-name item-open-editor">{{item.name}}</div>
               </td>
               <td>
-                <div class="item-description{{#if item.data.missing_materials}} missing-materials{{/if}}">
-                  {{item.data.description}}{{#if item.data.missing_materials}} ({{localize 'FITD.MissingMaterials'}}){{/if}}
+                <div class="item-description{{#if item.system.missing_materials}} missing-materials{{/if}}">
+                  {{item.system.description}}{{#if item.system.missing_materials}} ({{localize 'FITD.MissingMaterials'}}){{/if}}
                   <div class="checkbox-container">
-                    {{#unless (eq item.data.room_checkbox_1_text "")}}
+                    {{#unless (eq item.system.room_checkbox_1_text "")}}
                     <div class="item-checkmark">
                       <div class="standard-checkbox">
-                        <input type="checkbox" id="item-{{item._id}}-rmcbx1-checked" value="{{item.data.room_checkbox_1_checked}}" {{checked item.data.room_checkbox_1_checked}} data-property-to-set="room_checkbox_1_checked">
+                        <input type="checkbox" id="item-{{item._id}}-rmcbx1-checked" value="{{item.system.room_checkbox_1_checked}}" {{checked item.system.room_checkbox_1_checked}} data-property-to-set="room_checkbox_1_checked">
                         <label for="item-{{item._id}}-rmcbx1-checked"></label>
-                        {{item.data.room_checkbox_1_text}}
+                        {{item.system.room_checkbox_1_text}}
                       </div>
                     </div>
                     {{/unless}}
-                    {{#unless (eq item.data.room_checkbox_2_text "")}}
+                    {{#unless (eq item.system.room_checkbox_2_text "")}}
                     <div class="item-checkmark">
                       <div class="standard-checkbox">
-                        <input type="checkbox" id="item-{{item._id}}-rmcbx2-checked" value="{{item.data.room_checkbox_2_checked}}" {{checked item.data.room_checkbox_2_checked}} data-property-to-set="room_checkbox_2_checked">
+                        <input type="checkbox" id="item-{{item._id}}-rmcbx2-checked" value="{{item.system.room_checkbox_2_checked}}" {{checked item.system.room_checkbox_2_checked}} data-property-to-set="room_checkbox_2_checked">
                         <label for="item-{{item._id}}-rmcbx2-checked"></label>
-                        {{item.data.room_checkbox_2_text}}
+                        {{item.system.room_checkbox_2_text}}
                       </div>
                     </div>
                     {{/unless}}
@@ -163,24 +163,24 @@
                 <div class="item-name item-open-editor">{{item.name}}<br /><i>({{localize "FITD.Flexibility"}})</i></div>
               </td>
               <td>
-                <div class="item-description{{#if item.data.missing_materials}} missing-materials{{/if}}">
-                  {{item.data.description}}{{#if item.data.missing_materials}} ({{localize 'FITD.MissingMaterials'}}){{/if}}
+                <div class="item-description{{#if item.system.missing_materials}} missing-materials{{/if}}">
+                  {{item.system.description}}{{#if item.system.missing_materials}} ({{localize 'FITD.MissingMaterials'}}){{/if}}
                   <div class="checkbox-container">
-                    {{#unless (eq item.data.room_checkbox_1_text "")}}
+                    {{#unless (eq item.system.room_checkbox_1_text "")}}
                     <div class="item-checkmark">
                       <div class="standard-checkbox">
-                        <input type="checkbox" id="item-{{item._id}}-rmcbx1-checked" value="{{item.data.room_checkbox_1_checked}}" {{checked item.data.room_checkbox_1_checked}} data-property-to-set="room_checkbox_1_checked">
+                        <input type="checkbox" id="item-{{item._id}}-rmcbx1-checked" value="{{item.system.room_checkbox_1_checked}}" {{checked item.system.room_checkbox_1_checked}} data-property-to-set="room_checkbox_1_checked">
                         <label for="item-{{item._id}}-rmcbx1-checked"></label>
-                        {{item.data.room_checkbox_1_text}}
+                        {{item.system.room_checkbox_1_text}}
                       </div>
                     </div>
                     {{/unless}}
-                    {{#unless (eq item.data.room_checkbox_2_text "")}}
+                    {{#unless (eq item.system.room_checkbox_2_text "")}}
                     <div class="item-checkmark">
                       <div class="standard-checkbox">
-                        <input type="checkbox" id="item-{{item._id}}-rmcbx2-checked" value="{{item.data.room_checkbox_2_checked}}" {{checked item.data.room_checkbox_2_checked}} data-property-to-set="room_checkbox_2_checked">
+                        <input type="checkbox" id="item-{{item._id}}-rmcbx2-checked" value="{{item.system.room_checkbox_2_checked}}" {{checked item.system.room_checkbox_2_checked}} data-property-to-set="room_checkbox_2_checked">
                         <label for="item-{{item._id}}-rmcbx2-checked"></label>
-                        {{item.data.room_checkbox_2_text}}
+                        {{item.system.room_checkbox_2_text}}
                       </div>
                     </div>
                     {{/unless}}
@@ -210,7 +210,7 @@
           <div class="item flex-horizontal" data-item-id="{{item._id}}">
             <div class="item-body flex-vertical">
               <div class="item-name item-open-editor">{{item.name}}</div>
-              <div class="item-description">{{item.data.description}}</div>
+              <div class="item-description">{{item.system.description}}</div>
             </div>
             <a class="item-control item-delete" title="{{localize 'FITD.TitleDeleteItem'}}"><i class="fas fa-trash"></i></a>
           </div>
@@ -219,46 +219,46 @@
         </div>
         <div class="text-input">
           <label class="label-stripe">{{localize "FITD.Entrance"}}</label>
-          {{#if (eq data.entrance "")}}
+          {{#if (eq system.entrance "")}}
           <label>{{localize "FITD.EntranceHints"}}</label>
           {{/if}}
-          <input type="text" id="entrance-description-input" name="data.entrance" value="{{data.entrance}}">
+          <input type="text" id="entrance-description-input" name="system.entrance" value="{{system.entrance}}">
         </div>
         <div class="text-input">
           <label class="label-stripe">{{localize "FITD.Structure"}}</label>
-          {{#if (eq data.structure "")}}
+          {{#if (eq system.structure "")}}
           <label>{{localize "FITD.StructureHints"}}</label>
           {{/if}}
-          <input type="text" id="structure-description-input" name="data.structure" value="{{data.structure}}">
+          <input type="text" id="structure-description-input" name="system.structure" value="{{system.structure}}">
         </div>
         <div class="text-input">
           <label class="label-stripe">{{localize "FITD.Lighting"}}</label>
-          {{#if (eq data.lighting "")}}
+          {{#if (eq system.lighting "")}}
           <label>{{localize "FITD.LightingHints"}}</label>
           {{/if}}
-          <input type="text" id="lighting-description-input" name="data.lighting" value="{{data.lighting}}">
+          <input type="text" id="lighting-description-input" name="system.lighting" value="{{system.lighting}}">
         </div>
         <div class="text-input">
           <label class="label-stripe">{{localize "FITD.Atmospherics"}}</label>
-          {{#if (eq data.atmospherics "")}}
+          {{#if (eq system.atmospherics "")}}
           <label>{{localize "FITD.AtmosphericsHints"}}</label>
           {{/if}}
-          <input type="text" id="atmospherics-description-input" name="data.atmospherics" value="{{data.atmospherics}}">
+          <input type="text" id="atmospherics-description-input" name="system.atmospherics" value="{{system.atmospherics}}">
         </div>
         <div class="text-input">
           <label class="label-stripe">{{localize "FITD.Hoard"}}</label>
-          {{#if (eq data.hoard "")}}
+          {{#if (eq system.hoard "")}}
           <label>{{localize "FITD.HoardHints"}}</label>
           {{/if}}
-          <input type="text" id="hoard-description-input" name="data.hoard" value="{{data.hoard}}">
+          <input type="text" id="hoard-description-input" name="system.hoard" value="{{system.hoard}}">
         </div>
         <div class="text-input">
           <label class="label-stripe">{{localize "FITD.Imps"}}</label>
-          {{#if (eq data.imps "")}}
+          {{#if (eq system.imps "")}}
           <label>{{localize "FITD.ImpsHints1"}}</label><br />
           <label>{{localize "FITD.ImpsHints2"}}</label>
           {{/if}}
-          <input type="text" id="imps-description-input" name="data.imps" value="{{data.imps}}">
+          <input type="text" id="imps-description-input" name="system.imps" value="{{system.imps}}">
         </div>
       </div>
 
@@ -269,27 +269,27 @@
         </div>
         <div class="text-input">
           <label class="label-stripe">{{localize "FITD.StepOne"}}</label>
-          <input type="text" name="data.master_plan.step1" value="{{data.master_plan.step1}}">
+          <input type="text" name="system.master_plan.step1" value="{{system.master_plan.step1}}">
         </div>
         <div class="text-input">
           <label class="label-stripe">{{localize "FITD.StepTwo"}}</label>
-          <input type="text" name="data.master_plan.step2" value="{{data.master_plan.step2}}">
+          <input type="text" name="system.master_plan.step2" value="{{system.master_plan.step2}}">
         </div>
         <div class="text-input">
           <label class="label-stripe">{{localize "FITD.StepThree"}}</label>
-          <input type="text" name="data.master_plan.step3" value="{{data.master_plan.step3}}">
+          <input type="text" name="system.master_plan.step3" value="{{system.master_plan.step3}}">
         </div>
         <div class="text-input">
           <label class="label-stripe">{{localize "FITD.StepFour"}}</label>
-          <input type="text" name="data.master_plan.step4" value="{{data.master_plan.step4}}">
+          <input type="text" name="system.master_plan.step4" value="{{system.master_plan.step4}}">
         </div>
         <div class="text-input">
           <label class="label-stripe">{{localize "FITD.StepFive"}}</label>
-          <input type="text" name="data.master_plan.step5" value="{{data.master_plan.step5}}">
+          <input type="text" name="system.master_plan.step5" value="{{system.master_plan.step5}}">
         </div>
         <div class="text-input">
           <label class="label-stripe">{{localize "FITD.StepSix"}}</label>
-          <input type="text" name="data.master_plan.step6" value="{{data.master_plan.step6}}">
+          <input type="text" name="system.master_plan.step6" value="{{system.master_plan.step6}}">
         </div>
       </div>
 
@@ -298,7 +298,7 @@
         <div class="label-stripe">
           <p>{{localize "FITD.Notes"}}</p>
         </div>
-        {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+        {{editor notes target="system.description" button=true owner=owner editable=editable}}
       </div>
 
       {{!-- Full Item List --}}

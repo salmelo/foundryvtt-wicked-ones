@@ -37,14 +37,14 @@
           {{!-- Look --}}
           <div class="text-input" id="look">
             <label for="character-{{actor._id}}-look">{{localize "FITD.Look"}}</label>
-            <input type="text" id="character-{{actor._id}}-look" name="data.look" value="{{data.look}}">
+            <input type="text" id="character-{{actor._id}}-look" name="system.look" value="{{system.look}}">
           </div>
         </td>
       </tr>
       <tr>
         <td>
           {{!-- Calling --}}
-          {{#unless actor.data.is_primal_monster}}
+          {{#unless actor.system.is_primal_monster}}
           <div class="item-block flex-vertical draggable-items">
             <div class="item-class-label"><a class="item-add-popup" data-distinct="true" data-item-type="calling">{{localize "FITD.Calling"}}</a></div>
             {{#each actor.items as |item id|}}
@@ -59,14 +59,14 @@
             {{/each}}
           </div>
           {{else}}
-          {{#if (eq actor.data.primal_monster_type (localize "FITD.GAME_LOGIC.Goldmonger"))}}
+          {{#if (eq actor.system.primal_monster_type (localize "FITD.GAME_LOGIC.Goldmonger"))}}
           <div class="item-block flex-vertical draggable-items">
             <div class="item-class-label"><a class="item-add-popup" data-distinct="true" data-item-type="goldmonger_type">{{localize "FITD.GMType"}}</a></div>
             {{#each actor.items as |item id|}}
             {{#if (eq item.type "goldmonger_type")}}
             <div class="item flex-horizontal" data-item-id="{{item._id}}">
               <div class="item-body flex-horizontal">
-                <div class="item-name item-open-editor">{{item.data.gm_type_custom}}</div>
+                <div class="item-name item-open-editor">{{item.system.gm_type_custom}}</div>
               </div>
               <a class="item-control item-delete" title="{{localize 'FITD.TitleDeleteItem'}}"><i class="fas fa-trash"></i></a>
             </div>
@@ -80,14 +80,14 @@
           {{!-- Vile Friend --}}
           <div class="text-input" id="vilefriend">
             <label for="character-{{actor._id}}-vilefriend">{{localize "FITD.VileFriend"}}</label>
-            <input type="text" id="character-{{actor._id}}-vilefriend" name="data.vilefriend" value="{{data.vilefriend}}">
+            <input type="text" id="character-{{actor._id}}-vilefriend" name="system.vilefriend" value="{{system.vilefriend}}">
           </div>
         </td>
       </tr>
       <tr>
         <td>
           {{!-- Revelry --}}
-          {{#unless (eq actor.data.primal_monster_type (localize "FITD.GAME_LOGIC.Goldmonger"))}}
+          {{#unless (eq actor.system.primal_monster_type (localize "FITD.GAME_LOGIC.Goldmonger"))}}
           <div class="item-block flex-vertical draggable-items">
             <div class="item-class-label"><a class="item-add-popup" data-distinct="true" data-item-type="revelry">{{localize "FITD.Revelry"}}</a></div>
             {{#each actor.items as |item id|}}
@@ -108,7 +108,7 @@
             {{#if (eq item.type "goldmonger_type")}}
             <div class="item flex-horizontal" data-item-id="{{item._id}}">
               <div class="item-body flex-horizontal">
-                <div class="item-name item-open-editor">{{item.data.gm_antitype_custom}}</div>
+                <div class="item-name item-open-editor">{{item.system.gm_antitype_custom}}</div>
               </div>
               <a class="item-control item-delete" title="{{localize 'FITD.TitleDeleteItem'}}"><i class="fas fa-trash"></i></a>
             </div>
@@ -122,32 +122,32 @@
           <div class="minionpack flex-horizontal" data-item-id="{{item._id}}">
             <div class="text-input flex-vertical">
               <label for="character-{{actor._id}}-minionpack">{{localize "FITD.MinionPack"}}</label>
-              <select name="data.minionpack">
-                {{#select data.minionpack}}
+              <select name="system.minionpack">
+                {{#select system.minionpack}}
                 <option value="">{{localize "FITD.NoneParentheses"}}</option>
-                {{#each actor.data.existing_minions as |minion id|}}
+                {{#each actor.system.existing_minions as |minion id|}}
                 <option value="{{this.id}}">{{minion.name}}</option>
                 {{/each}}
                 {{/select}}
               </select>
             </div>
-            <button class="open-minion-pack" {{#if (eq data.minionpack "")}} disabled {{/if}}>{{localize "FITD.Open"}}</button>
+            <button class="open-minion-pack" {{#if (eq system.minionpack "")}} disabled {{/if}}>{{localize "FITD.Open"}}</button>
           </div>
         </td>
       </tr>
       <tr class="xp-stripe">
-        {{#unless (eq actor.data.primal_monster_type (localize "FITD.GAME_LOGIC.Goldmonger"))}}
+        {{#unless (eq actor.system.primal_monster_type (localize "FITD.GAME_LOGIC.Goldmonger"))}}
         <td>
           {{!-- Gold --}}
           <div id="character-{{actor._id}}-gold" class="big-teeth gold">
-            {{#multiboxes data.gold.value}}
-            <input type="radio" id="character-{{actor._id}}-gold-0" name="data.gold.value" value="0" dtype="Radio">
+            {{#multiboxes system.gold.value}}
+            <input type="radio" id="character-{{actor._id}}-gold-0" name="system.gold.value" value="0" dtype="Radio">
             <div class="tooltip" data-tooltip="{{{escdq (localize "FITD.TOOLTIP.Coin")}}}">
               <label class="black-label" for="character-{{actor._id}}-gold-0">{{localize "FITD.Coin"}}</label>
             </div>
 
-            {{#times_from_1 data.gold.max}}
-            <input type="radio" id="character-{{../actor._id}}-gold-{{this}}" name="data.gold.value" value="{{this}}" dtype="Radio">
+            {{#times_from_1 system.gold.max}}
+            <input type="radio" id="character-{{../actor._id}}-gold-{{this}}" name="system.gold.value" value="{{this}}" dtype="Radio">
             <label for="character-{{../actor._id}}-gold-{{this}}"></label>
             {{/times_from_1}}
 
@@ -157,14 +157,14 @@
         <td>
           {{!-- Wicked XP --}}
           <div id="character-{{actor._id}}-wickedxp" class="big-teeth xp-bar">
-            {{#multiboxes data.wickedxp.value}}
-            <input type="radio" id="character-{{actor._id}}-wickedxp-0" name="data.wickedxp.value" value="0" dtype="Radio">
+            {{#multiboxes system.wickedxp.value}}
+            <input type="radio" id="character-{{actor._id}}-wickedxp-0" name="system.wickedxp.value" value="0" dtype="Radio">
             <div class="tooltip" data-tooltip="{{{escdq (localize "FITD.TOOLTIP.Wicked")}}}" >
-              <label class="black-label" for="character-{{actor._id}}-wickedxp-0">{{localize data.wickedxp.name}}</label>
+              <label class="black-label" for="character-{{actor._id}}-wickedxp-0">{{localize system.wickedxp.name}}</label>
             </div>
 
-            {{#times_from_1 data.wickedxp.max}}
-            <input type="radio" id="character-{{../actor._id}}-wickedxp-{{this}}" name="data.wickedxp.value" value="{{this}}" dtype="Radio">
+            {{#times_from_1 system.wickedxp.max}}
+            <input type="radio" id="character-{{../actor._id}}-wickedxp-{{this}}" name="system.wickedxp.value" value="{{this}}" dtype="Radio">
             <label for="character-{{../actor._id}}-wickedxp-{{this}}"></label>
             {{/times_from_1}}
 
@@ -172,16 +172,16 @@
           </div>
         </td>
         <td>
-          {{#unless (eq actor.data.primal_monster_type (localize "FITD.GAME_LOGIC.Doomseeker"))}}
+          {{#unless (eq actor.system.primal_monster_type (localize "FITD.GAME_LOGIC.Doomseeker"))}}
           {{!-- Reckless XP --}}
           <div id="character-{{actor._id}}-recklessxp" class="big-teeth xp-bar">
-            {{#multiboxes data.recklessxp.value}}
-            <input type="radio" id="character-{{actor._id}}-recklessxp-0" name="data.recklessxp.value" value="0" dtype="Radio">
+            {{#multiboxes system.recklessxp.value}}
+            <input type="radio" id="character-{{actor._id}}-recklessxp-0" name="system.recklessxp.value" value="0" dtype="Radio">
             <div class="tooltip" data-tooltip="{{{escdq (localize "FITD.TOOLTIP.Reckless")}}}" >
-              <label class="black-label" for="character-{{actor._id}}-recklessxp-0">{{localize data.recklessxp.name}}</label>
+              <label class="black-label" for="character-{{actor._id}}-recklessxp-0">{{localize system.recklessxp.name}}</label>
             </div>
-            {{#times_from_1 data.recklessxp.max}}
-            <input type="radio" id="character-{{../actor._id}}-recklessxp-{{this}}" name="data.recklessxp.value" value="{{this}}" dtype="Radio">
+            {{#times_from_1 system.recklessxp.max}}
+            <input type="radio" id="character-{{../actor._id}}-recklessxp-{{this}}" name="system.recklessxp.value" value="{{this}}" dtype="Radio">
             <label for="character-{{../actor._id}}-recklessxp-{{this}}"></label>
             {{/times_from_1}}
 
@@ -189,13 +189,13 @@
           </div>
           {{else}}
           <div id="character-{{actor._id}}-guardianxp" class="big-teeth xp-bar">
-            {{#multiboxes data.recklessxp.value}}
-            <input type="radio" id="character-{{actor._id}}-recklessxp-0" name="data.recklessxp.value" value="0" dtype="Radio">
+            {{#multiboxes system.recklessxp.value}}
+            <input type="radio" id="character-{{actor._id}}-recklessxp-0" name="system.recklessxp.value" value="0" dtype="Radio">
             <div class="tooltip" data-tooltip="{{{escdq (localize "FITD.TOOLTIP.Guardian")}}}" >
               <label class="black-label" for="character-{{actor._id}}-recklessxp-0">{{localize "FITD.GuardianXP"}}</label>
             </div>
-            {{#times_from_1 data.recklessxp.max}}
-            <input type="radio" id="character-{{../actor._id}}-recklessxp-{{this}}" name="data.recklessxp.value" value="{{this}}" dtype="Radio">
+            {{#times_from_1 system.recklessxp.max}}
+            <input type="radio" id="character-{{../actor._id}}-recklessxp-{{this}}" name="system.recklessxp.value" value="{{this}}" dtype="Radio">
             <label for="character-{{../actor._id}}-recklessxp-{{this}}"></label>
             {{/times_from_1}}
 
@@ -210,18 +210,18 @@
             <div class="tooltip" data-tooltip="{{{escdq (localize "FITD.TOOLTIP.GMSize")}}}">
               <label class="black-label inactive">{{localize "FITD.GMSize"}}:</label>
             </div>
-            {{#multiboxes data.goldmonger_size}}
-            <input type="radio" id="character-{{actor._id}}-size-0" name="data.goldmonger_size" value="0" dtype="Radio">
+            {{#multiboxes system.goldmonger_size}}
+            <input type="radio" id="character-{{actor._id}}-size-0" name="system.goldmonger_size" value="0" dtype="Radio">
             <div class="tooltip" data-tooltip="{{{escdq (localize "FITD.TOOLTIP.GMSize")}}} {{{escdq (localize "FITD.TOOLTIP.GMSize0")}}}">
               <label class="black-label tooltip" for="character-{{actor._id}}-size-0">Tier 0</label>
               <label class="gm-size-box" for="character-{{actor._id}}-size-0"></label>
             </div>
-            <input type="radio" id="character-{{actor._id}}-size-1" name="data.goldmonger_size" value="1" dtype="Radio">
+            <input type="radio" id="character-{{actor._id}}-size-1" name="system.goldmonger_size" value="1" dtype="Radio">
             <div class="tooltip" data-tooltip="{{{escdq (localize "FITD.TOOLTIP.GMSize")}}} {{{escdq (localize "FITD.TOOLTIP.GMSize1")}}}">
               <label class="black-label" for="character-{{actor._id}}-size-1">Tier 1</label>
               <label class="gm-size-box" for="character-{{actor._id}}-size-1"></label>
             </div>
-            <input type="radio" id="character-{{actor._id}}-size-3" name="data.goldmonger_size" value="3" dtype="Radio">
+            <input type="radio" id="character-{{actor._id}}-size-3" name="system.goldmonger_size" value="3" dtype="Radio">
             <div class="tooltip" data-tooltip="{{{escdq (localize "FITD.TOOLTIP.GMSize")}}} {{{escdq (localize "FITD.TOOLTIP.GMSize3")}}}">
               <label class="black-label" for="character-{{actor._id}}-size-3">Tier 3</label>
               <label class="gm-size-box" for="character-{{actor._id}}-size-3"></label>
@@ -234,8 +234,8 @@
           <div class="tooltip" data-tooltip="{{{escdq (localize "FITD.TOOLTIP.PleasedXP")}}}" >
             <div class="pleased-xp">
               <label class="black-label" for="character-{{actor._id}}-pleased-xp">{{localize "FITD.GMPleasedXP"}}:</label>
-              <input type="checkbox" id="character-{{actor._id}}-pleased-xp" name="data.goldmonger_pleased"
-                     value="data.goldmonger_pleased" {{checked data.goldmonger_pleased}}>
+              <input type="checkbox" id="character-{{actor._id}}-pleased-xp" name="system.goldmonger_pleased"
+                     value="system.goldmonger_pleased" {{checked system.goldmonger_pleased}}>
               <label class="pleased-checkbox" for="character-{{actor._id}}-pleased-xp"></label>
             </div>
           </div>
@@ -273,7 +273,7 @@
                     {{#if (eq item.type "defense")}}
                     <div class="item flex-horizontal" data-item-id="{{item._id}}">
                       <div class="item-checkmark standard-checkbox">
-                        <input type="checkbox" id="item-{{item._id}}-checked" value="{{item.data.checked}}" {{checked item.data.checked}} data-property-to-set="checked">
+                        <input type="checkbox" id="item-{{item._id}}-checked" value="{{item.system.checked}}" {{checked item.system.checked}} data-property-to-set="checked">
                         <label for="item-{{item._id}}-checked"></label>
                         <div class="item-name item-open-editor">{{item.name}}</div>
                       </div>
@@ -285,7 +285,7 @@
                 </td>
                 <td>
                   <div id="character-stress-clock">
-                    {{{blades-clock "data.stress.value" 6 data.stress.value actor._id}}}
+                    {{{blades-clock "system.stress.value" 6 system.stress.value actor._id}}}
                   </div>
                 </td>
                 <td>
@@ -312,7 +312,7 @@
       {{!-- Nav menu --}}
     <nav class="tabs flex-horizontal">
       <a class="item" data-tab="abilities">{{localize "FITD.Abilities"}}</a>
-      {{#unless (eq actor.data.primal_monster_type (localize "FITD.GAME_LOGIC.Goldmonger"))}}
+      {{#unless (eq actor.system.primal_monster_type (localize "FITD.GAME_LOGIC.Goldmonger"))}}
       <a class="item" data-tab="loadout">{{localize "FITD.Loadout"}}</a>
       {{/unless}}
       <a class="item" data-tab="duties">{{localize "FITD.DutiesProjects"}}</a>
@@ -333,30 +333,30 @@
             {{!-- Basic Primal Abilities --}}
             {{#each actor.items as |item id|}}
             {{#if (eq item.type "specialability")}}
-            {{#if (eq item.data.ability_group "group_base")}}
+            {{#if (eq item.system.ability_group "group_base")}}
             <tr class="item" data-item-id="{{item._id}}">
               <td class="item-body">
                 <div class="item-name item-open-editor">{{item.name}}</div>
               </td>
               <td>
-                <div class="item-description">{{item.data.description}}</div>
-                {{#if (eq item.data.ability_type "advanced")}}
+                <div class="item-description">{{item.system.description}}</div>
+                {{#if (eq item.system.ability_type "advanced")}}
                 <div class="checkbox-container">
-                  {{#unless (eq item.data.ability_checkbox_1_text "")}}
+                  {{#unless (eq item.system.ability_checkbox_1_text "")}}
                   <div class="item-checkmark">
                     <div class="standard-checkbox">
-                      <input type="checkbox" id="item-{{item._id}}-bpcbx1-checked" value="{{item.data.ability_checkbox_1_checked}}" {{checked item.data.ability_checkbox_1_checked}} data-property-to-set="ability_checkbox_1_checked">
+                      <input type="checkbox" id="item-{{item._id}}-bpcbx1-checked" value="{{item.system.ability_checkbox_1_checked}}" {{checked item.system.ability_checkbox_1_checked}} data-property-to-set="ability_checkbox_1_checked">
                       <label for="item-{{item._id}}-bpcbx1-checked"></label>
-                      {{item.data.ability_checkbox_1_text}}
+                      {{item.system.ability_checkbox_1_text}}
                     </div>
                   </div>
                   {{/unless}}
-                  {{#unless (eq item.data.ability_checkbox_2_text "")}}
+                  {{#unless (eq item.system.ability_checkbox_2_text "")}}
                   <div class="item-checkmark">
                     <div class="standard-checkbox">
-                      <input type="checkbox" id="item-{{item._id}}-bpcbx2-checked" value="{{item.data.ability_checkbox_2_checked}}" {{checked item.data.ability_checkbox_2_checked}} data-property-to-set="ability_checkbox_2_checked">
+                      <input type="checkbox" id="item-{{item._id}}-bpcbx2-checked" value="{{item.system.ability_checkbox_2_checked}}" {{checked item.system.ability_checkbox_2_checked}} data-property-to-set="ability_checkbox_2_checked">
                       <label for="item-{{item._id}}-bpcbx2-checked"></label>
-                      {{item.data.ability_checkbox_2_text}}
+                      {{item.system.ability_checkbox_2_text}}
                     </div>
                   </div>
                   {{/unless}}
@@ -374,17 +374,17 @@
             {{!-- Face Stealer Faces --}}
             {{#each actor.items as |item id|}}
             {{#if (eq item.type "specialability")}}
-            {{#if (eq item.data.ability_group "group_faces")}}
+            {{#if (eq item.system.ability_group "group_faces")}}
             <tr class="item stolen-face" data-item-id="{{item._id}}">
               <td class="item-body">
                 <img class="item-open-editor" src="{{item.img}}" title="{{item.name}}" />
               </td>
               <td>
                 <span class="item-body"><b class="item-open-editor">{{item.name}}</b></span>
-                <div class="item-description">{{item.data.description}}</div>
+                <div class="item-description">{{item.system.description}}</div>
                 <div class="item-checkmark">
                   <div class="standard-checkbox">
-                    <input type="checkbox" id="item-{{item._id}}-acbx1-checked" value="{{item.data.ability_checkbox_1_checked}}" {{checked item.data.ability_checkbox_1_checked}} data-property-to-set="ability_checkbox_1_checked">
+                    <input type="checkbox" id="item-{{item._id}}-acbx1-checked" value="{{item.system.ability_checkbox_1_checked}}" {{checked item.system.ability_checkbox_1_checked}} data-property-to-set="ability_checkbox_1_checked">
                     <label for="item-{{item._id}}-acbx1-checked"></label>{{localize "FITD.FSGrafted"}}
                   </div>
                 </div>
@@ -400,13 +400,13 @@
             {{!-- Core Skill --}}
             {{#each actor.items as |item id|}}
             {{#if (eq item.type "specialability")}}
-            {{#if (eq item.data.ability_group "group_core")}}
+            {{#if (eq item.system.ability_group "group_core")}}
             <tr class="item group-core" data-item-id="{{item._id}}">
               <td class="item-body">
                 <div class="item-name item-open-editor">{{item.name}}</div>
               </td>
               <td>
-                <div class="item-description">{{item.data.description}}</div>
+                <div class="item-description">{{item.system.description}}</div>
               </td>
               <td>
                 <a class="item-control item-delete" title="{{localize 'FITD.TitleDeleteItem'}}"><i class="fas fa-trash"></i></a>
@@ -419,38 +419,38 @@
             {{!-- Primal Specials --}}
             {{#each actor.items as |item id|}}
             {{#if (eq item.type "specialability")}}
-            {{#if (eq item.data.ability_group "group_primal")}}
-            {{#if (eq item.data.ability_type "be_psi")}}
+            {{#if (eq item.system.ability_group "group_primal")}}
+            {{#if (eq item.system.ability_type "be_psi")}}
             <tr id="discipline-{{item._id}}" class="item psi-discipline" data-item-id="{{item._id}}">
               <td colspan="3">
                 <div class="label-stripe item-radio">
-                  <div class="roll-die-attribute rollable-text tooltip" data-tooltip="{{{escdq data.primal.be_psi_skill_tooltip}}}" data-roll-attribute="{{data.primal.be_psi_skill_name}}">
-                    {{data.primal.be_psi_skill_name}}
+                  <div class="roll-die-attribute rollable-text tooltip" data-tooltip="{{{escdq system.primal.be_psi_skill_tooltip}}}" data-roll-attribute="{{system.primal.be_psi_skill_name}}">
+                    {{system.primal.be_psi_skill_name}}
                   </div>
-                  {{#multiboxes data.primal.be_psi_dots}}
-                  <input type="radio" id="discipline-{{item._id}}-0" name="{{item._id}}-data.primal.be_psi_dots" value="0" dtype="Radio" data-property-to-set="primal.be_psi_dots">
+                  {{#multiboxes system.primal.be_psi_dots}}
+                  <input type="radio" id="discipline-{{item._id}}-0" name="{{item._id}}-system.primal.be_psi_dots" value="0" dtype="Radio" data-property-to-set="primal.be_psi_dots">
                   <label for="discipline-{{item._id}}-0"></label>
                   {{#times_from_1 3}}
-                  <input type="radio" id="discipline-{{item._id}}-{{this}}" name="{{item._id}}-data.primal.be_psi_dots" value="{{this}}" dtype="Radio" data-property-to-set="primal.be_psi_dots">
+                  <input type="radio" id="discipline-{{item._id}}-{{this}}" name="{{item._id}}-system.primal.be_psi_dots" value="{{this}}" dtype="Radio" data-property-to-set="primal.be_psi_dots">
                   <label for="discipline-{{item._id}}-{{this}}"></label>
                   {{/times_from_1}}
                   {{/multiboxes}}
                 </div>
               </td>
             </tr>
-            {{#if (eq item.data.primal.be_psi_dots "3")}}
+            {{#if (eq item.system.primal.be_psi_dots "3")}}
             <tr class="item" data-item-id="{{item._id}}">
               <td class="item-body">
                 <div class="item-name item-open-editor">{{item.name}}</div>
               </td>
               <td>
-                {{#if item.data.primal.be_psi_checked_1}}
-                <div class="item-name"><b>{{item.data.primal.be_psi_name_1}}</b></div>
-                <div class="item-description">{{item.data.primal.be_psi_desc_1}}</div>
+                {{#if item.system.primal.be_psi_checked_1}}
+                <div class="item-name"><b>{{item.system.primal.be_psi_name_1}}</b></div>
+                <div class="item-description">{{item.system.primal.be_psi_desc_1}}</div>
                 {{/if}}
-                {{#if item.data.primal.be_psi_checked_2}}
-                <div class="item-name"><b>{{item.data.primal.be_psi_name_2}}</b></div>
-                <div class="item-description">{{item.data.primal.be_psi_desc_2}}</div>
+                {{#if item.system.primal.be_psi_checked_2}}
+                <div class="item-name"><b>{{item.system.primal.be_psi_name_2}}</b></div>
+                <div class="item-description">{{item.system.primal.be_psi_desc_2}}</div>
                 {{/if}}
               </td>
               <td>
@@ -459,7 +459,7 @@
             </tr>
             {{/if}}
             {{/if}}
-            {{#if (eq item.data.ability_type "ds_eyes")}}
+            {{#if (eq item.system.ability_type "ds_eyes")}}
             <tr class="item eye-rays" data-item-id="{{item._id}}">
               <td colspan="2">
                 <div class="ray-container">
@@ -472,52 +472,52 @@
                   <div class="ray-items">
                     <div>
                       <b>{{localize "FITD.DSMainEye"}}: </b>
-                      <span class="roll-die-attribute rollable-text tooltip" data-tooltip="{{{escdq item.data.primal.ds_eye_ray_1_tooltip}}}" data-roll-attribute="{{item.data.primal.ds_eye_ray_1}}">
-                        {{item.data.primal.ds_eye_ray_1_name}} <b>{{item.data.primal.ds_eye_ray_1_val}}D</b>
+                      <span class="roll-die-attribute rollable-text tooltip" data-tooltip="{{{escdq item.system.primal.ds_eye_ray_1_tooltip}}}" data-roll-attribute="{{item.system.primal.ds_eye_ray_1}}">
+                        {{item.system.primal.ds_eye_ray_1_name}} <b>{{item.system.primal.ds_eye_ray_1_val}}D</b>
                       </span>
                     </div>
                     <div>
                       <b>{{localize "FITD.DSOtherEyes"}}:</b><br />
-                      <span class="roll-die-attribute rollable-text tooltip" data-tooltip="{{{escdq item.data.primal.ds_eye_ray_6_tooltip}}}" data-roll-attribute="{{item.data.primal.ds_eye_ray_6}}">
-                        {{item.data.primal.ds_eye_ray_6_name}} <b>{{item.data.primal.ds_eye_ray_6_val}}D</b>
+                      <span class="roll-die-attribute rollable-text tooltip" data-tooltip="{{{escdq item.system.primal.ds_eye_ray_6_tooltip}}}" data-roll-attribute="{{item.system.primal.ds_eye_ray_6}}">
+                        {{item.system.primal.ds_eye_ray_6_name}} <b>{{item.system.primal.ds_eye_ray_6_val}}D</b>
                       </span>
                     </div>
                     <div>
                       <b>{{localize "FITD.DSOtherEyes"}}:</b><br />
-                      <span class="roll-die-attribute rollable-text tooltip" data-tooltip="{{{escdq item.data.primal.ds_eye_ray_7_tooltip}}}" data-roll-attribute="{{item.data.primal.ds_eye_ray_7}}">
-                        {{item.data.primal.ds_eye_ray_7_name}} <b>{{item.data.primal.ds_eye_ray_7_val}}D</b>
+                      <span class="roll-die-attribute rollable-text tooltip" data-tooltip="{{{escdq item.system.primal.ds_eye_ray_7_tooltip}}}" data-roll-attribute="{{item.system.primal.ds_eye_ray_7}}">
+                        {{item.system.primal.ds_eye_ray_7_name}} <b>{{item.system.primal.ds_eye_ray_7_val}}D</b>
                       </span>
                     </div>
                     <div>
-                      <span class="roll-die-attribute rollable-text tooltip" data-tooltip="{{{escdq item.data.primal.ds_eye_ray_8_tooltip}}}" data-roll-attribute="{{item.data.primal.ds_eye_ray_8}}">
-                        {{item.data.primal.ds_eye_ray_8_name}} <b>{{item.data.primal.ds_eye_ray_8_val}}D</b>
+                      <span class="roll-die-attribute rollable-text tooltip" data-tooltip="{{{escdq item.system.primal.ds_eye_ray_8_tooltip}}}" data-roll-attribute="{{item.system.primal.ds_eye_ray_8}}">
+                        {{item.system.primal.ds_eye_ray_8_name}} <b>{{item.system.primal.ds_eye_ray_8_val}}D</b>
                       </span>
                     </div>
                     <div>
-                      <span class="roll-die-attribute rollable-text tooltip" data-tooltip="{{{escdq item.data.primal.ds_eye_ray_9_tooltip}}}" data-roll-attribute="{{item.data.primal.ds_eye_ray_9}}">
-                        {{item.data.primal.ds_eye_ray_9_name}} <b>{{item.data.primal.ds_eye_ray_9_val}}D</b>
-                      </span>
-                    </div>
-                    <div>
-                      <b>{{localize "FITD.DSOuterEyes"}}:</b><br />
-                      <span class="roll-die-attribute rollable-text tooltip" data-tooltip="{{{escdq item.data.primal.ds_eye_ray_2_tooltip}}}" data-roll-attribute="{{item.data.primal.ds_eye_ray_2}}">
-                        {{item.data.primal.ds_eye_ray_2_name}} <b>{{item.data.primal.ds_eye_ray_2_val}}D</b>
+                      <span class="roll-die-attribute rollable-text tooltip" data-tooltip="{{{escdq item.system.primal.ds_eye_ray_9_tooltip}}}" data-roll-attribute="{{item.system.primal.ds_eye_ray_9}}">
+                        {{item.system.primal.ds_eye_ray_9_name}} <b>{{item.system.primal.ds_eye_ray_9_val}}D</b>
                       </span>
                     </div>
                     <div>
                       <b>{{localize "FITD.DSOuterEyes"}}:</b><br />
-                      <span class="roll-die-attribute rollable-text tooltip" data-tooltip="{{{escdq item.data.primal.ds_eye_ray_3_tooltip}}}" data-roll-attribute="{{item.data.primal.ds_eye_ray_3}}">
-                        {{item.data.primal.ds_eye_ray_3_name}} <b>{{item.data.primal.ds_eye_ray_3_val}}D</b>
+                      <span class="roll-die-attribute rollable-text tooltip" data-tooltip="{{{escdq item.system.primal.ds_eye_ray_2_tooltip}}}" data-roll-attribute="{{item.system.primal.ds_eye_ray_2}}">
+                        {{item.system.primal.ds_eye_ray_2_name}} <b>{{item.system.primal.ds_eye_ray_2_val}}D</b>
                       </span>
                     </div>
                     <div>
-                      <span class="roll-die-attribute rollable-text tooltip" data-tooltip="{{{escdq item.data.primal.ds_eye_ray_4_tooltip}}}" data-roll-attribute="{{item.data.primal.ds_eye_ray_4}}">
-                        {{item.data.primal.ds_eye_ray_4_name}} <b>{{item.data.primal.ds_eye_ray_4_val}}D</b>
+                      <b>{{localize "FITD.DSOuterEyes"}}:</b><br />
+                      <span class="roll-die-attribute rollable-text tooltip" data-tooltip="{{{escdq item.system.primal.ds_eye_ray_3_tooltip}}}" data-roll-attribute="{{item.system.primal.ds_eye_ray_3}}">
+                        {{item.system.primal.ds_eye_ray_3_name}} <b>{{item.system.primal.ds_eye_ray_3_val}}D</b>
                       </span>
                     </div>
                     <div>
-                      <span class="roll-die-attribute rollable-text tooltip" data-tooltip="{{{escdq item.data.primal.ds_eye_ray_5_tooltip}}}" data-roll-attribute="{{item.data.primal.ds_eye_ray_5}}">
-                        {{item.data.primal.ds_eye_ray_5_name}} <b>{{item.data.primal.ds_eye_ray_5_val}}D</b>
+                      <span class="roll-die-attribute rollable-text tooltip" data-tooltip="{{{escdq item.system.primal.ds_eye_ray_4_tooltip}}}" data-roll-attribute="{{item.system.primal.ds_eye_ray_4}}">
+                        {{item.system.primal.ds_eye_ray_4_name}} <b>{{item.system.primal.ds_eye_ray_4_val}}D</b>
+                      </span>
+                    </div>
+                    <div>
+                      <span class="roll-die-attribute rollable-text tooltip" data-tooltip="{{{escdq item.system.primal.ds_eye_ray_5_tooltip}}}" data-roll-attribute="{{item.system.primal.ds_eye_ray_5}}">
+                        {{item.system.primal.ds_eye_ray_5_name}} <b>{{item.system.primal.ds_eye_ray_5_val}}D</b>
                       </span>
                     </div>
                   </div>
@@ -528,67 +528,67 @@
               </td>
             </tr>
             {{/if}}
-            {{#if (eq item.data.ability_type "gm_path")}}
+            {{#if (eq item.system.ability_type "gm_path")}}
             <tr class="item growth-path" data-item-id="{{item._id}}">
               <td colspan="2">
                 <table class="item-radio">
-                  {{#multiboxes data.primal.gm_path_value}}
+                  {{#multiboxes system.primal.gm_path_value}}
                   <tr>
                     <td>
-                      <input type="radio" id="path-{{item._id}}-0" name="{{item._id}}-data.primal.gm_path_value" value="0" dtype="Radio" data-property-to-set="primal.gm_path_value">
+                      <input type="radio" id="path-{{item._id}}-0" name="{{item._id}}-system.primal.gm_path_value" value="0" dtype="Radio" data-property-to-set="primal.gm_path_value">
                       <label for="path-{{item._id}}-0"><i class="fab fa-creative-commons-zero nullifier tooltip" data-tooltip="{{localize "FITD.TOOLTIP.Reset"}}"></i></label>
                     </td>
                     <td><div class="item-name item-body"><span class="item-open-editor">{{item.name}}</span></div></td>
                   </tr>
                   <tr>
-                    <td class="{{#if (gt item.data.primal.gm_path_value 0)}}filled{{/if}}">
-                      <input type="radio" id="path-{{item._id}}-1" name="{{item._id}}-data.primal.gm_path_value" value="1" dtype="Radio" data-property-to-set="primal.gm_path_value">
+                    <td class="{{#if (gt item.system.primal.gm_path_value 0)}}filled{{/if}}">
+                      <input type="radio" id="path-{{item._id}}-1" name="{{item._id}}-system.primal.gm_path_value" value="1" dtype="Radio" data-property-to-set="primal.gm_path_value">
                       <label for="path-{{item._id}}-1"></label>
                     </td>
                     <td>
-                      <div class="item-description">{{item.data.primal.gm_desc_1}}</div>
-                      {{#unless (eq item.data.primal.gm_checkbox_1_text "")}}
+                      <div class="item-description">{{item.system.primal.gm_desc_1}}</div>
+                      {{#unless (eq item.system.primal.gm_checkbox_1_text "")}}
                       <div class="item-checkmark">
                         <div class="standard-checkbox">
-                          <input type="checkbox" id="item-{{item._id}}-gmcbx1-checked" value="{{item.data.primal.gm_checkbox_1_checked}}" {{checked item.data.primal.gm_checkbox_1_checked}} data-property-to-set="primal.gm_checkbox_1_checked">
+                          <input type="checkbox" id="item-{{item._id}}-gmcbx1-checked" value="{{item.system.primal.gm_checkbox_1_checked}}" {{checked item.system.primal.gm_checkbox_1_checked}} data-property-to-set="primal.gm_checkbox_1_checked">
                           <label for="item-{{item._id}}-gmcbx1-checked"></label>
-                          {{item.data.primal.gm_checkbox_1_text}}
+                          {{item.system.primal.gm_checkbox_1_text}}
                         </div>
                       </div>
                       {{/unless}}
                     </td>
                   </tr>
                   <tr>
-                    <td class="{{#if (gt item.data.primal.gm_path_value 1)}}filled{{/if}}">
-                      <input type="radio" id="path-{{item._id}}-2" name="{{item._id}}-data.primal.gm_path_value" value="2" dtype="Radio" data-property-to-set="primal.gm_path_value">
+                    <td class="{{#if (gt item.system.primal.gm_path_value 1)}}filled{{/if}}">
+                      <input type="radio" id="path-{{item._id}}-2" name="{{item._id}}-system.primal.gm_path_value" value="2" dtype="Radio" data-property-to-set="primal.gm_path_value">
                       <label for="path-{{item._id}}-2"></label>
                     </td>
                     <td>
-                      <div class="item-description">{{item.data.primal.gm_desc_2}}</div>
-                      {{#unless (eq item.data.primal.gm_checkbox_2_text "")}}
+                      <div class="item-description">{{item.system.primal.gm_desc_2}}</div>
+                      {{#unless (eq item.system.primal.gm_checkbox_2_text "")}}
                       <div class="item-checkmark">
                         <div class="standard-checkbox">
-                          <input type="checkbox" id="item-{{item._id}}-gmcbx2-checked" value="{{item.data.primal.gm_checkbox_2_checked}}" {{checked item.data.primal.gm_checkbox_2_checked}} data-property-to-set="primal.gm_checkbox_2_checked">
+                          <input type="checkbox" id="item-{{item._id}}-gmcbx2-checked" value="{{item.system.primal.gm_checkbox_2_checked}}" {{checked item.system.primal.gm_checkbox_2_checked}} data-property-to-set="primal.gm_checkbox_2_checked">
                           <label for="item-{{item._id}}-gmcbx2-checked"></label>
-                          {{item.data.primal.gm_checkbox_2_text}}
+                          {{item.system.primal.gm_checkbox_2_text}}
                         </div>
                       </div>
                       {{/unless}}
                     </td>
                   </tr>
                   <tr>
-                    <td class="{{#if (gt item.data.primal.gm_path_value 2)}}filled{{/if}}">
-                      <input type="radio" id="path-{{item._id}}-3" name="{{item._id}}-data.primal.gm_path_value" value="3" dtype="Radio" data-property-to-set="primal.gm_path_value">
+                    <td class="{{#if (gt item.system.primal.gm_path_value 2)}}filled{{/if}}">
+                      <input type="radio" id="path-{{item._id}}-3" name="{{item._id}}-system.primal.gm_path_value" value="3" dtype="Radio" data-property-to-set="primal.gm_path_value">
                       <label for="path-{{item._id}}-3"></label>
                     </td>
                     <td>
-                      <div class="item-description">{{item.data.primal.gm_desc_3}}</div>
-                      {{#unless (eq item.data.primal.gm_checkbox_3_text "")}}
+                      <div class="item-description">{{item.system.primal.gm_desc_3}}</div>
+                      {{#unless (eq item.system.primal.gm_checkbox_3_text "")}}
                       <div class="item-checkmark">
                         <div class="standard-checkbox">
-                          <input type="checkbox" id="item-{{item._id}}-gmcbx3-checked" value="{{item.data.primal.gm_checkbox_3_checked}}" {{checked item.data.primal.gm_checkbox_3_checked}} data-property-to-set="primal.gm_checkbox_3_checked">
+                          <input type="checkbox" id="item-{{item._id}}-gmcbx3-checked" value="{{item.system.primal.gm_checkbox_3_checked}}" {{checked item.system.primal.gm_checkbox_3_checked}} data-property-to-set="primal.gm_checkbox_3_checked">
                           <label for="item-{{item._id}}-gmcbx3-checked"></label>
-                          {{item.data.primal.gm_checkbox_3_text}}
+                          {{item.system.primal.gm_checkbox_3_text}}
                         </div>
                       </div>
                       {{/unless}}
@@ -609,30 +609,30 @@
             {{!-- General Abilities --}}
             {{#each actor.items as |item id|}}
             {{#if (eq item.type "specialability")}}
-            {{#if (eq item.data.ability_group "group_general")}}
+            {{#if (eq item.system.ability_group "group_general")}}
             <tr class="item" data-item-id="{{item._id}}">
               <td class="item-body">
                 <div class="item-name item-open-editor">{{item.name}}</div>
               </td>
               <td class="">
-                <div class="item-description">{{item.data.description}}</div>
-                {{#if (eq item.data.ability_type "advanced")}}
+                <div class="item-description">{{item.system.description}}</div>
+                {{#if (eq item.system.ability_type "advanced")}}
                 <div class="checkbox-container">
-                  {{#unless (eq item.data.ability_checkbox_1_text "")}}
+                  {{#unless (eq item.system.ability_checkbox_1_text "")}}
                   <div class="item-checkmark">
                     <div class="standard-checkbox">
-                      <input type="checkbox" id="item-{{item._id}}-acbx1-checked" value="{{item.data.ability_checkbox_1_checked}}" {{checked item.data.ability_checkbox_1_checked}} data-property-to-set="ability_checkbox_1_checked">
+                      <input type="checkbox" id="item-{{item._id}}-acbx1-checked" value="{{item.system.ability_checkbox_1_checked}}" {{checked item.system.ability_checkbox_1_checked}} data-property-to-set="ability_checkbox_1_checked">
                       <label for="item-{{item._id}}-acbx1-checked"></label>
-                      {{item.data.ability_checkbox_1_text}}
+                      {{item.system.ability_checkbox_1_text}}
                     </div>
                   </div>
                   {{/unless}}
-                  {{#unless (eq item.data.ability_checkbox_2_text "")}}
+                  {{#unless (eq item.system.ability_checkbox_2_text "")}}
                   <div class="item-checkmark">
                     <div class="standard-checkbox">
-                      <input type="checkbox" id="item-{{item._id}}-acbx2-checked" value="{{item.data.ability_checkbox_2_checked}}" {{checked item.data.ability_checkbox_2_checked}} data-property-to-set="ability_checkbox_2_checked">
+                      <input type="checkbox" id="item-{{item._id}}-acbx2-checked" value="{{item.system.ability_checkbox_2_checked}}" {{checked item.system.ability_checkbox_2_checked}} data-property-to-set="ability_checkbox_2_checked">
                       <label for="item-{{item._id}}-acbx2-checked"></label>
-                      {{item.data.ability_checkbox_2_text}}
+                      {{item.system.ability_checkbox_2_text}}
                     </div>
                   </div>
                   {{/unless}}
@@ -650,30 +650,30 @@
             {{!-- Flexibility --}}
             {{#each actor.items as |item id|}}
             {{#if (eq item.type "specialability")}}
-            {{#if (eq item.data.ability_group "group_flex")}}
+            {{#if (eq item.system.ability_group "group_flex")}}
             <tr class="item group-flex" data-item-id="{{item._id}}">
               <td class="item-body">
                 <div class="item-name item-open-editor">{{item.name}}<br /><i>({{localize "FITD.Flexibility"}})</i></div>
               </td>
               <td>
-                <div class="item-description">{{item.data.description}}</div>
-                {{#if (eq item.data.ability_type "advanced")}}
+                <div class="item-description">{{item.system.description}}</div>
+                {{#if (eq item.system.ability_type "advanced")}}
                 <div class="checkbox-container">
-                  {{#unless (eq item.data.ability_checkbox_1_text "")}}
+                  {{#unless (eq item.system.ability_checkbox_1_text "")}}
                   <div class="item-checkmark">
                     <div class="standard-checkbox">
-                      <input type="checkbox" id="item-{{item._id}}-acbx1-checked" value="{{item.data.ability_checkbox_1_checked}}" {{checked item.data.ability_checkbox_1_checked}} data-property-to-set="ability_checkbox_1_checked">
+                      <input type="checkbox" id="item-{{item._id}}-acbx1-checked" value="{{item.system.ability_checkbox_1_checked}}" {{checked item.system.ability_checkbox_1_checked}} data-property-to-set="ability_checkbox_1_checked">
                       <label for="item-{{item._id}}-acbx1-checked"></label>
-                      {{item.data.ability_checkbox_1_text}}
+                      {{item.system.ability_checkbox_1_text}}
                     </div>
                   </div>
                   {{/unless}}
-                  {{#unless (eq item.data.ability_checkbox_2_text "")}}
+                  {{#unless (eq item.system.ability_checkbox_2_text "")}}
                   <div class="item-checkmark">
                     <div class="standard-checkbox">
-                      <input type="checkbox" id="item-{{item._id}}-acbx2-checked" value="{{item.data.ability_checkbox_2_checked}}" {{checked item.data.ability_checkbox_2_checked}} data-property-to-set="ability_checkbox_2_checked">
+                      <input type="checkbox" id="item-{{item._id}}-acbx2-checked" value="{{item.system.ability_checkbox_2_checked}}" {{checked item.system.ability_checkbox_2_checked}} data-property-to-set="ability_checkbox_2_checked">
                       <label for="item-{{item._id}}-acbx2-checked"></label>
-                      {{item.data.ability_checkbox_2_text}}
+                      {{item.system.ability_checkbox_2_text}}
                     </div>
                   </div>
                   {{/unless}}
@@ -691,30 +691,30 @@
             {{!-- External Abilities --}}
             {{#each actor.items as |item id|}}
             {{#if (eq item.type "specialability")}}
-            {{#if (eq item.data.ability_group "group_ext")}}
+            {{#if (eq item.system.ability_group "group_ext")}}
             <tr class="item group-ext" data-item-id="{{item._id}}">
               <td class="item-body">
                 <div class="item-name item-open-editor">{{item.name}}<br /><i>({{localize "FITD.External"}})</i></div>
               </td>
               <td class="">
-                <div class="item-description">{{item.data.description}}</div>
-                {{#if (eq item.data.ability_type "advanced")}}
+                <div class="item-description">{{item.system.description}}</div>
+                {{#if (eq item.system.ability_type "advanced")}}
                 <div class="checkbox-container">
-                  {{#unless (eq item.data.ability_checkbox_1_text "")}}
+                  {{#unless (eq item.system.ability_checkbox_1_text "")}}
                   <div class="item-checkmark">
                     <div class="standard-checkbox">
-                      <input type="checkbox" id="item-{{item._id}}-acbx1-checked" value="{{item.data.ability_checkbox_1_checked}}" {{checked item.data.ability_checkbox_1_checked}} data-property-to-set="ability_checkbox_1_checked">
+                      <input type="checkbox" id="item-{{item._id}}-acbx1-checked" value="{{item.system.ability_checkbox_1_checked}}" {{checked item.system.ability_checkbox_1_checked}} data-property-to-set="ability_checkbox_1_checked">
                       <label for="item-{{item._id}}-acbx1-checked"></label>
-                      {{item.data.ability_checkbox_1_text}}
+                      {{item.system.ability_checkbox_1_text}}
                     </div>
                   </div>
                   {{/unless}}
-                  {{#unless (eq item.data.ability_checkbox_2_text "")}}
+                  {{#unless (eq item.system.ability_checkbox_2_text "")}}
                   <div class="item-checkmark">
                     <div class="standard-checkbox">
-                      <input type="checkbox" id="item-{{item._id}}-acbx2-checked" value="{{item.data.ability_checkbox_2_checked}}" {{checked item.data.ability_checkbox_2_checked}} data-property-to-set="ability_checkbox_2_checked">
+                      <input type="checkbox" id="item-{{item._id}}-acbx2-checked" value="{{item.system.ability_checkbox_2_checked}}" {{checked item.system.ability_checkbox_2_checked}} data-property-to-set="ability_checkbox_2_checked">
                       <label for="item-{{item._id}}-acbx2-checked"></label>
-                      {{item.data.ability_checkbox_2_text}}
+                      {{item.system.ability_checkbox_2_text}}
                     </div>
                   </div>
                   {{/unless}}
@@ -733,14 +733,14 @@
         {{#each actor.items as |item id|}}
         {{#if (eq item.type "calling")}}
         <div class="item flex-horizontal">
-          <p class="flashback-clues"><b>{{localize "FITD.Flashback"}}:</b> <i>{{item.data.flashback_clues}}</i></p>
+          <p class="flashback-clues"><b>{{localize "FITD.Flashback"}}:</b> <i>{{item.system.flashback_clues}}</i></p>
         </div>
         {{/if}}
         {{#if (eq item.type "monster_race")}}
-        {{#if item.data.primal}}
-        {{#if item.data.flashback_clues}}
+        {{#if item.system.primal}}
+        {{#if item.system.flashback_clues}}
         <div class="item flex-horizontal">
-          <p class="flashback-clues"><b>{{localize "FITD.Flashback"}}:</b> <i>{{item.data.flashback_clues}}</i></p>
+          <p class="flashback-clues"><b>{{localize "FITD.Flashback"}}:</b> <i>{{item.system.flashback_clues}}</i></p>
         </div>
         {{/if}}
         {{/if}}
@@ -752,8 +752,8 @@
       {{!-- Gear & Supply Tab --}}
       <div id="loadout" class="tab flex-vertical" data-tab="loadout">
         {{!-- Gear Table --}}
-        {{#unless (eq actor.data.primal_monster_type (localize "FITD.GAME_LOGIC.Facestealer"))}}
-        {{#unless (eq actor.data.primal_monster_type (localize "FITD.GAME_LOGIC.Doomseeker"))}}
+        {{#unless (eq actor.system.primal_monster_type (localize "FITD.GAME_LOGIC.Facestealer"))}}
+        {{#unless (eq actor.system.primal_monster_type (localize "FITD.GAME_LOGIC.Doomseeker"))}}
         <div class="label-stripe flex-horizontal">
           <p>{{localize "FITD.Gear"}}</p>
           <p><a class="item-add-popup" data-item-type="gearsupply"><i class="fas fa-plus-square"></i></a></p>
@@ -762,31 +762,31 @@
           <tbody>
             {{#each actor.items as |item id|}}
             {{#if (eq item.type "gearsupply")}}
-            {{#if (eq item.data.gear_or_supply "gear")}}
+            {{#if (eq item.system.gear_or_supply "gear")}}
             <tr class="item" data-item-id="{{item._id}}">
               <td class="item-body"><div class="item-name item-open-editor">{{item.name}}</div></td>
               <td>
-                <div class="item-description">{{item.data.description}}</div>
+                <div class="item-description">{{item.system.description}}</div>
                 <div class="gear-tags">
-                  {{#if (eq item.data.quality_category "mundane")}}
+                  {{#if (eq item.system.quality_category "mundane")}}
                   <label class="quality-mundane">{{localize "FITD.Mundane"}}</label>
                   {{/if}}
-                  {{#if (eq item.data.quality_category "valuable")}}
+                  {{#if (eq item.system.quality_category "valuable")}}
                   <label class="quality-valuable">{{localize "FITD.Valuable"}}</label>
                   {{/if}}
-                  {{#if (eq item.data.quality_category "powerful")}}
+                  {{#if (eq item.system.quality_category "powerful")}}
                   <label class="quality-powerful">{{localize "FITD.Powerful"}}</label>
                   {{/if}}
-                  {{#if (eq item.data.quality_category "tier1")}}
+                  {{#if (eq item.system.quality_category "tier1")}}
                   <label class="quality-mundane">{{localize "FITD.TierOne"}}</label>
                   {{/if}}
-                  {{#if (eq item.data.quality_category "tier2")}}
+                  {{#if (eq item.system.quality_category "tier2")}}
                   <label class="quality-valuable">{{localize "FITD.TierTwo"}}</label>
                   {{/if}}
-                  {{#if (eq item.data.quality_category "tier3")}}
+                  {{#if (eq item.system.quality_category "tier3")}}
                   <label class="quality-powerful">{{localize "FITD.TierThree"}}</label>
                   {{/if}}
-                  {{#each item.data.edges}}
+                  {{#each item.system.edges}}
                   <label class="edge-tag">{{this}}</label>
                   {{/each}}
                 </div>
@@ -803,11 +803,11 @@
         {{!-- Supply Table --}}
         <div id="character-{{actor._id}}-supply" class="label-stripe flex-horizontal supply">
           <p class="flex-horizontal">
-            {{#multiboxes data.supply.value}}
-            <input type="radio" id="character-{{actor._id}}-supply-0" name="data.supply.value" value="0" dtype="Radio">
+            {{#multiboxes system.supply.value}}
+            <input type="radio" id="character-{{actor._id}}-supply-0" name="system.supply.value" value="0" dtype="Radio">
             <label for="character-{{actor._id}}-supply-0">{{localize "FITD.Supply"}}</label>
-            {{#times_from_1 data.supply.max}}
-            <input type="radio" id="character-{{../actor._id}}-supply-{{this}}" name="data.supply.value" value="{{this}}" dtype="Radio">
+            {{#times_from_1 system.supply.max}}
+            <input type="radio" id="character-{{../actor._id}}-supply-{{this}}" name="system.supply.value" value="{{this}}" dtype="Radio">
             <label for="character-{{../actor._id}}-supply-{{this}}"></label>
             {{/times_from_1}}
             {{/multiboxes}}
@@ -819,25 +819,25 @@
 
             {{#each actor.items as |item id|}}
             {{#if (eq item.type "specialability")}}
-            {{#if (eq item.data.ability_type "advanced")}}
-            {{#if item.data.supply_desc}}
+            {{#if (eq item.system.ability_type "advanced")}}
+            {{#if item.system.supply_desc}}
             <tr class="item group-ability" data-item-id="{{item._id}}">
               <td class="item-body">
                 <div class="item-name item-open-editor">{{item.name}}</div>
               </td>
               <td colspan="2">
-                <div class="item-description">{{item.data.supply_desc}}</div>
+                <div class="item-description">{{item.system.supply_desc}}</div>
                 {{!-- Two slots with same supply --}}
-                {{#if (eq item.data.supply_checkbox_1_text item.data.supply_checkbox_2_text)}}
-                {{#unless (eq item.data.supply_checkbox_1_text "")}}
+                {{#if (eq item.system.supply_checkbox_1_text item.system.supply_checkbox_2_text)}}
+                {{#unless (eq item.system.supply_checkbox_1_text "")}}
                 <div class="checkbox-container">
                   <div class="item-checkmark">
                     <div class="standard-checkbox">
-                      <input type="checkbox" id="item-{{item._id}}-scbx1-checked" value="{{item.data.supply_checkbox_1_checked}}" {{checked item.data.supply_checkbox_1_checked}} data-property-to-set="supply_checkbox_1_checked">
+                      <input type="checkbox" id="item-{{item._id}}-scbx1-checked" value="{{item.system.supply_checkbox_1_checked}}" {{checked item.system.supply_checkbox_1_checked}} data-property-to-set="supply_checkbox_1_checked">
                       <label for="item-{{item._id}}-scbx1-checked"></label>
-                      <input type="checkbox" id="item-{{item._id}}-scbx2-checked" value="{{item.data.supply_checkbox_2_checked}}" {{checked item.data.supply_checkbox_2_checked}} data-property-to-set="supply_checkbox_2_checked">
+                      <input type="checkbox" id="item-{{item._id}}-scbx2-checked" value="{{item.system.supply_checkbox_2_checked}}" {{checked item.system.supply_checkbox_2_checked}} data-property-to-set="supply_checkbox_2_checked">
                       <label for="item-{{item._id}}-scbx2-checked"></label>
-                      {{item.data.supply_checkbox_1_text}}
+                      {{item.system.supply_checkbox_1_text}}
                     </div>
                   </div>
                 </div>
@@ -845,21 +845,21 @@
                 {{!-- Two slots with different supply --}}
                 {{else}}
                 <div class="checkbox-container">
-                  {{#unless (eq item.data.supply_checkbox_1_text "")}}
+                  {{#unless (eq item.system.supply_checkbox_1_text "")}}
                   <div class="item-checkmark">
                     <div class="standard-checkbox">
-                      <input type="checkbox" id="item-{{item._id}}-scbx1-checked" value="{{item.data.supply_checkbox_1_checked}}" {{checked item.data.supply_checkbox_1_checked}} data-property-to-set="supply_checkbox_1_checked">
+                      <input type="checkbox" id="item-{{item._id}}-scbx1-checked" value="{{item.system.supply_checkbox_1_checked}}" {{checked item.system.supply_checkbox_1_checked}} data-property-to-set="supply_checkbox_1_checked">
                       <label for="item-{{item._id}}-scbx1-checked"></label>
-                      {{item.data.supply_checkbox_1_text}}
+                      {{item.system.supply_checkbox_1_text}}
                     </div>
                   </div>
                   {{/unless}}
-                  {{#unless (eq item.data.supply_checkbox_2_text "")}}
+                  {{#unless (eq item.system.supply_checkbox_2_text "")}}
                   <div class="item-checkmark">
                     <div class="standard-checkbox">
-                      <input type="checkbox" id="item-{{item._id}}-scbx2-checked" value="{{item.data.supply_checkbox_2_checked}}" {{checked item.data.supply_checkbox_2_checked}} data-property-to-set="supply_checkbox_2_checked">
+                      <input type="checkbox" id="item-{{item._id}}-scbx2-checked" value="{{item.system.supply_checkbox_2_checked}}" {{checked item.system.supply_checkbox_2_checked}} data-property-to-set="supply_checkbox_2_checked">
                       <label for="item-{{item._id}}-scbx2-checked"></label>
-                      {{item.data.supply_checkbox_2_text}}
+                      {{item.system.supply_checkbox_2_text}}
                     </div>
                   </div>
                   {{/unless}}
@@ -874,47 +874,47 @@
             {{#each actor.items as |item id|}}
 
             {{#if (eq item.type "gearsupply")}}
-            {{#if (eq item.data.gear_or_supply "supply")}}
+            {{#if (eq item.system.gear_or_supply "supply")}}
             <tr class="item" data-item-id="{{item._id}}">
               <td class="item-body"><div class="item-name item-open-editor">{{item.name}}</div></td>
               <td>
                 <div class="item-description">
-                  {{item.data.description}}
-                  {{#unless (eq item.data.use_type "unlimited")}}
-                  {{#unless (eq item.data.use_type "steady")}}
-                  ({{item.data.uses_left}} {{localize "FITD.SupplyUsesLeftSuffix"}})
+                  {{item.system.description}}
+                  {{#unless (eq item.system.use_type "unlimited")}}
+                  {{#unless (eq item.system.use_type "steady")}}
+                  ({{item.system.uses_left}} {{localize "FITD.SupplyUsesLeftSuffix"}})
                   {{/unless}}
                   {{/unless}}
                 </div>
                 <div class="gear-tags">
-                  {{#if (eq item.data.quality_category "mundane")}}
+                  {{#if (eq item.system.quality_category "mundane")}}
                   <label class="quality-mundane">{{localize "FITD.Mundane"}}</label>
                   {{/if}}
-                  {{#if (eq item.data.quality_category "valuable")}}
+                  {{#if (eq item.system.quality_category "valuable")}}
                   <label class="quality-valuable">{{localize "FITD.Valuable"}}</label>
                   {{/if}}
-                  {{#if (eq item.data.quality_category "powerful")}}
+                  {{#if (eq item.system.quality_category "powerful")}}
                   <label class="quality-powerful">{{localize "FITD.Powerful"}}</label>
                   {{/if}}
-                  {{#if (eq item.data.quality_category "tier1")}}
+                  {{#if (eq item.system.quality_category "tier1")}}
                   <label class="quality-mundane">{{localize "FITD.TierOne"}}</label>
                   {{/if}}
-                  {{#if (eq item.data.quality_category "tier2")}}
+                  {{#if (eq item.system.quality_category "tier2")}}
                   <label class="quality-valuable">{{localize "FITD.TierTwo"}}</label>
                   {{/if}}
-                  {{#if (eq item.data.quality_category "tier3")}}
+                  {{#if (eq item.system.quality_category "tier3")}}
                   <label class="quality-powerful">{{localize "FITD.TierThree"}}</label>
                   {{/if}}
-                  {{#each item.data.edges}}
+                  {{#each item.system.edges}}
                   <label class="edge-tag">{{this}}</label>
                   {{/each}}
-                  {{#if (eq item.data.use_type "steady")}}
+                  {{#if (eq item.system.use_type "steady")}}
                   <label class="quantity-steady">{{localize "FITD.SteadySupply"}}</label>
                   {{/if}}
-                  {{#if (eq item.data.use_type "limited")}}
+                  {{#if (eq item.system.use_type "limited")}}
                   <label class="quantity-limited">{{localize "FITD.LimitedSupply"}}</label>
                   {{/if}}
-                  {{#if (eq item.data.use_type "shared")}}
+                  {{#if (eq item.system.use_type "shared")}}
                   <label class="quantity-shared">{{localize "FITD.SharedSupply"}}</label>
                   {{/if}}
                 </div>
@@ -943,7 +943,7 @@
                 </div>
                 <div class="checkbox-container">
                   <div class="standard-checkbox">
-                    <input type="checkbox" id="{{actor._id}}-dtaused" name="data.downtime_action_used" {{checked data.downtime_action_used}}>
+                    <input type="checkbox" id="{{actor._id}}-dtaused" name="system.downtime_action_used" {{checked system.downtime_action_used}}>
                     <label for="{{actor._id}}-dtaused"></label>
                     {{localize "FITD.DowntimeActionUsed"}}
                   </div>
@@ -953,31 +953,31 @@
             </tr>
             {{#each actor.items as |item id|}}
             {{#if (eq item.type "specialability")}}
-            {{#if (eq item.data.ability_type "advanced")}}
-            {{#if item.data.downtime_desc}}
+            {{#if (eq item.system.ability_type "advanced")}}
+            {{#if item.system.downtime_desc}}
             <tr class="item" data-item-id="{{item._id}}">
               <td class="item-body">
                 <div class="item-name item-open-editor">{{item.name}}</div>
               </td>
               <td>
-                <div class="item-description">{{item.data.downtime_desc}}</div>
-                {{#if (eq item.data.ability_type "advanced")}}
+                <div class="item-description">{{item.system.downtime_desc}}</div>
+                {{#if (eq item.system.ability_type "advanced")}}
                 <div class="checkbox-container">
-                  {{#unless (eq item.data.downtime_checkbox_1_text "")}}
+                  {{#unless (eq item.system.downtime_checkbox_1_text "")}}
                   <div class="item-checkmark">
                     <div class="standard-checkbox">
-                      <input type="checkbox" id="item-{{item._id}}-dtcbx1-checked" value="{{item.data.downtime_checkbox_1_checked}}" {{checked item.data.downtime_checkbox_1_checked}} data-property-to-set="downtime_checkbox_1_checked">
+                      <input type="checkbox" id="item-{{item._id}}-dtcbx1-checked" value="{{item.system.downtime_checkbox_1_checked}}" {{checked item.system.downtime_checkbox_1_checked}} data-property-to-set="downtime_checkbox_1_checked">
                       <label for="item-{{item._id}}-dtcbx1-checked"></label>
-                      {{item.data.downtime_checkbox_1_text}}
+                      {{item.system.downtime_checkbox_1_text}}
                     </div>
                   </div>
                   {{/unless}}
-                  {{#unless (eq item.data.downtime_checkbox_2_text "")}}
+                  {{#unless (eq item.system.downtime_checkbox_2_text "")}}
                   <div class="item-checkmark">
                     <div class="standard-checkbox">
-                      <input type="checkbox" id="item-{{item._id}}-dtcbx2-checked" value="{{item.data.downtime_checkbox_2_checked}}" {{checked item.data.downtime_checkbox_2_checked}} data-property-to-set="downtime_checkbox_2_checked">
+                      <input type="checkbox" id="item-{{item._id}}-dtcbx2-checked" value="{{item.system.downtime_checkbox_2_checked}}" {{checked item.system.downtime_checkbox_2_checked}} data-property-to-set="downtime_checkbox_2_checked">
                       <label for="item-{{item._id}}-dtcbx2-checked"></label>
-                      {{item.data.downtime_checkbox_2_text}}
+                      {{item.system.downtime_checkbox_2_text}}
                     </div>
                   </div>
                   {{/unless}}
@@ -1011,11 +1011,11 @@
             <tr class="item" data-item-id="{{item._id}}">
               <td class="flex-horizontal project-clock">
                 <div id="project-clock-{{item._id}}">
-                  {{{blades-clock "data.project_clock" item.data.clock_size item.data.clock_progress item._id}}}
+                  {{{blades-clock "system.project_clock" item.system.clock_size item.system.clock_progress item._id}}}
                 </div>
               </td>
               <td class="item-body"><div class="item-name item-open-editor">{{item.name}}</div></td>
-              <td><div class="item-description">{{item.data.description}}</div></td>
+              <td><div class="item-description">{{item.system.description}}</div></td>
               <td><a class="item-control item-delete" title="{{localize 'FITD.TitleDeleteItem'}}"><i class="fas fa-trash"></i></a></td>
             </tr>
             {{/if}}
@@ -1040,13 +1040,13 @@
             {{#if (eq item.type "duty")}}
             <tr class="item" data-item-id="{{item._id}}">
               <td class="item-body">
-                <span class="item-open-editor">{{item.data.tier}}</span>
+                <span class="item-open-editor">{{item.system.tier}}</span>
               </td>
               <td class="item-body">
-                <span class="item-open-editor">{{item.data.type_custom}}</span>
+                <span class="item-open-editor">{{item.system.type_custom}}</span>
               </td>
               <td class="item-body">
-                <span class="item-open-editor item-description">{{item.data.description}}</span>
+                <span class="item-open-editor item-description">{{item.system.description}}</span>
               </td>
               <td><a class="item-control item-delete" title="{{localize 'FITD.TitleDeleteItem'}}"><i class="fas fa-trash"></i></a></td>
             </tr>
@@ -1065,7 +1065,7 @@
 		      <i class="item-add-popup far fa-comment-dots"></i>
         </div>
         </div>
-        {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+        {{editor notes target="system.description" button=true owner=owner editable=editable}}
       </div>
 
       {{!-- Full Item List --}}

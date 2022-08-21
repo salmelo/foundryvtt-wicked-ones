@@ -11,8 +11,8 @@
     <div class="form-group type-selector">
       <label>{{ localize "FITD.GMType" }}</label>
       <div class="flex-vertical type-selector">
-        <select class="list-with-custom" id="goldmonger-type-select" name="data.gm_type" data-property-to-set="gm_type_custom">
-          {{#select data.gm_type}}
+        <select class="list-with-custom" id="goldmonger-type-select" name="system.gm_type" data-property-to-set="gm_type_custom">
+          {{#select system.gm_type}}
           <option value="">{{localize "FITD.NoneParentheses"}}</option>
           <option value="custom">{{localize "FITD.Custom"}}</option>
           {{#each config.goldmonger_types as |name type|}}
@@ -20,8 +20,8 @@
           {{/each}}
           {{/select}}
         </select>
-        {{#if (eq data.gm_type "custom")}}
-        <input id="goldmonger-custom-type" type="text" name="data.gm_type_custom" value="{{data.gm_type_custom}}" placeholder="{{localize "FITD.CustomGMTypeHint"}}">
+        {{#if (eq system.gm_type "custom")}}
+        <input id="goldmonger-custom-type" type="text" name="system.gm_type_custom" value="{{system.gm_type_custom}}" placeholder="{{localize "FITD.CustomGMTypeHint"}}">
         {{/if}}
       </div>
     </div>
@@ -29,8 +29,8 @@
     <div class="form-group type-selector">
       <label>{{ localize "FITD.GMAntiType" }}</label>
       <div class="flex-vertical type-selector">
-        <select class="list-with-custom" id="goldmonger-antitype-select" name="data.gm_antitype" data-property-to-set="gm_antitype_custom">
-          {{#select data.gm_antitype}}
+        <select class="list-with-custom" id="goldmonger-antitype-select" name="system.gm_antitype" data-property-to-set="gm_antitype_custom">
+          {{#select system.gm_antitype}}
           <option value="">{{localize "FITD.NoneParentheses"}}</option>
           <option value="custom">{{localize "FITD.Custom"}}</option>
           {{#each config.goldmonger_types as |name type|}}
@@ -38,8 +38,8 @@
           {{/each}}
           {{/select}}
         </select>
-        {{#if (eq data.gm_antitype "custom")}}
-        <input id="goldmonger-custom-antitype" type="text" name="data.gm_antitype_custom" value="{{data.gm_antitype_custom}}" placeholder="{{localize "FITD.CustomGMTypeHint"}}">
+        {{#if (eq system.gm_antitype "custom")}}
+        <input id="goldmonger-custom-antitype" type="text" name="system.gm_antitype_custom" value="{{system.gm_antitype_custom}}" placeholder="{{localize "FITD.CustomGMTypeHint"}}">
         {{/if}}
       </div>
     </div>

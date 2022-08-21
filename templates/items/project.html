@@ -10,11 +10,11 @@
 <section class="sheet-body flex-vertical">
   <label class="label-stripe">{{localize "FITD.ClockSize"}}</label>
   <div id="clock-type-list" class="flex-horizontal">
-    {{#each data.clock_sizes as |size key|}}
-    {{#multiboxes ../data.clock_size}}
+    {{#each system.clock_sizes as |size key|}}
+    {{#multiboxes ../system.clock_size}}
     <div>
       <label for="project-size-{{size}}">{{size}}</label>
-      <input type="radio" id="project-size-{{size}}" class="clock-size-picker" name="data.clock_size" value="{{size}}">
+      <input type="radio" id="project-size-{{size}}" class="clock-size-picker" name="system.clock_size" value="{{size}}">
     </div>
     {{/multiboxes}}
     {{/each}}
@@ -23,17 +23,17 @@
   <label class="label-stripe">{{localize "FITD.ClockProgress"}}</label>
 
   <div id="clock-progress-list" class="flex-horizontal">
-    {{#times_from_0 data.clock_size}}
-    {{#multiboxes ../data.clock_progress}}
+    {{#times_from_0 system.clock_size}}
+    {{#multiboxes ../system.clock_progress}}
     <div>
       <label for="progress-{{this}}">{{this}}</label>
-      <input type="radio" id="progress-{{this}}" name="data.clock_progress" value="{{this}}">
+      <input type="radio" id="progress-{{this}}" name="system.clock_progress" value="{{this}}">
     </div>
     {{/multiboxes}}
     {{/times_from_0}}
   </div>
 
   <label class="label-stripe">{{localize "FITD.Description"}}</label>
-  <textarea name="data.description" placeholder="{{localize "FITD.DescriptionHint"}}">{{data.description}}</textarea>
+  <textarea name="system.description" placeholder="{{localize "FITD.DescriptionHint"}}">{{system.description}}</textarea>
 </section>
 </form>

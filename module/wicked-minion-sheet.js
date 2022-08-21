@@ -21,24 +21,24 @@ export class WickedMinionSheet extends WickedSheet {
   /* -------------------------------------------- */
 
   /** @override */
-  getData() {
-    const data = super.getData();
-		data.editable = this.options.editable;
-    const actorData = data.data;
-		data.actor = actorData;
-		data.data = actorData.data;
+  async getData(options) {
+    const sheetData = await super.getData(options);
+    sheetData.editable = this.options.editable;
+
+    sheetData.system = sheetData.document.system // project system data so that handlebars has the same name and value paths
+    sheetData.notes = await TextEditor.enrichHTML(this.object.system.description, { async: true });
 
     // get localization string for the item roll name
-    data.items.forEach(i => {
+    sheetData.items.forEach(i => {
       if (i.type == "minion_upgrade") {
-        if (i.data.upgrade_type == "external" && i.data.upgrade_skill_name != "") {
-          const loc = CONFIG.WO.rollable_skills[i.data.upgrade_skill_name];
-          i.data.upgrade_skill_localization_ref = loc;
+        if (i.system.upgrade_type == "external" && i.system.upgrade_skill_name != "") {
+          const loc = CONFIG.WO.rollable_skills[i.system.upgrade_skill_name];
+          i.system.upgrade_skill_localization_ref = loc;
         }
       }
     });
 
-    return data;
+    return sheetData;
   }
 
   /* -------------------------------------------- */

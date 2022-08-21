@@ -21,52 +21,52 @@ export class WickedActorSheet extends WickedSheet {
   /* -------------------------------------------- */
 
   /** @override */
-  getData() {
-    const data = super.getData();
-    data.editable = this.options.editable;
-    const actorData = data.data;
-		data.actor = actorData;
-		data.data = actorData.data;
+  async getData(options) {
+    const sheetData = await super.getData(options);
+    sheetData.editable = this.options.editable;
+
+    sheetData.system = sheetData.document.system // project system data so that handlebars has the same name and value paths
+    sheetData.notes = await TextEditor.enrichHTML(this.object.system.description, { async: true });
 
     // look for abilities that change the number of gold, supply and dark heart icons
     // also check for Doomseeker rays and add translations
-    data.items.forEach(i => {
+    sheetData.items.forEach(i => {
       if (i.type == "specialability") {
         if (i.name == game.i18n.localize("FITD.GAME_LOGIC.PackMule")) {
-          data.data.supply.max += 1;
+          sheetData.actor.system.supply.max += 1;
         } else if (i.name == game.i18n.localize("FITD.GAME_LOGIC.StickyFingers")) {
-          data.data.gold.max += 1;
-        } else if (i.name == game.i18n.localize("FITD.GAME_LOGIC.Lair") && i.data.primal.gm_path_value == 3) {
-          data.data.dark_hearts.max += 1;
+          sheetData.actor.system.gold.max += 1;
+        } else if (i.name == game.i18n.localize("FITD.GAME_LOGIC.Lair") && i.system.primal.gm_path_value == 3) {
+          sheetData.actor.system.dark_hearts.max += 1;
         } else if (i.name == game.i18n.localize("FITD.GAME_LOGIC.GearLocker")) {
-          data.data.supply.max += 1;
-        } else if (i.data.ability_type == "ds_eyes") {
+          sheetData.actor.system.supply.max += 1;
+        } else if (i.system.ability_type == "ds_eyes") {
           for (var j = 1; j < 10; j++) {
-            i.data.primal['ds_eye_ray_' + j + '_name'] = game.i18n.localize(CONFIG.WO.doomseeker_eye_rays[i.data.primal['ds_eye_ray_' + j]] + '.Name');
-            i.data.primal['ds_eye_ray_' + j + '_tooltip'] = game.i18n.localize(CONFIG.WO.doomseeker_eye_rays[i.data.primal['ds_eye_ray_' + j]] + '.Tooltip');
+            i.system.primal['ds_eye_ray_' + j + '_name'] = game.i18n.localize(CONFIG.WO.doomseeker_eye_rays[i.system.primal['ds_eye_ray_' + j]] + '.Name');
+            i.system.primal['ds_eye_ray_' + j + '_tooltip'] = game.i18n.localize(CONFIG.WO.doomseeker_eye_rays[i.system.primal['ds_eye_ray_' + j]] + '.Tooltip');
           }
         }
       }
     });
 
     // check if Braineater and remove invoke skill
-    if (data.data.primal_monster_type == game.i18n.localize("FITD.GAME_LOGIC.Braineater")) {
-      delete data.data.attributes.guts.skills.invoke;
+    if (sheetData.actor.system.primal_monster_type == game.i18n.localize("FITD.GAME_LOGIC.Braineater")) {
+      delete sheetData.actor.system.attributes.guts.skills.invoke;
     }
 
     // Get list of minions
-    data.data.existing_minions = game.actors.filter(entry => entry.data.type === "minion_pack");
+    sheetData.actor.system.existing_minions = game.actors.filter(entry => entry.type === "minion_pack");
     let found = false;
-    data.data.existing_minions.forEach(i => {
-      if (i.id == data.data.minionpack) {
+    sheetData.actor.system.existing_minions.forEach(i => {
+      if (i.id == sheetData.actor.system.minionpack) {
         found = true;
       }
     });
     if (!found) {
-      data.data.minionpack = "";
+      sheetData.actor.system.minionpack = "";
     }
 
-    return data;
+    return sheetData;
   }
 
   /* -------------------------------------------- */

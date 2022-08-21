@@ -52,7 +52,7 @@
               {{!-- Minion Number --}}
               <div class="text-input" id="number">
                 <label for="character-{{actor._id}}-number">{{localize "FITD.Number"}}</label>
-                <input type="number" id="character-{{actor._id}}-number" name="data.number.value" value="{{data.number.value}}" min="0" max="10">
+                <input type="number" id="character-{{actor._id}}-number" name="system.number.value" value="{{system.number.value}}" min="0" max="10">
               </div>
             </td>
           </tr>
@@ -101,16 +101,16 @@
 
 
                 {{!-- Invocation Path --}}
-                {{#unless (eq data.attributes.guts.skills.invoke.value "0")}}
+                {{#unless (eq system.attributes.guts.skills.invoke.value "0")}}
                 {{#each actor.items as |item id|}}
                 {{#if (eq item.type "minion_upgrade")}}
-                {{#if (eq item.data.upgrade_type "path")}}
+                {{#if (eq item.system.upgrade_type "path")}}
                 <tr class="item" data-item-id="{{item._id}}">
                   <td class="item-body">
                     <div class="item-name item-open-editor">{{item.name}}</div>
                   </td>
                   <td>
-                    <div class="item-description">{{item.data.description}}</div>
+                    <div class="item-description">{{item.system.description}}</div>
                   </td>
                   <td>
                     <a class="item-control item-delete" title="{{localize 'FITD.TitleDeleteItem'}}"><i class="fas fa-trash"></i></a>
@@ -124,28 +124,28 @@
                 {{!-- General Upgrades --}}
                 {{#each actor.items as |item id|}}
                 {{#if (eq item.type "minion_upgrade")}}
-                {{#if (eq item.data.upgrade_type "regular")}}
+                {{#if (eq item.system.upgrade_type "regular")}}
                 <tr class="item" data-item-id="{{item._id}}">
                   <td class="item-body">
                     <div class="item-name item-open-editor">{{item.name}}</div>
                   </td>
                   <td>
-                    <div class="item-description">{{item.data.description}}</div>
-                    {{#unless (eq item.data.upgrade_checkbox_text "")}}
+                    <div class="item-description">{{item.system.description}}</div>
+                    {{#unless (eq item.system.upgrade_checkbox_text "")}}
                     <div class="item-checkmark">
                       <div class="standard-checkbox">
-                        <input type="checkbox" id="item-{{item._id}}-ucbx1-checked" value="{{item.data.upgrade_checkbox_checked}}" {{checked item.data.upgrade_checkbox_checked}} data-property-to-set="upgrade_checkbox_checked">
+                        <input type="checkbox" id="item-{{item._id}}-ucbx1-checked" value="{{item.system.upgrade_checkbox_checked}}" {{checked item.system.upgrade_checkbox_checked}} data-property-to-set="upgrade_checkbox_checked">
                         <label for="item-{{item._id}}-ucbx1-checked"></label>
-                        {{item.data.upgrade_checkbox_text}}
+                        {{item.system.upgrade_checkbox_text}}
                       </div>
                     </div>
                     {{/unless}}
-                    {{#unless (eq item.data.upgrade_checkbox_2_text "")}}
+                    {{#unless (eq item.system.upgrade_checkbox_2_text "")}}
                     <div class="item-checkmark">
                       <div class="standard-checkbox">
-                        <input type="checkbox" id="item-{{item._id}}-ucbx2-checked" value="{{item.data.upgrade_checkbox_2_checked}}" {{checked item.data.upgrade_checkbox_2_checked}} data-property-to-set="upgrade_checkbox_2_checked">
+                        <input type="checkbox" id="item-{{item._id}}-ucbx2-checked" value="{{item.system.upgrade_checkbox_2_checked}}" {{checked item.system.upgrade_checkbox_2_checked}} data-property-to-set="upgrade_checkbox_2_checked">
                         <label for="item-{{item._id}}-ucbx2-checked"></label>
-                        {{item.data.upgrade_checkbox_2_text}}
+                        {{item.system.upgrade_checkbox_2_text}}
                       </div>
                     </div>
                     {{/unless}}
@@ -161,35 +161,35 @@
                 {{!-- External Upgrades --}}
                 {{#each actor.items as |item id|}}
                 {{#if (eq item.type "minion_upgrade")}}
-                {{#if (eq item.data.upgrade_type "external")}}
+                {{#if (eq item.system.upgrade_type "external")}}
                 <tr class="item group-ext" data-item-id="{{item._id}}">
                   <td class="item-body">
                     <div class="item-name item-open-editor">{{item.name}}<br /><i>({{localize "FITD.External"}})</i></div>
                   </td>
                   <td>
-                    <div class="item-description">{{item.data.description}}</div>
-                    {{#unless (eq item.data.upgrade_checkbox_text "")}}
+                    <div class="item-description">{{item.system.description}}</div>
+                    {{#unless (eq item.system.upgrade_checkbox_text "")}}
                     <div class="item-checkmark">
                       <div class="standard-checkbox">
-                        <input type="checkbox" id="item-{{item._id}}-ucbx-checked" value="{{item.data.upgrade_checkbox_checked}}" {{checked item.data.upgrade_checkbox_checked}} data-property-to-set="upgrade_checkbox_checked">
+                        <input type="checkbox" id="item-{{item._id}}-ucbx-checked" value="{{item.system.upgrade_checkbox_checked}}" {{checked item.system.upgrade_checkbox_checked}} data-property-to-set="upgrade_checkbox_checked">
                         <label for="item-{{item._id}}-ucbx-checked"></label>
-                        {{item.data.upgrade_checkbox_text}}
+                        {{item.system.upgrade_checkbox_text}}
                       </div>
                     </div>
                     {{/unless}}
-                    {{#unless (eq item.data.upgrade_checkbox_2_text "")}}
+                    {{#unless (eq item.system.upgrade_checkbox_2_text "")}}
                     <div class="item-checkmark">
                       <div class="standard-checkbox">
-                        <input type="checkbox" id="item-{{item._id}}-ucbx2-checked" value="{{item.data.upgrade_checkbox_2_checked}}" {{checked item.data.upgrade_checkbox_2_checked}} data-property-to-set="upgrade_checkbox_2_checked">
+                        <input type="checkbox" id="item-{{item._id}}-ucbx2-checked" value="{{item.system.upgrade_checkbox_2_checked}}" {{checked item.system.upgrade_checkbox_2_checked}} data-property-to-set="upgrade_checkbox_2_checked">
                         <label for="item-{{item._id}}-ucbx2-checked"></label>
-                        {{item.data.upgrade_checkbox_2_text}}
+                        {{item.system.upgrade_checkbox_2_text}}
                       </div>
                     </div>
                     {{/unless}}
-                    {{#unless (eq item.data.upgrade_skill_name "")}}
+                    {{#unless (eq item.system.upgrade_skill_name "")}}
                     <div class="attribute-skill-label" >
-                      <span class="item-rollable-text roll-die-attribute rollable-text" data-roll-attribute="{{item.data.upgrade_skill_name}}" data-roll-value="{{item.data.upgrade_skill_value}}">
-                      {{localize "FITD.Roll"}} {{localize item.data.upgrade_skill_localization_ref}} ({{item.data.upgrade_skill_value}}D)
+                      <span class="item-rollable-text roll-die-attribute rollable-text" data-roll-attribute="{{item.system.upgrade_skill_name}}" data-roll-value="{{item.system.upgrade_skill_value}}">
+                      {{localize "FITD.Roll"}} {{localize item.system.upgrade_skill_localization_ref}} ({{item.system.upgrade_skill_value}}D)
                       </span>
                     </div>
                     {{/unless}}
@@ -210,23 +210,23 @@
                     <div class="item-name item-open-editor">{{item.name}}<br /><i>({{localize "FITD.External"}})</i></div>
                   </td>
                   <td class="">
-                    <div class="item-description">{{item.data.description}}</div>
-                    {{#if (eq item.data.ability_type "advanced")}}
-                    {{#unless (eq item.data.ability_checkbox_1_text "")}}
+                    <div class="item-description">{{item.system.description}}</div>
+                    {{#if (eq item.system.ability_type "advanced")}}
+                    {{#unless (eq item.system.ability_checkbox_1_text "")}}
                     <div class="item-checkmark">
                       <div class="standard-checkbox">
-                        <input type="checkbox" id="item-{{item._id}}-acbx1-checked" value="{{item.data.ability_checkbox_1_checked}}" {{checked item.data.ability_checkbox_1_checked}} data-property-to-set="ability_checkbox_1_checked">
+                        <input type="checkbox" id="item-{{item._id}}-acbx1-checked" value="{{item.system.ability_checkbox_1_checked}}" {{checked item.system.ability_checkbox_1_checked}} data-property-to-set="ability_checkbox_1_checked">
                         <label for="item-{{item._id}}-acbx1-checked"></label>
-                        {{item.data.ability_checkbox_1_text}}
+                        {{item.system.ability_checkbox_1_text}}
                       </div>
                     </div>
                     {{/unless}}
-                    {{#unless (eq item.data.ability_checkbox_2_text "")}}
+                    {{#unless (eq item.system.ability_checkbox_2_text "")}}
                     <div class="item-checkmark">
                       <div class="standard-checkbox">
-                        <input type="checkbox" id="item-{{item._id}}-acbx2-checked" value="{{item.data.ability_checkbox_2_checked}}" {{checked item.data.ability_checkbox_2_checked}} data-property-to-set="ability_checkbox_2_checked">
+                        <input type="checkbox" id="item-{{item._id}}-acbx2-checked" value="{{item.system.ability_checkbox_2_checked}}" {{checked item.system.ability_checkbox_2_checked}} data-property-to-set="ability_checkbox_2_checked">
                         <label for="item-{{item._id}}-acbx2-checked"></label>
-                        {{item.data.ability_checkbox_2_text}}
+                        {{item.system.ability_checkbox_2_text}}
                       </div>
                     </div>
                     {{/unless}}
@@ -248,7 +248,7 @@
             <div class="label-stripe">
               <p>{{localize "FITD.Notes"}}</p>
             </div>
-            {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+            {{editor notes target="system.description" button=true owner=owner editable=editable}}
           </div>
 
           {{!-- Full Item List --}}

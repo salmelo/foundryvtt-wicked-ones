@@ -7,9 +7,9 @@ export const migrateWorld = async function() {
 
   // Migrate World Actors
   for ( let a of game.actors.entities ) {
-    if (a.data.type === 'character') {
+    if (a.type === 'character') {
       try {
-        const updateData = _migrateActor(a.data);
+        const updateData = _migrateActor(a);
         if ( !isObjectEmpty(updateData) ) {
           console.log(`Migrating Actor entity ${a.name}`);
           await a.update(updateData, {enforceTypes: false});

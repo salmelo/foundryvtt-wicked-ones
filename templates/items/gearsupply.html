@@ -10,8 +10,8 @@
   <section class="sheet-body">
     <div class="form-group">
       <label>{{ localize "FITD.GearOrSupply" }}</label>
-      <select id="gearsupply-type-select" name="data.gear_or_supply">
-        {{#select data.gear_or_supply}}
+      <select id="gearsupply-type-select" name="system.gear_or_supply">
+        {{#select system.gear_or_supply}}
         {{#each config.gear_supply_types as |name type|}}
         <option value="{{type}}">{{localize name}}</option>
         {{/each}}
@@ -22,8 +22,8 @@
     {{!-- Quality category --}}
     <div class="form-group">
       <label>{{ localize "FITD.QualityCategory" }}</label>
-      <select id="gearsupply-quality-select" name="data.quality_category">
-        {{#select data.quality_category}}
+      <select id="gearsupply-quality-select" name="system.quality_category">
+        {{#select system.quality_category}}
         {{#each config.gear_quality_types as |name type|}}
         <option value="{{type}}">{{localize name}}</option>
         {{/each}}
@@ -34,13 +34,13 @@
     {{!-- Description --}}
     <label class="label-stripe">{{localize "FITD.Description"}}</label>
     <div class="form-group flex-vertical">
-      <textarea name="data.description">{{data.description}}</textarea>
+      <textarea name="system.description">{{system.description}}</textarea>
     </div>
 
     {{!-- Edges --}}
     <label class="label-stripe">{{localize "FITD.Edges"}}</label>
     <div id="edge-list" class="flex-vertical">
-      {{#each data.edges}}
+      {{#each system.edges}}
       <div>
         <input type="text" value="{{this}}" data-item-name="{{this}}">
       </div>
@@ -51,11 +51,11 @@
     </div>
 
     {{!-- Limited Uses Type --}}
-    {{#if (eq data.gear_or_supply "supply")}}
+    {{#if (eq system.gear_or_supply "supply")}}
     <div class="form-group">
       <label>{{ localize "FITD.UsageLimit" }}</label>
-      <select id="gearsupply-limit-select" name="data.use_type">
-        {{#select data.use_type}}
+      <select id="gearsupply-limit-select" name="system.use_type">
+        {{#select system.use_type}}
         {{#each config.gear_supply_use_types as |name type|}}
         <option value="{{type}}">{{localize name}}</option>
         {{/each}}
@@ -64,11 +64,11 @@
     </div>
 
     {{!-- Uses Left --}}
-    {{#unless (eq data.use_type "unlimited")}}
-    {{#unless (eq data.use_type "steady")}}
+    {{#unless (eq system.use_type "unlimited")}}
+    {{#unless (eq system.use_type "steady")}}
     <div class="form-group">
       <label>{{ localize "FITD.SupplyUsesLeft" }}</label>
-      <input class="{{#if (eq data.use_type "shared")}}shared-supply-count{{/if}}" type="number" name="data.uses_left" value="{{data.uses_left}}" min="0" max="10">
+      <input class="{{#if (eq system.use_type "shared")}}shared-supply-count{{/if}}" type="number" name="system.uses_left" value="{{system.uses_left}}" min="0" max="10">
     </div>
     {{/unless}}
     {{/unless}}

@@ -11,7 +11,7 @@ async function main() {
     return;
   }
 
-  const mpID = actor.data.data.minionpack ?? "";
+  const mpID = actor.system.minionpack ?? "";
   if (mpID == "") {
     ui.notifications.error(game.i18n.localize("FITD.ERRORS.NoMinionPackLinked"));
     return;

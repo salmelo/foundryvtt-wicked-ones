@@ -3,19 +3,19 @@ export class WickedHelpers {
   /**
    * Removes a duplicate item type from charlist.
    *
-   * @param {Object} item_data
+   * @param {Object} item
    * @param {Entity} actor
    */
-  static removeDuplicatedItemType(item_data, actor) {
+  static removeDuplicatedItemType(item, actor) {
 
     let distinct_types = ["dungeon_theme", "calling", "goldmonger_type", "revelry", "monster_race", "minion_type"];
-    let should_be_distinct = distinct_types.includes(item_data.type);
+    let should_be_distinct = distinct_types.includes(item.type);
     // If the Item has the exact same name - remove it from list.
     // Remove Duplicate items from the array.
     actor.items.forEach(i => {
-      if (item_data._id == i.id) { return; }
-      let has_double = (item_data.type === i.data.type);
-      if (i.data.name === item_data.name || (should_be_distinct && has_double)) {
+      if (item._id == i.id) { return; }
+      let has_double = (item.type === i.system.type);
+      if (i.system.name === item.name || (should_be_distinct && has_double)) {
         actor.deleteEmbeddedDocuments("Item", [i.id]);
       }
     });
@@ -23,13 +23,13 @@ export class WickedHelpers {
 
   /**
    * Add item modification if logic exists.
-   * @param {Object} item_data
+   * @param {Object} item
    * @param {Entity} entity
    */
-  static callItemLogic(item_data, entity) {
+  static callItemLogic(item, entity) {
 
-    if ('logic' in item_data.data && item_data.data.logic !== '') {
-      let logic = JSON.parse(item_data.data.logic);
+    if ('logic' in item.system && item.system.logic !== '') {
+      let logic = JSON.parse(item.system.logic);
 
       // Should be an array to support multiple expressions
       if (!Array.isArray(logic)) {
@@ -46,7 +46,7 @@ export class WickedHelpers {
             // Add when creating.
             case "addition":
               entity.update({
-                [expression.attribute]: Number(WickedHelpers.getNestedProperty(entity, "data." + expression.attribute)) + expression.value
+                [expression.attribute]: Number(WickedHelpers.getNestedProperty(entity, "system." + expression.attribute)) + expression.value
               });
               break;
 
@@ -70,13 +70,13 @@ export class WickedHelpers {
    * @todo
    *  - Remove all items and then Add them back to
    *    sustain the logic mods
-   * @param {Object} item_data
+   * @param {Object} item
    * @param {Entity} entity
    */
-  static undoItemLogic(item_data, entity) {
+  static undoItemLogic(item, entity) {
 
-    if ('logic' in item_data.data && item_data.data.logic !== '') {
-      let logic = JSON.parse(item_data.data.logic)
+    if ('logic' in item.data && item.system.logic !== '') {
+      let logic = JSON.parse(item.system.logic)
 
       // Should be an array to support multiple expressions
       if (!Array.isArray(logic)) {
@@ -94,7 +94,7 @@ export class WickedHelpers {
             // Subtract when removing.
             case "addition":
               entity.update({
-                [expression.attribute]: Number(WickedHelpers.getNestedProperty(entity, "data." + expression.attribute)) - expression.value
+                [expression.attribute]: Number(WickedHelpers.getNestedProperty(entity, "system." + expression.attribute)) - expression.value
               });
               break;
 
@@ -155,7 +155,7 @@ export class WickedHelpers {
     let game_items = [];
     let compendium_items = [];
 
-    game_items = game.items.filter(e => e.type === item_type).map(e => {return e.data});
+    game_items = game.items.filter(e => e.type === item_type).map(e => { return e.system });
 
     let pack = game.packs.find(e => e.metadata.name === item_type);
 
@@ -164,7 +164,7 @@ export class WickedHelpers {
     }
     let compendium_content = await pack.getDocuments();
 
-    compendium_items = compendium_content.map(e => {return e.data});
+    compendium_items = compendium_content.map(e => {return e});
 
     list_of_items = game_items.concat(compendium_items);
 
@@ -240,31 +240,31 @@ export class WickedHelpers {
  * Sorts Special Abilities by External, Primal Calling, Source, Core Status and Alphabet
  */
   static specialAbilitySort(a, b) {
-    if (!(a.data.ability_group == "group_ext") && (b.data.ability_group == "group_ext")) {
+    if (!(a.system.ability_group == "group_ext") && (b.system.ability_group == "group_ext")) {
       return -1;
     }
-    if ((a.data.ability_group == "group_ext") && !(b.data.ability_group == "group_ext")) {
+    if ((a.system.ability_group == "group_ext") && !(b.system.ability_group == "group_ext")) {
       return 1;
     }
 
-    if (!WickedHelpers.isPrimalCalling(a.data.source) && WickedHelpers.isPrimalCalling(b.data.source)) {
+    if (!WickedHelpers.isPrimalCalling(a.system.source) && WickedHelpers.isPrimalCalling(b.system.source)) {
       return -1;
     }
-    if (WickedHelpers.isPrimalCalling(a.data.source) && !WickedHelpers.isPrimalCalling(b.data.source)) {
+    if (WickedHelpers.isPrimalCalling(a.system.source) && !WickedHelpers.isPrimalCalling(b.system.source)) {
       return 1;
     }
 
-    if (a.data.source < b.data.source) {
+    if (a.system.source < b.system.source) {
       return -1;
     }
-    if (a.data.source > b.data.source) {
+    if (a.system.source > b.system.source) {
       return 1;
     }
 
-    if ((a.data.ability_group == "group_core") && !(b.data.ability_group == "group_core")) {
+    if ((a.system.ability_group == "group_core") && !(b.system.ability_group == "group_core")) {
       return -1;
     }
-    if ( !(a.data.ability_group == "group_core") && (b.data.ability_group == "group_core")) {
+    if (!(a.system.ability_group == "group_core") && (b.system.ability_group == "group_core")) {
       return 1;
     }
 
@@ -286,10 +286,10 @@ export class WickedHelpers {
    * Sorts Tier-3 Rooms by Theme and then Alphabet
    */
   static tierThreeRoomSort(a, b) {
-    if (a.data.theme < b.data.theme) {
+    if (a.system.theme < b.system.theme) {
       return -1;
     }
-    if (a.data.theme > b.data.theme) {
+    if (a.system.theme > b.system.theme) {
       return 1;
     }
 
@@ -310,10 +310,10 @@ export class WickedHelpers {
    * Sorts Monster Races by Primal Type and then Alphabet
    */
   static monsterRaceSort(a, b) {
-    if (!a.data.primal && b.data.primal) {
+    if (!a.system.primal && b.system.primal) {
       return -1;
     }
-    if (a.data.primal && !b.data.primal) {
+    if (a.system.primal && !b.system.primal) {
       return 1;
     }
 
@@ -335,17 +335,17 @@ export class WickedHelpers {
    */
   static minionUpgradeSort(a, b) {
 
-    if ((a.data.upgrade_type == "regular") && !(b.data.upgrade_type == "regular")) {
+    if ((a.system.upgrade_type == "regular") && !(b.system.upgrade_type == "regular")) {
       return -1;
     }
-    if (!(a.data.upgrade_type == "regular") && (b.data.upgrade_type == "regular")) {
+    if (!(a.system.upgrade_type == "regular") && (b.system.upgrade_type == "regular")) {
       return 1;
     }
 
-    if ((a.data.upgrade_type == "path") && !(b.data.upgrade_type == "path")) {
+    if ((a.system.upgrade_type == "path") && !(b.system.upgrade_type == "path")) {
       return -1;
     }
-    if (!(a.data.upgrade_type == "path") && (b.data.upgrade_type == "path")) {
+    if (!(a.system.upgrade_type == "path") && (b.system.upgrade_type == "path")) {
       return 1;
     }
 

@@ -20,67 +20,78 @@ export class WickedPartySheet extends WickedSheet {
   /* -------------------------------------------- */
 
   /** @override */
-  getData() {
-    const data = super.getData();
-		data.editable = this.options.editable;
-    const actorData = data.data;
-		data.actor = actorData;
-		data.data = actorData.data;
+  async getData(options) {
+    const sheetData = await super.getData(options);
+    sheetData.editable = this.options.editable;
+
+    sheetData.system = sheetData.document.system // project system data so that handlebars has the same name and value paths
+    sheetData.notes = await TextEditor.enrichHTML(this.object.system.description, { async: true });
 
     // Override Code for updating the sheet goes here
     let max_tier = 0;
-    data.items.forEach(e => {
-      if (e.type == "adventurer" && e.data.adventurer_type == "adventurer") {
-        if ((e.data.tier) > max_tier) {
-          max_tier = e.data.tier;
+    let adventurers = []
+    let hirelings = []
+    
+    sheetData.items.forEach(e => {
+      if (e.type == "adventurer" && e.system.adventurer_type == "adventurer") {
+        if ((e.system.tier) > max_tier) {
+          max_tier = e.system.tier;
         }
       }
     });
 
-    data.items.forEach(e => {
-      if (e.type == "adventurer" && e.data.adventurer_type == "adventurer") {
-        e.data.hearts = [];
-        let slashes_left = e.data.heart_slashes ?? 0;
+    sheetData.items.forEach(e => {
+      if (e.type == "adventurer" && e.system.adventurer_type == "adventurer") {
+        let hearts = [];
+        let slashes_left = e.system.heart_slashes ?? 0;
         for (var i = 5; i > 0; i--) {
           if (i > max_tier + 1) {
-            e.data.hearts[i] = "hidden";
-          } else if (i > e.data.tier + 1 ) {
-            e.data.hearts[i] = "greyed";
+            hearts[i] = "hidden";
+          } else if (i > e.system.tier + 1 ) {
+            hearts[i] = "greyed";
           } else {
             // Distribute slashes
             if (slashes_left > 1) {
-              e.data.hearts[i] = "slashed-2";
+              hearts[i] = "slashed-2";
               slashes_left -= 2;
             } else if (slashes_left == 1) {
-              e.data.hearts[i] = "slashed-1";
+              hearts[i] = "slashed-1";
               slashes_left = 0;
             } else {
-              e.data.hearts[i] = "";
+              hearts[i] = "";
             }
           }
         }
+        let adventurer = e;
+        adventurer.system.hearts = hearts;
+        adventurers.push(adventurer);
       }
     });
 
-    data.items.forEach(e => {
-      if (e.type == "adventurer" && e.data.adventurer_type == "hireling") {
-        e.data.hearts = [];
-        let slashes_left = e.data.heart_slashes ?? 0;
+    sheetData.items.forEach(e => {
+      if (e.type == "adventurer" && e.system.adventurer_type == "hireling") {
+        let hearts = [];
+        let slashes_left = e.system.heart_slashes ?? 0;
         // Distribute slashes
         if (slashes_left > 1) {
-          e.data.hearts[1] = "slashed-2";
+          hearts[1] = "slashed-2";
           slashes_left -= 2;
         } else if (slashes_left == 1) {
-          e.data.hearts[1] = "slashed-1";
+          hearts[1] = "slashed-1";
           slashes_left = 0;
         } else {
-          e.data.hearts[1] = "";
+          hearts[1] = "";
         }
+        let hireling = e;
+        hireling.system.hearts = hearts;
+        hirelings.push(hireling);
       }
     });
 
+    sheetData.adventurers = adventurers;
+    sheetData.hirelings = hirelings;
 
-    return data;
+    return sheetData;
   }
 
 
@@ -96,8 +107,8 @@ export class WickedPartySheet extends WickedSheet {
     const itemId = event.currentTarget.closest(".item").dataset.itemId;
     const item = this.document.items.get(itemId);
 
-    const hearts = item.data.data.tier + 1;
-    const slashes = item.data.data.heart_slashes ?? 0;
+    const hearts = item.system.tier + 1;
+    const slashes = item.system.heart_slashes ?? 0;
     let new_slashes = slashes;
 
     if (event.currentTarget.classList.contains("slashed-2")) {
@@ -112,7 +123,7 @@ export class WickedPartySheet extends WickedSheet {
     }
 
     // Update Data
-    item.update({ ['data.heart_slashes']: new_slashes });
+    item.update({ ['system.heart_slashes']: new_slashes });
   }
 
   /* -------------------------------------------- */

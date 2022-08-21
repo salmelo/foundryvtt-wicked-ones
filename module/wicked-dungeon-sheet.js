@@ -20,23 +20,23 @@ export class WickedDungeonSheet extends WickedSheet {
   /* -------------------------------------------- */
 
   /** @override */
-  getData() {
-    const data = super.getData();
-		data.editable = this.options.editable;
-    const actorData = data.data;
-		data.actor = actorData;
-		data.data = actorData.data;
+  async getData(options) {
+    const sheetData = await super.getData(options);
+    sheetData.editable = this.options.editable;
+
+    sheetData.system = sheetData.document.system // project system data so that handlebars has the same name and value paths
+    sheetData.notes = await TextEditor.enrichHTML(this.object.system.description, { async: true });
 
 		// Add flexibility flag on mismatched theme
     let theme = "";
-    data.items.forEach(e => {
+    sheetData.items.forEach(e => {
       if (e.type == "dungeon_theme") {
         theme = e.name;
       }
     });
 
-    data.items.forEach(e => {
-      if (e.type == "tier3room" && e.data.theme != theme) {
+    sheetData.items.forEach(e => {
+      if (e.type == "tier3room" && e.system.theme != theme) {
         e.flexibility = true;
       }
       else {
@@ -46,7 +46,7 @@ export class WickedDungeonSheet extends WickedSheet {
 
     // Override Code for updating the sheet goes here
 
-    return data;
+    return sheetData;
   }
 
   /* -------------------------------------------- */
