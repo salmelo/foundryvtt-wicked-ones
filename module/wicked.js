@@ -286,13 +286,13 @@ Hooks.on("deleteItem", (item, options, userId) => {
   return true;
 });
 
-// getSceneControlButtons
+// renderSceneControls
 Hooks.on("renderSceneControls", async (app, html) => {
   let dice_roller = $('<li class="scene-control" title="Dice Roll"><i class="fas fa-dice"></i></li>');
   dice_roller.click(function() {
     simpleRollPopup();
   });
-  html.append(dice_roller);
+  $(html).children().first().append(dice_roller);
 });
 
 Hooks.on("renderChatMessage", (app, html, data) => {
