@@ -14,8 +14,8 @@ export class WickedActor extends Actor {
   static async create(data, options = {}) {
     if (Object.keys(data).includes("type")) {
 
-      if (!(Object.keys(data).includes("token"))) {
-        data.token = {};
+      if (!(Object.keys(data).includes("prototypeToken"))) {
+        data.prototypeToken = {};
       }
       switch (data.type) {
         case "character":
@@ -25,11 +25,12 @@ export class WickedActor extends Actor {
         case "party":
           // Replace default image
           data.img = `systems/wicked-ones/styles/assets/default-images/${data.type}.webp`;
-          data.token.img = `systems/wicked-ones/styles/assets/default-images/${data.type}-token.webp`;
-          data.token.actorLink = true;
+          data.prototypeToken.texture = {};
+          data.prototypeToken.texture.src = `systems/wicked-ones/styles/assets/default-images/${data.type}-token.webp`;
+          data.prototypeToken.actorLink = true;
           break;
         case "clock":
-          data.token.actorLink = true;
+          data.prototypeToken.actorLink = true;
           break;
         default:
       }
