@@ -189,6 +189,38 @@
       "path": "packs/macros.db",
       "type": "Macro",
       "private": false
+    },
+    {
+      "name": "character",
+      "label": "Sample Characters",
+      "system": "wicked-ones",
+      "path": "packs/sample-characters.db",
+      "type": "Actor",
+      "private": false
+    },
+    {
+      "name": "dungeon",
+      "label": "Sample Dungeons",
+      "system": "wicked-ones",
+      "path": "packs/sample-dungeons.db",
+      "type": "Actor",
+      "private": false
+    },
+    {
+      "name": "minion_pack",
+      "label": "Sample Minion Packs",
+      "system": "wicked-ones",
+      "path": "packs/sample-minions.db",
+      "type": "Actor",
+      "private": false
+    },
+    {
+      "name": "party",
+      "label": "Sample Adventuring Parties",
+      "system": "wicked-ones",
+      "path": "packs/sample-parties.db",
+      "type": "Actor",
+      "private": false
     }
   ],
   "id": "wicked-ones",
