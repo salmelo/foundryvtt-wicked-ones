@@ -24,6 +24,7 @@ export class WickedActorSheet extends WickedSheet {
   async getData(options) {
     const sheetData = await super.getData(options);
     sheetData.editable = this.options.editable;
+    sheetData.actor = sheetData.data;
 
     sheetData.system = sheetData.document.system // project system data so that handlebars has the same name and value paths
     sheetData.notes = await TextEditor.enrichHTML(this.object.system.description, { async: true });
@@ -34,32 +35,32 @@ export class WickedActorSheet extends WickedSheet {
     sheetData.items.forEach(i => {
       if (i.type == "specialability") {
         if (i.name == game.i18n.localize("FITD.GAME_LOGIC.PackMule")) {
-          sheetData.actor.system.supply.max += 1;
+          sheetData.system.supply.max += 1;
         } else if (i.name == game.i18n.localize("FITD.GAME_LOGIC.StickyFingers")) {
-          sheetData.actor.system.gold.max = 3;
+          sheetData.system.gold.max = 3;
         } else if (i.name == game.i18n.localize("FITD.GAME_LOGIC.Lair") && i.system.primal.gm_path_value == 3) {
-          sheetData.actor.system.dark_hearts.max = 3;
+          sheetData.system.dark_hearts.max = 3;
         } else if (i.name == game.i18n.localize("FITD.GAME_LOGIC.GearLocker")) {
-          sheetData.actor.system.supply.max += 1;
+          sheetData.system.supply.max += 1;
         }
       }
     });
 
     // check if Braineater and remove invoke skill
-    if (sheetData.actor.system.primal_monster_type == game.i18n.localize("FITD.GAME_LOGIC.Braineater")) {
-      delete sheetData.actor.system.attributes.guts.skills.invoke;
+    if (sheetData.system.primal_monster_type == game.i18n.localize("FITD.GAME_LOGIC.Braineater")) {
+      delete sheetData.system.attributes.guts.skills.invoke;
     }
 
     // Get list of minions
-    sheetData.actor.system.existing_minions = game.actors.filter(entry => entry.type === "minion_pack");
+    sheetData.system.existing_minions = game.actors.filter(entry => entry.type === "minion_pack");
     let found = false;
-    sheetData.actor.system.existing_minions.forEach(i => {
-      if (i.id == sheetData.actor.system.minionpack) {
+    sheetData.system.existing_minions.forEach(i => {
+      if (i.id == sheetData.system.minionpack) {
         found = true;
       }
     });
     if (!found) {
-      sheetData.actor.system.minionpack = "";
+      sheetData.system.minionpack = "";
     }
 
     return sheetData;
