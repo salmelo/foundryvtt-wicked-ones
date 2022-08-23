@@ -301,6 +301,6 @@ Hooks.on("renderSceneControls", async (app, html) => {
 
 Hooks.on("renderChatMessage", (app, html, data) => {
 
-  // Optionally expant the dice results
+  // Optionally expand the dice results
   if (game.settings.get("wicked-ones", "showExpandedRollResults")) html.find(".dice-tooltip").addClass('exp');
 });
