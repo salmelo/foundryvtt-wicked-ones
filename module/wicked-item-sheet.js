@@ -49,19 +49,19 @@ export class WickedItemSheet extends ItemSheet {
           }
         }
 
-        // Iterate through ray selectors and pupulate available rays for selector
+        // Iterate through ray selectors and populate available rays for selector
         for (var i = 1; i < 10; i++) {
-          sheetData.system.config["available_rays" + i] = {};
-          let val = data.data.primal['ds_eye_ray_' + i];
+          sheetData.config["available_rays" + i] = {};
+          let val = sheetData.system.primal['ds_eye_ray_' + i];
           if (val != "") {
             // Add own selected avalue as available
-            sheetData.system.config['available_rays' + i][val] = CONFIG.WO.doomseeker_eye_rays[val];
+            sheetData.config['available_rays' + i][val] = CONFIG.WO.doomseeker_eye_rays[val];
           }
 
           // Add available values to the list to select from
           for (const [key, value] of Object.entries(available_rays)) {
             available_rays[key] = CONFIG.WO.doomseeker_eye_rays[key];
-            sheetData.system.config['available_rays' + i][key] = CONFIG.WO.doomseeker_eye_rays[key];
+            sheetData.config['available_rays' + i][key] = CONFIG.WO.doomseeker_eye_rays[key];
           }
         }
       }

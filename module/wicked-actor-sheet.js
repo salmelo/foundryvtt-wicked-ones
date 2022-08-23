@@ -41,11 +41,6 @@ export class WickedActorSheet extends WickedSheet {
           sheetData.actor.system.dark_hearts.max = 3;
         } else if (i.name == game.i18n.localize("FITD.GAME_LOGIC.GearLocker")) {
           sheetData.actor.system.supply.max += 1;
-        } else if (i.system.ability_type == "ds_eyes") {
-          for (var j = 1; j < 10; j++) {
-            i.system.primal['ds_eye_ray_' + j + '_name'] = game.i18n.localize(CONFIG.WO.doomseeker_eye_rays[i.system.primal['ds_eye_ray_' + j]] + '.Name');
-            i.system.primal['ds_eye_ray_' + j + '_tooltip'] = game.i18n.localize(CONFIG.WO.doomseeker_eye_rays[i.system.primal['ds_eye_ray_' + j]] + '.Tooltip');
-          }
         }
       }
     });

@@ -83,4 +83,24 @@ export class WickedItem extends Item {
 
     // Code to override data-preparation for items
   }
+
+  /* override */
+  prepareDerivedData() {
+    super.prepareDerivedData();
+
+    if (this.type == "specialability") {
+      let a = 0;
+      switch (this.system.ability_type) {
+        case "ds_eyes":
+          for (var j = 1; j < 10; j++) {
+            this.system.primal['ds_eye_ray_' + j + '_name'] = game.i18n.localize(CONFIG.WO.doomseeker_eye_rays[this.system.primal['ds_eye_ray_' + j]] + '.Name');
+            this.system.primal['ds_eye_ray_' + j + '_tooltip'] = game.i18n.localize(CONFIG.WO.doomseeker_eye_rays[this.system.primal['ds_eye_ray_' + j]] + '.Tooltip');
+          }
+          break;
+        default:
+      }
+    }
+  }
+
+
 }

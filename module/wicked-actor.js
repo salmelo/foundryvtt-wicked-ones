@@ -100,10 +100,16 @@ export class WickedActor extends Actor {
     }
 
     let removeAt = -1;
+
+    // Put abilities in their respective groups
     for (var i = 0; i < items.length; i++) {
       if (items[i].type == "specialability" && items[i].system.ability_group == "group_general") {
-        if (data.is_primal_monster && items[i].system.source != data.primal_monster_type) {
-          items[i].system.ability_group = "group_flex";
+        if (data.is_primal_monster) {
+          if (items[i].system.source != data.primal_monster_type) {
+            items[i].system.ability_group = "group_flex";
+          } else {
+            items[i].system.ability_group = "group_general";
+          }
         } else if (items[i].system.source != data.calling_name) {
           items[i].system.ability_group = "group_flex";
         }

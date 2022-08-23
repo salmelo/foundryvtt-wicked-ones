@@ -168,7 +168,11 @@ Hooks.once("init", async function() {
     var outStr = '';
     for (var arg in arguments) {
       if (typeof arguments[arg] != 'object') {
-        outStr += arguments[arg].replace('"', "&quot;");
+        if (typeof arguments[arg] != 'undefined') {
+          outStr += arguments[arg].replace('"', "&quot;");
+        } else {
+          console.log(`Undefined argument passed to escdq Handlebars helper.`);
+        }
       }
     }
     return outStr;
