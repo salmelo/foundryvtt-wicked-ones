@@ -16,6 +16,7 @@ export class WickedActor extends Actor {
 
       if (!(Object.keys(data).includes("prototypeToken"))) {
         data.prototypeToken = {};
+        data.prototypeToken.texture = {};
       }
       switch (data.type) {
         case "character":
@@ -24,9 +25,8 @@ export class WickedActor extends Actor {
         case "minion_pack":
         case "party":
           // Replace default image
-          data.img = `systems/wicked-ones/styles/assets/default-images/${data.type}.webp`;
-          data.prototypeToken.texture = {};
-          data.prototypeToken.texture.src = `systems/wicked-ones/styles/assets/default-images/${data.type}-token.webp`;
+          data.img = data.img || `systems/wicked-ones/styles/assets/default-images/${data.type}.webp`;
+          data.prototypeToken.texture.src = data.prototypeToken.texture.src || `systems/wicked-ones/styles/assets/default-images/${data.type}-token.webp`;
           data.prototypeToken.actorLink = true;
           break;
         case "clock":
