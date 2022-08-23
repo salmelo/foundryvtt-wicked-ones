@@ -107,7 +107,7 @@
           <p>{{localize "FITD.Clocks"}}</p>
           <p><a class="item-add-popup" data-item-type="project"><i class="fas fa-plus-square"></i></a></p>
         </div>
-        <table id="project-clocks-table">
+        <table class="draggable-items" id="project-clocks-table">
           <thead>
             <tr>
               <td>Clock</td>
@@ -155,8 +155,7 @@
               </tr>
             </thead>
             <tbody>
-              {{#each actor.items as |item id|}}
-              {{#if (eq item.type "invasion")}}
+              {{#each invasions as |item id|}}
               {{!-- Major Invasions --}}
               <tr class="item" data-item-id="{{item._id}}">
                 <td class="item-body">
@@ -196,7 +195,6 @@
                   <a class="item-control item-delete" title="{{localize 'FITD.TitleDeleteItem'}}"><i class="fas fa-trash"></i></a>
                 </td>
               </tr>
-              {{/if}}
               {{/each}}
             </tbody>
           </table>

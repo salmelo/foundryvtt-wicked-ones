@@ -24,8 +24,8 @@ export class WickedActorSheet extends WickedSheet {
   async getData(options) {
     const sheetData = await super.getData(options);
     sheetData.editable = this.options.editable;
-    sheetData.actor = sheetData.data;
 
+    sheetData.actor = sheetData.data;
     sheetData.system = sheetData.document.system // project system data so that handlebars has the same name and value paths
     sheetData.notes = await TextEditor.enrichHTML(this.object.system.description, { async: true });
 

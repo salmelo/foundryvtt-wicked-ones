@@ -24,16 +24,23 @@ export class WickedGMSheet extends WickedSheet {
     const sheetData = await super.getData(options);
     sheetData.editable = this.options.editable;
 
+    sheetData.actor = sheetData.data;
     sheetData.system = sheetData.document.system // project system data so that handlebars has the same name and value paths
     sheetData.notes = await TextEditor.enrichHTML(this.object.system.description, { async: true });
 
     // Progressivly count up the invasion items
-    let invasion_count = 1;
+    let invasions = []
+    let invasion_count = 0;
+
     sheetData.items.forEach(i => {
       if (i.type == "invasion") {
-        i.system.inv_number = invasion_count++;
+        let invasion = i;
+        invasion.system.inv_number = ++invasion_count;
+        invasions.push(invasion);
       }
     });
+
+    sheetData.invasions = invasions;
 
     // Add a hint for the selected phase and scaffold HTML
     sheetData.system.phase_hint = "<ul>";
@@ -64,16 +71,17 @@ export class WickedGMSheet extends WickedSheet {
     if (!this.options.editable) return;
 
     // Update Inventory Item
+    // Update Inventory Item
     html.find('.item-open-editor').click(ev => {
       const element = $(ev.currentTarget).parents(".item");
-      const item = this.actor.getOwnedItem(element.data("itemId"));
+      const item = this.document.items.get(element.data("itemId"));
       item.sheet.render(true);
     });
 
     // Delete Inventory Item
     html.find('.item-delete').click(ev => {
       const element = $(ev.currentTarget).parents(".item");
-      this.actor.deleteOwnedItem(element.data("itemId"));
+      this.actor.deleteEmbeddedDocuments("Item", [element.data("itemId")]);
       element.slideUp(200, () => this.render(false));
     });
 
