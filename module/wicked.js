@@ -296,7 +296,9 @@ Hooks.on("renderSceneControls", async (app, html) => {
   dice_roller.click(function() {
     simpleRollPopup();
   });
+
   $(html).children().first().append(dice_roller);
+
 });
 
 Hooks.on("renderChatMessage", (app, html, data) => {
