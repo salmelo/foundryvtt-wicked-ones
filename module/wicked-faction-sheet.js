@@ -20,16 +20,17 @@ export class WickedFactionSheet extends WickedSheet {
   /* -------------------------------------------- */
 
   /** @override */
-  getData() {
-    const data = super.getData();
-		data.editable = this.options.editable;
-    const actorData = data.data;
-		data.actor = actorData;
-		data.data = actorData.data;
+  async getData(options) {
+    const sheetData = await super.getData(options);
+    sheetData.editable = this.options.editable;
+
+    sheetData.actor = sheetData.data;
+    sheetData.system = sheetData.document.system // project system data so that handlebars has the same name and value paths
+    sheetData.notes = await TextEditor.enrichHTML(this.object.system.description, { async: true });
 		
     // Override Code for updating the sheet goes here
 
-    return data;
+    return sheetData;
   }
 
 
@@ -54,18 +55,17 @@ export class WickedFactionSheet extends WickedSheet {
     // Update the Item
     super._updateObject(event, formData);
 
-    const img = this.actor.data.token.img;
+    const img = this.actor.prototypeToken.texture.src;
 
     if (img != "" && img.indexOf(`/default-images/faction-token`) == -1) {
       return;
     }
 
-    let image_path = `systems/wicked-ones/styles/assets/default-images/faction-token-${formData['data.category']}-${Math.max(1,formData['data.tier.value'])}.webp`;
-    formData['token.img'] = image_path;
+    let image_path = `systems/wicked-ones/styles/assets/default-images/faction-token-${formData['system.category']}-${Math.max(1, formData['system.tier.value'])}.webp`;
+    formData['prototypeToken.texture.src'] = image_path;
     let data = [];
-    let image = {
-      img: image_path
-    };
+    let image = {};
+    image["texture.src"] = image_path;
 
     let tokens = this.actor.getActiveTokens();
 

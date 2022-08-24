@@ -5,6 +5,35 @@
 export class WickedItem extends Item {
 
   /**
+   * Fill new empty hirelings with random data
+   * @override
+   **/
+  async _preCreate(data, options, user) {
+    await super._preCreate(data, options, user);
+
+    if (data.type == "adventurer") {
+      if (data.system.adventurer_type == "hireling" && data.system.hireling_type == "") {
+        const hirelingType = this.getRandomHirelingType();
+        const i18n = game.i18n.localize(hirelingType);
+
+        this.updateSource({
+          name: i18n,
+          system: {
+            hireling_type: hirelingType,
+            hireling_type_custom: i18n
+          }
+        });
+      }
+    }
+  }
+
+  // Helper for random hireling types
+  getRandomHirelingType() {
+    return Object.values(CONFIG.WO.hireling_types)[Math.floor(Math.random() * Object.values(CONFIG.WO.hireling_types).length)] ?? ""
+      ;
+  }
+
+  /**
     * Create a new entity using provided input data
     * @override
     */
@@ -83,4 +112,24 @@ export class WickedItem extends Item {
 
     // Code to override data-preparation for items
   }
+
+  /* override */
+  prepareDerivedData() {
+    super.prepareDerivedData();
+
+    if (this.type == "specialability") {
+      let a = 0;
+      switch (this.system.ability_type) {
+        case "ds_eyes":
+          for (var j = 1; j < 10; j++) {
+            this.system.primal['ds_eye_ray_' + j + '_name'] = game.i18n.localize(CONFIG.WO.doomseeker_eye_rays[this.system.primal['ds_eye_ray_' + j]] + '.Name');
+            this.system.primal['ds_eye_ray_' + j + '_tooltip'] = game.i18n.localize(CONFIG.WO.doomseeker_eye_rays[this.system.primal['ds_eye_ray_' + j]] + '.Tooltip');
+          }
+          break;
+        default:
+      }
+    }
+  }
+
+
 }

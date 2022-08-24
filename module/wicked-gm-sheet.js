@@ -20,34 +20,41 @@ export class WickedGMSheet extends WickedSheet {
   /* -------------------------------------------- */
 
   /** @override */
-  getData() {
-    const data = super.getData();
-    data.editable = this.options.editable;
-    const actorData = data.data;
-    data.actor = actorData;
-    data.data = actorData.data;
+  async getData(options) {
+    const sheetData = await super.getData(options);
+    sheetData.editable = this.options.editable;
+
+    sheetData.actor = sheetData.data;
+    sheetData.system = sheetData.document.system // project system data so that handlebars has the same name and value paths
+    sheetData.notes = await TextEditor.enrichHTML(this.object.system.description, { async: true });
 
     // Progressivly count up the invasion items
-    let invasion_count = 1;
-    data.items.forEach(i => {
+    let invasions = []
+    let invasion_count = 0;
+
+    sheetData.items.forEach(i => {
       if (i.type == "invasion") {
-        i.data.inv_number = invasion_count++;
+        let invasion = i;
+        invasion.system.inv_number = ++invasion_count;
+        invasions.push(invasion);
       }
     });
 
+    sheetData.invasions = invasions;
+
     // Add a hint for the selected phase and scaffold HTML
-    data.data.phase_hint = "<ul>";
+    sheetData.system.phase_hint = "<ul>";
     for (var i = 1; i < 10; i++) {
-      let new_hint = "FITD.CYCLE.PHASE" + data.data.current_phase.value + ".Hint" + i;
+      let new_hint = "FITD.CYCLE.PHASE" + sheetData.system.current_phase.value + ".Hint" + i;
       let new_hint_loc = game.i18n.localize(new_hint);
       if (new_hint == new_hint_loc) {
         break;
       }
-      data.data.phase_hint += "<li>" + new_hint_loc + "</li>"
+      sheetData.system.phase_hint += "<li>" + new_hint_loc + "</li>"
     }
-    data.data.phase_hint += "</ul>";
+    sheetData.system.phase_hint += "</ul>";
 
-    return data;
+    return sheetData;
   }
 
 
@@ -64,16 +71,17 @@ export class WickedGMSheet extends WickedSheet {
     if (!this.options.editable) return;
 
     // Update Inventory Item
+    // Update Inventory Item
     html.find('.item-open-editor').click(ev => {
       const element = $(ev.currentTarget).parents(".item");
-      const item = this.actor.getOwnedItem(element.data("itemId"));
+      const item = this.document.items.get(element.data("itemId"));
       item.sheet.render(true);
     });
 
     // Delete Inventory Item
     html.find('.item-delete').click(ev => {
       const element = $(ev.currentTarget).parents(".item");
-      this.actor.deleteOwnedItem(element.data("itemId"));
+      this.actor.deleteEmbeddedDocuments("Item", [element.data("itemId")]);
       element.slideUp(200, () => this.render(false));
     });
 

@@ -168,7 +168,11 @@ Hooks.once("init", async function() {
     var outStr = '';
     for (var arg in arguments) {
       if (typeof arguments[arg] != 'object') {
-        outStr += arguments[arg].replace('"', "&quot;");
+        if (typeof arguments[arg] != 'undefined') {
+          outStr += arguments[arg].replace('"', "&quot;");
+        } else {
+          console.log(`Undefined argument passed to escdq Handlebars helper.`);
+        }
       }
     }
     return outStr;
@@ -262,14 +266,14 @@ Hooks.once("ready", function() {
 Hooks.on("preCreateItem", (item, data, options, userId) => {
 
   // v0.7 code moved to createItem Hook
-  // WickedHelpers.removeDuplicatedItemType(data, item.parent);
+  // WickedHelpers.removeDuplicatedItemType(item, item.parent);
 
   return true;
 });
 
 Hooks.on("createItem", (item, options, userId) => {
 
-  WickedHelpers.removeDuplicatedItemType(item.data, item.parent);
+  WickedHelpers.removeDuplicatedItemType(item, item.parent);
 
   // Item Logic removed from Blades Module
   // WickedHelpers.callItemLogic(item.data, item.parent);
@@ -281,26 +285,24 @@ Hooks.on("createItem", (item, options, userId) => {
 Hooks.on("deleteItem", (item, options, userId) => {
 
   // Item Logic removed from Blades Module
-  // WickedHelpers.undoItemLogic(item.data, item.parent);
+  // WickedHelpers.undoItemLogic(item, item.parent);
 
   return true;
 });
 
-// getSceneControlButtons
+// renderSceneControls
 Hooks.on("renderSceneControls", async (app, html) => {
   let dice_roller = $('<li class="scene-control" title="Dice Roll"><i class="fas fa-dice"></i></li>');
   dice_roller.click(function() {
     simpleRollPopup();
   });
-  if ( !foundry.utils.isNewerVersion("9", game.version ?? game.data.version) ) {
-    html.children().first().append( dice_roller );
-  } else {
-    html.append( dice_roller );
-  }
+
+  $(html).children().first().append(dice_roller);
+
 });
 
 Hooks.on("renderChatMessage", (app, html, data) => {
 
-  // Optionally expant the dice results
+  // Optionally expand the dice results
   if (game.settings.get("wicked-ones", "showExpandedRollResults")) html.find(".dice-tooltip").addClass('exp');
 });

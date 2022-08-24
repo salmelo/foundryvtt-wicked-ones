@@ -3805,7 +3805,9 @@ body {
   font-family: Bitter, sans-serif;
   font-weight: 500;
   font-size: 14px;
-  background: url("../styles/assets/images/WO-Background.webp") no-repeat center;
+  background: url("../styles/assets/images/WO-Background.webp");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   background-size: cover;
 }
 

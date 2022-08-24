@@ -18,18 +18,11 @@ export class WickedSheet extends ActorSheet {
     html.find('.eye-rays area').mouseover(this._onDSMouseOver.bind(this));
     html.find('.eye-rays area').mouseout(this._onDSMouseOut.bind(this));
     html.find(".open-minion-pack").click(this._onMinionOpenClick.bind(this));
-    html.find(".tooltip").hover(this._onTooltipHover, this._onTooltipHoverEnd);
 
     // Item Dragging
     if (this.document.isOwner) {
       // Core handlers from foundry.js
-      var handler;
-      if (!isNewerVersion(game.version ?? game.data.version, "0.7")) {
-        handler = ev => this._onDragItemStart(ev);
-      }
-      else {
-        handler = ev => this._onDragStart(ev);
-      }
+      var handler = ev => this._onDragStart(ev);
       html.find('.draggable-items .item').each((i, item) => {
         if (item.classList.contains("inventory-header")) return;
         item.setAttribute("draggable", true);
@@ -66,7 +59,7 @@ export class WickedSheet extends ActorSheet {
 
     let items = await WickedHelpers.getAllItemsByType(item_type, game);
 
-    // Sort Special Abilities, Rooms, Upgrades ad Monster Races
+    // Sort Special Abilities, Rooms, Upgrades and Monster Races
     if (items.length > 0) {
       switch (items[0].type) {
         case "minion_upgrade":
@@ -74,9 +67,9 @@ export class WickedSheet extends ActorSheet {
           break;
         case "monster_race":
           // Remove primals for Minion Sheets
-          if (this.object.data.type == "minion_pack") {
+          if (this.object.type == "minion_pack") {
             items = items.filter(function (item, index, arr) {
-              return !(item.data.primal);
+              return !(item.system.primal);
             });
           }
           items.sort(WickedHelpers.monsterRaceSort);
@@ -96,40 +89,40 @@ export class WickedSheet extends ActorSheet {
     items.forEach(e => {
       let itemPrefix = ``;
       let itemSuffix = ``;
-      let itemTooltip = e.data.description ?? "";
+      let itemTooltip = e.system.description ?? "";
       switch (item_type) {
 
         case "minion_upgrade":
-          if (e.data.upgrade_type == 'external') {
+          if (e.system.upgrade_type == 'external') {
             itemSuffix += ` (External)`
-          } else if (e.data.upgrade_type == 'path') {
+          } else if (e.system.upgrade_type == 'path') {
             itemSuffix += ` (Magic Path)`
           }
           break;
 
         case "monster_race":
-          if (e.data.primal) {
+          if (e.system.primal) {
             itemSuffix += ` (Primal)`
           }
           break;
 
         case "specialability":
-          if (typeof e.data.source !== "undefined") {
-            itemPrefix += `(${e.data.source}): `
+          if (typeof e.system.source !== "undefined") {
+            itemPrefix += `(${e.system.source}): `
           }
-          if (e.data.ability_group == 'group_core') {
+          if (e.system.ability_group == 'group_core') {
             itemSuffix += ` (Core)`
-          } else if (e.data.ability_group == 'group_ext') {
+          } else if (e.system.ability_group == 'group_ext') {
             itemSuffix += ` (External)`
           }
           if (itemTooltip == "") {
-            itemTooltip = game.i18n.localize('FITD.ItemIsOfType') + ' ' +  game.i18n.localize(CONFIG.WO.special_ability_types[e.data.ability_type]);
+            itemTooltip = game.i18n.localize('FITD.ItemIsOfType') + ' ' + game.i18n.localize(CONFIG.WO.special_ability_types[e.system.ability_type]);
           }
           break;
 
         case "tier3room":
-          if (typeof e.data.theme !== "undefined") {
-            itemPrefix += `(${e.data.theme}): `
+          if (typeof e.system.theme !== "undefined") {
+            itemPrefix += `(${e.system.theme}): `
           }
           break;
 
@@ -171,9 +164,7 @@ export class WickedSheet extends ActorSheet {
         }
       },
       default: "two",
-      render: html => {
-        $('i.tooltip').hover(this._onTooltipHover, this._onTooltipHoverEnd);
-      },
+      render: html => {},
     }, options);
 
     dialog.render(true);
@@ -219,7 +210,7 @@ export class WickedSheet extends ActorSheet {
     const attribute_name = pressed_button.name.split(".")[2];
     const skill_name = pressed_button.name.split(".")[4];
     const temp_var = pressed_button.value;
-    let skill = this.document.data.data.attributes[attribute_name].skills[skill_name];
+    let skill = this.document.system.attributes[attribute_name].skills[skill_name];
 
     // Set Practice XP
     if (temp_var == 0 || temp_var > 1 || skill.value > 1) {
@@ -242,7 +233,7 @@ export class WickedSheet extends ActorSheet {
     }
 
     // Update Data
-    this.document.update({ ['data.attributes.' + attribute_name + '.skills.' + skill_name + '.practice']: skill.practice });
+    this.document.update({ ['system.attributes.' + attribute_name + '.skills.' + skill_name + '.practice']: skill.practice });
 
     // Submit click
     pressed_button.click();
@@ -258,7 +249,7 @@ export class WickedSheet extends ActorSheet {
     const itemId = event.currentTarget.closest(".item").dataset.itemId;
     const propertyToSet = event.currentTarget.dataset.propertyToSet;
     const item = this.document.items.get(itemId);
-    return item.update({ ['data.' + propertyToSet]: event.target.checked });
+    return item.update({ ['system.' + propertyToSet]: event.target.checked });
   }
 
   /* -------------------------------------------- */
@@ -271,7 +262,7 @@ export class WickedSheet extends ActorSheet {
     const itemId = event.currentTarget.closest(".item").dataset.itemId;
     const propertyToSet = event.currentTarget.dataset.propertyToSet;
     const item = this.document.items.get(itemId);
-    return item.update({ ['data.' + propertyToSet]: event.target.value });
+    return item.update({ ['system.' + propertyToSet]: event.target.value });
   }
 
 /* -------------------------------------------- */
@@ -306,7 +297,7 @@ export class WickedSheet extends ActorSheet {
 
     if (event.target.value == 0) {
       // set clock progress to 0
-      return item.update({ ['data.clock_progress']: 0 });
+      return item.update({ ['system.clock_progress']: 0 });
     }
     const clockRect = event.currentTarget.closest(".blades-clock").getBoundingClientRect();
     const centerX = clockRect.x + clockRect.width / 2;
@@ -319,11 +310,12 @@ export class WickedSheet extends ActorSheet {
       return;
     }
     const slope = (offsetX >= 0 ? Math.atan2(offsetX, offsetY) : Math.atan2(offsetX, offsetY) + 2 * Math.PI);
-    const segmentArc = Math.PI * 2 / item.data.data.clock_size;
+    //const segmentArc = Math.PI * 2 / item.data.data.clock_size;
+    const segmentArc = Math.PI * 2 / item.system.clock_size;
     const clickedSegment = Math.ceil(slope / segmentArc);
 
     // set clock progress to clicked segment
-    return item.update({ ['data.clock_progress']: clickedSegment });
+    return item.update({ ['system.clock_progress']: clickedSegment });
 
   }
 
@@ -336,7 +328,8 @@ export class WickedSheet extends ActorSheet {
   async _onMinionOpenClick(event) {
 
     event.preventDefault();
-    const actor = game.actors.get(this.document.data.data.minionpack);
+    // const actor = game.actors.get(this.document.data.data.minionpack);
+    const actor = game.actors.get(this.document.system.minionpack);
     const sheet = actor.sheet;
 
     // If the sheet is already rendered:
@@ -350,66 +343,6 @@ export class WickedSheet extends ActorSheet {
   }
 
   /* -------------------------------------------- */
-
-  /**
-   * Create tooltip on hover
-   * @param {*} event
-   */
-  async _onTooltipHover(event) {
-
-    var $tt_ele = document.getElementById("wo-tooltip");
-
-    if ($tt_ele == null) {
-      $tt_ele = document.createElement('div');
-      $tt_ele.id = 'wo-tooltip';
-      document.body.appendChild($tt_ele);
-    }
-
-    $tt_ele.innerHTML = this.dataset.tooltip ?? "";
-    if ($tt_ele.innerHTML.length == 0) return;
-
-    var itemRect = this.getBoundingClientRect();
-    var scrnX = window.innerWidth;
-    var scrnY = window.innerHeight;
-    var toolRect = $tt_ele.getBoundingClientRect();
-    var newX = itemRect.right + 5;
-    var newY = itemRect.top;
-
-    // place left if tooltip won't fit on the right
-    if (itemRect.right + toolRect.width + 25 > scrnX) {
-      newX = itemRect.left - toolRect.width - 5;
-    }
-
-    // align bottom if tooltip won't fit below
-    if (itemRect.top + toolRect.height + 25 > scrnY) {
-      newY = itemRect.bottom - toolRect.height;
-    }
-
-    $tt_ele.style.top = newY + 'px';
-    $tt_ele.style.left = newX + 'px';
-
-    if (this.classList.contains('quick')) {
-      $tt_ele.classList.add('quick');
-    }
-    $tt_ele.classList.add('show');
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Remove tooltip on mouseout
-   * @param {*} event
-   */
-  async _onTooltipHoverEnd(event) {
-
-    var $tt_ele = document.getElementById("wo-tooltip");
-
-    if ($tt_ele != null) {
-      $tt_ele.classList.remove('show');
-      $tt_ele.classList.remove('quick');
-    }
-  }
-
 
 
 }

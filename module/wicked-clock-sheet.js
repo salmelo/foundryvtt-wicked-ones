@@ -20,24 +20,25 @@ export class WickedClockSheet extends WickedSheet {
 	/* -------------------------------------------- */
 
 	/** @override */
-	getData() {
-		const data = super.getData();
-		data.editable = this.options.editable;
-    const actorData = data.data;
-		data.actor = actorData;
-		data.data = actorData.data;
+	async getData(options) {
+    const sheetData = await super.getData(options);
+    sheetData.editable = this.options.editable;
 
-		// Override Code for updating the sheet goes here
+    sheetData.actor = sheetData.data;
+    sheetData.system = sheetData.data.system // project system data so that handlebars has the same name and value paths
+    sheetData.notes = await TextEditor.enrichHTML(this.object.system.notes, { async: true });
 
-		return data;
-	}
+    // Override Code for updating the sheet goes here
+
+    return sheetData;
+  }
 
 	/* -------------------------------------------- */
 
   /** @override */
   async _updateObject(event, formData) {
 
-    let image_path = `/systems/wicked-ones/styles/assets/progressclocks-webp/${formData['data.style']}-${formData['data.type']}-${formData['data.value']}.webp`;
+    let image_path = `/systems/wicked-ones/styles/assets/progressclocks-webp/${formData['system.style']}-${formData['system.type']}-${formData['system.value']}.webp`;
 
     formData['img'] = image_path;
     formData['token.img'] = image_path;

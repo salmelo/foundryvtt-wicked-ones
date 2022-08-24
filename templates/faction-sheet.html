@@ -16,12 +16,12 @@
     <div class="tier-side flex-horizontal">
       <div class="text-input flex-horizontal" id="number">
         <label for="faction-{{actor._id}}-tier">{{localize "FITD.Tier"}}</label>
-        <input type="number" id="faction-{{actor._id}}-tier" name="data.tier.value" value="{{data.tier.value}}" min="0" max="4">
+        <input type="number" id="faction-{{actor._id}}-tier" name="system.tier.value" value="{{system.tier.value}}" min="0" max="4">
       </div>
       <div class="text-input flex-horizontal">
         <label for="faction-{{actor._id}}-tier">{{localize "FITD.Side"}}</label>
-        <select class="" id="faction-{{actor._id}}-side" name="data.category">
-          {{#select data.category}}
+        <select class="" id="faction-{{actor._id}}-side" name="system.category">
+          {{#select system.category}}
           <option value="dark">{{localize "FITD.FACTION_SIDE.Dark"}}</option>
           <option value="neutral">{{localize "FITD.FACTION_SIDE.Neutral"}}</option>
           <option value="light">{{localize "FITD.FACTION_SIDE.Light"}}</option>
@@ -39,17 +39,17 @@
         <tr>
           <td>
             {{!-- Display Clock 1 here --}}
-            <div class="faction-clock-display seg-{{data.clock1.max}}" id="faction-{{actor._id}}-clock-1-display">
-              {{#if (eq data.clock_active_1 true)}}
-              {{{blades-clock "data.clock1.value" data.clock1.max data.clock1.value data.clock_uid_1}}}
+            <div class="faction-clock-display seg-{{system.clock1.max}}" id="faction-{{actor._id}}-clock-1-display">
+              {{#if (eq system.clock_active_1 true)}}
+              {{{blades-clock "system.clock1.value" system.clock1.max system.clock1.value system.clock_uid_1}}}
               {{/if}}
             </div>
           </td>
           <td>
             {{!-- Display Clock 2 here --}}
-            <div class="faction-clock-display seg-{{data.clock2.max}}" id="faction-{{actor._id}}-clock-2-display">
-              {{#if (eq data.clock_active_2 true)}}
-              {{{blades-clock "data.clock2.value" data.clock2.max data.clock2.value data.clock_uid_2}}}
+            <div class="faction-clock-display seg-{{system.clock2.max}}" id="faction-{{actor._id}}-clock-2-display">
+              {{#if (eq system.clock_active_2 true)}}
+              {{{blades-clock "system.clock2.value" system.clock2.max system.clock2.value system.clock_uid_2}}}
               {{/if}}
             </div>
           </td>
@@ -57,25 +57,25 @@
         <tr>
           <td>
             <div class="faction-clock-text" id="faction-{{actor._id}}-clock-1-text">
-              {{#if (eq data.clock_active_1 true)}}
+              {{#if (eq system.clock_active_1 true)}}
               <label>{{localize "FITD.Project"}} 1</label>
-              <textarea rows="2" name="data.clock1.text">{{data.clock1.text}}</textarea>
+              <textarea rows="2" name="system.clock1.text">{{system.clock1.text}}</textarea>
               {{/if}}
             </div>
           </td>
           <td>
             <div class="faction-clock-text" id="faction-{{actor._id}}-clock-2-text">
-              {{#if (eq data.clock_active_2 true)}}
+              {{#if (eq system.clock_active_2 true)}}
               <label>{{localize "FITD.Project"}} 2</label>
-              <textarea rows="2" name="data.clock2.text">{{data.clock2.text}}</textarea>
+              <textarea rows="2" name="system.clock2.text">{{system.clock2.text}}</textarea>
               {{/if}}
             </div>
           </td>
         </tr>
         <tr>
           <td>
-            <select class="clock-configuration" id="faction-{{actor._id}}-clock-1-select" name="data.clock1.max">
-              {{#select data.clock1.max}}
+            <select class="clock-configuration" id="faction-{{actor._id}}-clock-1-select" name="system.clock1.max">
+              {{#select system.clock1.max}}
               <option value="0">{{localize "FITD.Off"}}</option>
               <option value="4">4 {{localize "FITD.Segements"}}</option>
               <option value="6">6 {{localize "FITD.Segements"}}</option>
@@ -84,8 +84,8 @@
             </select>
           </td>
           <td>
-            <select class="clock-configuration" id="faction-{{actor._id}}-clock-2-select" name="data.clock2.max">
-              {{#select data.clock2.max}}
+            <select class="clock-configuration" id="faction-{{actor._id}}-clock-2-select" name="system.clock2.max">
+              {{#select system.clock2.max}}
               <option value="0">{{localize "FITD.Off"}}</option>
               <option value="4">4 {{localize "FITD.Segements"}}</option>
               <option value="6">6 {{localize "FITD.Segements"}}</option>
@@ -102,7 +102,7 @@
       <div class="label-stripe">
         <p>{{localize "FITD.Notes"}}</p>
       </div>
-      {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+      {{editor notes target="system.description" button=true owner=owner editable=editable}}
     </div>
   </section>
 </form>

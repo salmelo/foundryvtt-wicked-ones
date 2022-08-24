@@ -14,8 +14,9 @@ export class WickedActor extends Actor {
   static async create(data, options = {}) {
     if (Object.keys(data).includes("type")) {
 
-      if (!(Object.keys(data).includes("token"))) {
-        data.token = {};
+      if (!(Object.keys(data).includes("prototypeToken"))) {
+        data.prototypeToken = {};
+        data.prototypeToken.texture = {};
       }
       switch (data.type) {
         case "character":
@@ -24,12 +25,12 @@ export class WickedActor extends Actor {
         case "minion_pack":
         case "party":
           // Replace default image
-          data.img = `systems/wicked-ones/styles/assets/default-images/${data.type}.webp`;
-          data.token.img = `systems/wicked-ones/styles/assets/default-images/${data.type}-token.webp`;
-          data.token.actorLink = true;
+          data.img = data.img || `systems/wicked-ones/styles/assets/default-images/${data.type}.webp`;
+          data.prototypeToken.texture.src = data.prototypeToken.texture.src || `systems/wicked-ones/styles/assets/default-images/${data.type}-token.webp`;
+          data.prototypeToken.actorLink = true;
           break;
         case "clock":
-          data.token.actorLink = true;
+          data.prototypeToken.actorLink = true;
           break;
         default:
       }
@@ -64,15 +65,11 @@ export class WickedActor extends Actor {
   prepareData() {
     super.prepareData();
 
-    const actorData = this.data;
-    const data = actorData.data;
-    const flags = actorData.flags;
-
     // Make separate methods for each Actor type (character, npc, etc.) to keep
     // things organized.
-    if (actorData.type === 'character') this._prepareWickedOneData(actorData);
-    if (actorData.type === 'dungeon') this._prepareDungeonData(actorData);
-    if (actorData.type === 'faction') this._prepareFactionData(actorData);
+    if (this.type === 'character') this._prepareWickedOneData();
+    if (this.type === 'dungeon') this._prepareDungeonData();
+    if (this.type === 'faction') this._prepareFactionData();
   }
 
 
@@ -82,40 +79,47 @@ export class WickedActor extends Actor {
   /**
   * Prepare Wicked One data
   */
-  _prepareWickedOneData(actorData) {
-    const data = actorData.data;
+  _prepareWickedOneData() {
+    const data = this.system;
+    const items = this.items.contents;
 
     // Make modifications to data here.
     data.is_primal_monster = false;
     data.primal_monster_type = "";
     data.calling_name = "";
 
-    for (var i = 0; i < actorData.items.length; i++) {
-      if (actorData.items[i].type == "monster_race") {
-        data.is_primal_monster = actorData.items[i].data.primal;
+    for (var i = 0; i < items.length; i++) {
+      if (items[i].type == "monster_race") {
+        data.is_primal_monster = items[i].system.primal;
         if (data.is_primal_monster) {
-          data.primal_monster_type = actorData.items[i].name;
+          data.primal_monster_type = items[i].name;
         }
-      } else if (actorData.items[i].type == "calling") {
-        data.calling_name = actorData.items[i].name;
+      } else if (items[i].type == "calling") {
+        data.calling_name = items[i].name;
       }
     }
 
     let removeAt = -1;
-    for (var i = 0; i < actorData.items.length; i++) {
-      if (actorData.items[i].type == "specialability" && actorData.items[i].data.ability_group == "group_general") {
-        if (data.is_primal_monster && actorData.items[i].data.source != data.primal_monster_type) {
-          actorData.items[i].data.ability_group = "group_flex";
-        } else if (actorData.items[i].data.source != data.calling_name) {
-          actorData.items[i].data.ability_group = "group_flex";
+
+    // Put abilities in their respective groups
+    for (var i = 0; i < items.length; i++) {
+      if (items[i].type == "specialability" && items[i].system.ability_group == "group_general") {
+        if (data.is_primal_monster) {
+          if (items[i].system.source != data.primal_monster_type) {
+            items[i].system.ability_group = "group_flex";
+          } else {
+            items[i].system.ability_group = "group_general";
+          }
+        } else if (items[i].system.source != data.calling_name) {
+          items[i].system.ability_group = "group_flex";
         }
-      } else if (actorData.items[i].type == "calling" && data.is_primal_monster) {
+      } else if (items[i].type == "calling" && data.is_primal_monster) {
         removeAt = i;
       }
     }
     // Remove callings for primal monsters
     if (removeAt != -1) {
-      actorData.items.splice(removeAt, 1);
+      items.splice(removeAt, 1);
     }
 
   }
@@ -125,14 +129,15 @@ export class WickedActor extends Actor {
   /**
   * Prepare Dungeon data
   */
-  _prepareDungeonData(actorData) {
-    const data = actorData.data;
+  _prepareDungeonData() {
+    const data = this.system;
+    const items = this.items.contents;
 
     // Make modifications to data here.
     data.has_no_theme = true;
 
-    for (var i = 0; i < actorData.items.length; i++) {
-      if (actorData.items[i].type == "dungeon_theme") {
+    for (var i = 0; i < items.length; i++) {
+      if (items[i].type == "dungeon_theme") {
         data.has_no_theme = false;
         break;
       }
@@ -144,14 +149,14 @@ export class WickedActor extends Actor {
   /**
    * Prepare Faction data
    */
-  _prepareFactionData(actorData) {
-    const data = actorData.data;
+  _prepareFactionData() {
+    const data = this.system;
 
     // Make modifications to data here.
     data.clock_active_1 = (data.clock1.max != 0);
     data.clock_active_2 = (data.clock2.max != 0);
-    data.clock_uid_1 = actorData._id + "-1";
-    data.clock_uid_2 = actorData._id + "-2";
+    data.clock_uid_1 = this._id + "-1";
+    data.clock_uid_2 = this._id + "-2";
   }
 
   /* -------------------------------------------- */
@@ -166,62 +171,6 @@ export class WickedActor extends Actor {
     return data;
   }
 
-
-  /* -------------------------------------------- */
-
-  /** @override */
-  async createEmbeddedDocuments(embeddedName, data, options) {
-    if (data instanceof Array) {
-      for (var i = 0; i < data.length; i++) {
-        if (data[i].type == "adventurer") {
-          data[i].name = this.getUniqueName(data[i].name);
-          if (data[i].data.adventurer_type == "hireling" && data[i].data.hireling_type == "") {
-            data[i].data.hireling_type = this.getRandomHirelingType();
-            data[i].data.hireling_type_custom = game.i18n.localize(data[i].data.hireling_type);
-          }
-        } else if (data[i].type == "invasion") {
-          data[i].name = this.getUniqueName(data[i].name);
-        }
-      }
-    } else if (data.type == "adventurer") {
-      data.name = this.getUniqueName(data.name);
-      if (data.data.adventurer_type == "hireling" && data.data.hireling_type == "") {
-        data.data.hireling_type = this.getRandomHirelingType();
-        data.data.hireling_type_custom = game.i18n.localize(data.data.hireling_type);
-      }
-    } else if(data[i].type == "invasion") {
-      data[i].name = this.getUniqueName(data[i].name);
-    }
-    super.createEmbeddedDocuments(embeddedName, data, options);
-  }
-
-  /* -------------------------------------------- */
-
-  getUniqueName(oldName) {
-    let namesUsed = [];
-    for (var i = 0; i < this.data.items.length; i++) {
-      namesUsed.push(this.data.items[i].name);
-    }
-
-    let newName = oldName;
-    if (namesUsed.indexOf(newName) != -1) {
-      let j = 1;
-      do {
-        j++;
-        newName = oldName + ' ' + j;
-      } while (namesUsed.indexOf(newName) != -1 || j > 999);
-    }
-    return newName;
-  }
-
-  /* -------------------------------------------- */
-
-
-  getRandomHirelingType() {
-    return Object.values(CONFIG.WO.hireling_types)[Math.floor(Math.random() * Object.values(CONFIG.WO.hireling_types).length)] ?? ""
-    ;
-  }
-
   /* -------------------------------------------- */
 
   /**
@@ -233,18 +182,17 @@ export class WickedActor extends Actor {
     let dice_amount = {};
 
     // Add extra values for braineater disciplines and doomseeker eye rays if available
-    this.data.items.forEach(specialAbility => {
-      if (specialAbility.type == "specialability" && specialAbility.data.data.ability_type == "ds_eyes") {
+    this.items.forEach(specialAbility => {
+      if (specialAbility.type == "specialability" && specialAbility.system.ability_type == "ds_eyes") {
         for (var i = 1; i < 10; i++) {
-          dice_amount[specialAbility.data.data.primal['ds_eye_ray_' + i]] = parseInt(specialAbility.data.data.primal['ds_eye_ray_' + i + '_val']);
+          dice_amount[specialAbility.system.primal['ds_eye_ray_' + i]] = parseInt(specialAbility.system.primal['ds_eye_ray_' + i + '_val']);
         }
-      } else if (specialAbility.type == "specialability" && specialAbility.data.data.ability_type == "be_psi") {
-        dice_amount[specialAbility.data.data.primal.be_psi_skill_name] = parseInt(specialAbility.data.data.primal.be_psi_dots);
-
+      } else if (specialAbility.type == "specialability" && specialAbility.system.ability_type == "be_psi") {
+        dice_amount[specialAbility.system.primal.be_psi_skill_name] = parseInt(specialAbility.system.primal.be_psi_dots);
       }
     });
 
-    let attr = this.data.data.attributes;
+    let attr = this.system.attributes;
     for (var attr_name in attr) {
       for (var skill_name in attr[attr_name].skills) {
         let val = parseInt(attr[attr_name].skills[skill_name]['value'][0]);
@@ -271,23 +219,24 @@ export class WickedActor extends Actor {
     let dice_amount = {};
 
     // Add extra values for braineater disciplines and doomseeker eye rays if available
-    this.data.items.forEach(specialAbility => {
-      if (specialAbility.type == "specialability" && specialAbility.data.data.ability_type == "ds_eyes") {
+    // this.data.items.forEach(specialAbility => {
+    this.items.forEach(specialAbility => {
+      if (specialAbility.type == "specialability" && specialAbility.system.ability_type == "ds_eyes") {
         for (var i = 1; i < 10; i++) {
-          dice_amount[specialAbility.data.data.primal['ds_eye_ray_' + i]] = this.data.data.attributes["guts"].shocked ? -1 : 0;
+          dice_amount[specialAbility.system.primal['ds_eye_ray_' + i]] = this.system.attributes["guts"].shocked ? -1 : 0;
         }
-      } else if (specialAbility.type == "specialability" && specialAbility.data.data.ability_type == "be_psi") {
-        dice_amount[specialAbility.data.data.primal.be_psi_skill_name] = dice_amount[specialAbility.data.data.primal['ds_eye_ray_' + i]] = this.data.data.attributes["guts"].shocked ? -1 : 0;
+      } else if (specialAbility.type == "specialability" && specialAbility.system.ability_type == "be_psi") {
+        dice_amount[specialAbility.system.primal.be_psi_skill_name] = dice_amount[specialAbility.system.primal['ds_eye_ray_' + i]] = this.system.attributes["guts"].shocked ? -1 : 0;
 
       }
     });
 
-    for (var attibute_name in this.data.data.attributes) {
-      for (var skill_name in this.data.data.attributes[attibute_name].skills) {
-        if (this.data.type == "minion_pack") {
-          dice_amount[skill_name] = this.data.data.bloodied ? -1 : 0;
+    for (var attibute_name in this.system.attributes) {
+      for (var skill_name in this.system.attributes[attibute_name].skills) {
+        if (this.type == "minion_pack") {
+          dice_amount[skill_name] = this.system.bloodied ? -1 : 0;
         } else {
-          dice_amount[skill_name] = this.data.data.attributes[attibute_name].shocked ? -1 : 0;
+          dice_amount[skill_name] = this.system.attributes[attibute_name].shocked ? -1 : 0;
         }
       }
 
@@ -428,7 +377,7 @@ export class WickedActor extends Actor {
   createListOfActions() {
 
     let text, attribute, skill;
-    let attributes = this.data.data.attributes;
+    let attributes = this.system.attributes;
 
     for ( attribute in attributes ) {
 

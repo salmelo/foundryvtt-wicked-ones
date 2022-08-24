@@ -25,58 +25,58 @@
         </tr>
       </thead>
       <tbody>
-        {{#multiboxes data.current_phase.value}}
+        {{#multiboxes system.current_phase.value}}
         <tr>
           <td>
-            <input type="radio" id="gms-{{actor._id}}-current_phase-1" name="data.current_phase.value" value="1">
+            <input type="radio" id="gms-{{actor._id}}-current_phase-1" name="system.current_phase.value" value="1">
             <label for="gms-{{actor._id}}-current_phase-1">{{localize "FITD.CYCLE.PHASE1.Name"}}</label>
           </td>
           <td>
-            <input type="radio" id="gms-{{actor._id}}-current_phase-4" name="data.current_phase.value" value="4">
+            <input type="radio" id="gms-{{actor._id}}-current_phase-4" name="system.current_phase.value" value="4">
             <label for="gms-{{actor._id}}-current_phase-4">{{localize "FITD.CYCLE.PHASE4.Name"}}</label>
           </td>
           <td>
-            <input type="radio" id="gms-{{actor._id}}-current_phase-7" name="data.current_phase.value" value="7">
+            <input type="radio" id="gms-{{actor._id}}-current_phase-7" name="system.current_phase.value" value="7">
             <label for="gms-{{actor._id}}-current_phase-7">{{localize "FITD.CYCLE.PHASE7.Name"}}</label>
           </td>
           <td>
-            <input type="radio" id="gms-{{actor._id}}-current_phase-10" name="data.current_phase.value" value="10">
+            <input type="radio" id="gms-{{actor._id}}-current_phase-10" name="system.current_phase.value" value="10">
             <label for="gms-{{actor._id}}-current_phase-10">{{localize "FITD.CYCLE.PHASE10.Name"}}</label>
           </td>
         </tr>
         <tr>
           <td>
-            <input type="radio" id="gms-{{actor._id}}-current_phase-2" name="data.current_phase.value" value="2">
+            <input type="radio" id="gms-{{actor._id}}-current_phase-2" name="system.current_phase.value" value="2">
             <label for="gms-{{actor._id}}-current_phase-2">{{localize "FITD.CYCLE.PHASE2.Name"}}</label>
           </td>
           <td>
-            <input type="radio" id="gms-{{actor._id}}-current_phase-5" name="data.current_phase.value" value="5">
+            <input type="radio" id="gms-{{actor._id}}-current_phase-5" name="system.current_phase.value" value="5">
             <label for="gms-{{actor._id}}-current_phase-5">{{localize "FITD.CYCLE.PHASE5.Name"}}</label>
           </td>
           <td>
-            <input type="radio" id="gms-{{actor._id}}-current_phase-8" name="data.current_phase.value" value="8">
+            <input type="radio" id="gms-{{actor._id}}-current_phase-8" name="system.current_phase.value" value="8">
             <label for="gms-{{actor._id}}-current_phase-8">{{localize "FITD.CYCLE.PHASE8.Name"}}</label>
           </td>
           <td>
-            <input type="radio" id="gms-{{actor._id}}-current_phase-11" name="data.current_phase.value" value="11">
+            <input type="radio" id="gms-{{actor._id}}-current_phase-11" name="system.current_phase.value" value="11">
             <label for="gms-{{actor._id}}-current_phase-11">{{localize "FITD.CYCLE.PHASE11.Name"}}</label>
           </td>
         </tr>
         <tr>
           <td>
-            <input type="radio" id="gms-{{actor._id}}-current_phase-3" name="data.current_phase.value" value="3">
+            <input type="radio" id="gms-{{actor._id}}-current_phase-3" name="system.current_phase.value" value="3">
             <label for="gms-{{actor._id}}-current_phase-3">{{localize "FITD.CYCLE.PHASE3.Name"}}</label>
           </td>
           <td>
-            <input type="radio" id="gms-{{actor._id}}-current_phase-6" name="data.current_phase.value" value="6">
+            <input type="radio" id="gms-{{actor._id}}-current_phase-6" name="system.current_phase.value" value="6">
             <label for="gms-{{actor._id}}-current_phase-6">{{localize "FITD.CYCLE.PHASE6.Name"}}</label>
           </td>
           <td>
-            <input type="radio" id="gms-{{actor._id}}-current_phase-9" name="data.current_phase.value" value="9">
+            <input type="radio" id="gms-{{actor._id}}-current_phase-9" name="system.current_phase.value" value="9">
             <label for="gms-{{actor._id}}-current_phase-9">{{localize "FITD.CYCLE.PHASE9.Name"}}</label>
           </td>
           <td>
-            <input type="radio" id="gms-{{actor._id}}-current_phase-12" name="data.current_phase.value" value="12">
+            <input type="radio" id="gms-{{actor._id}}-current_phase-12" name="system.current_phase.value" value="12">
             <label for="gms-{{actor._id}}-current_phase-12">{{localize "FITD.CYCLE.PHASE12.Name"}}</label>
           </td>
         </tr>
@@ -84,7 +84,7 @@
       {{/multiboxes}}
     </table>
     <div class="phase-hint">
-      <p>{{{data.phase_hint}}}</p>
+      <p>{{{system.phase_hint}}}</p>
     </div>
 
   </section>
@@ -107,7 +107,7 @@
           <p>{{localize "FITD.Clocks"}}</p>
           <p><a class="item-add-popup" data-item-type="project"><i class="fas fa-plus-square"></i></a></p>
         </div>
-        <table id="project-clocks-table">
+        <table class="draggable-items" id="project-clocks-table">
           <thead>
             <tr>
               <td>Clock</td>
@@ -122,11 +122,11 @@
             <tr class="item" data-item-id="{{item._id}}">
               <td class="flex-horizontal project-clock">
                 <div id="project-clock-{{item._id}}">
-                  {{{blades-clock "data.project_clock" item.data.clock_size item.data.clock_progress item._id}}}
+                  {{{blades-clock "system.project_clock" item.system.clock_size item.system.clock_progress item._id}}}
                 </div>
               </td>
               <td class="item-body"><div class="item-name item-open-editor">{{item.name}}</div></td>
-              <td><div class="item-description">{{item.data.description}}</div></td>
+              <td><div class="item-description">{{item.system.description}}</div></td>
               <td><a class="item-control item-delete" title="{{localize 'FITD.TitleDeleteItem'}}"><i class="fas fa-trash"></i></a></td>
             </tr>
             {{/if}}
@@ -155,48 +155,46 @@
               </tr>
             </thead>
             <tbody>
-              {{#each actor.items as |item id|}}
-              {{#if (eq item.type "invasion")}}
+              {{#each invasions as |item id|}}
               {{!-- Major Invasions --}}
               <tr class="item" data-item-id="{{item._id}}">
                 <td class="item-body">
-                  <div class="item-name item-open-editor">{{item.data.inv_number}}</div>
+                  <div class="item-name item-open-editor">{{item.system.inv_number}}</div>
                 </td>
                 <td>
                   <div class="item-description">
-                    {{item.data.adventurers_lv_0}}
+                    {{item.system.adventurers_lv_0}}
                   </div>
                 </td>
                 <td>
                   <div class="item-description">
-                    {{item.data.adventurers_lv_1}}
+                    {{item.system.adventurers_lv_1}}
                   </div>
                 </td>
                 <td>
                   <div class="item-description">
-                    {{item.data.adventurers_lv_2}}
+                    {{item.system.adventurers_lv_2}}
                   </div>
                 </td>
                 <td>
                   <div class="item-description">
-                    {{item.data.adventurers_lv_3}}
+                    {{item.system.adventurers_lv_3}}
                   </div>
                 </td>
                 <td>
                   <div class="item-description">
-                    {{item.data.adventurers_lv_4}}
+                    {{item.system.adventurers_lv_4}}
                   </div>
                 </td>
                 <td>
                   <div class="item-description">
-                    {{item.data.hirelings}}
+                    {{item.system.hirelings}}
                   </div>
                 </td>
                 <td>
                   <a class="item-control item-delete" title="{{localize 'FITD.TitleDeleteItem'}}"><i class="fas fa-trash"></i></a>
                 </td>
               </tr>
-              {{/if}}
               {{/each}}
             </tbody>
           </table>
@@ -207,7 +205,7 @@
         <div class="label-stripe">
           <p>{{localize "FITD.Notes"}}</p>
         </div>
-        {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+        {{editor notes target="system.description" button=true owner=owner editable=editable}}
       </div>
 
       {{!-- Full Item List --}}

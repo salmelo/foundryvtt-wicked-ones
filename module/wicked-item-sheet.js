@@ -21,25 +21,24 @@ export class WickedItemSheet extends ItemSheet {
 
   /** @override */
   async getData(options) {
-    const data = super.getData(options);
-    data.config = CONFIG.WO;
-		data.editable = this.options.editable;
-    const itemData = data.data;
-		data.item = itemData;
-		data.data = itemData.data;
+    const sheetData = super.getData(options);
+    sheetData.editable = this.options.editable;
+    sheetData.config = CONFIG.WO;
+
+    sheetData.system = sheetData.data.system // project system data so that handlebars has the same name and value paths
 
     // Prepare special ability data
-    if (data.item.type == "specialability") {
+    if (sheetData.item.type == "specialability") {
 
-      if (data.data.ability_type == "ds_eyes") {
+      if (sheetData.system.ability_type == "ds_eyes") {
 
         let assigned_rays = [];
         let available_rays = {};
 
         // Iterate through ray selectors and populate assigned rays
         for (var i = 1; i < 10; i++) {
-          if (data.data.primal['ds_eye_ray_' + i] != "") {
-            assigned_rays.push(data.data.primal['ds_eye_ray_' + i]);
+          if (sheetData.system.primal['ds_eye_ray_' + i] != "") {
+            assigned_rays.push(sheetData.system.primal['ds_eye_ray_' + i]);
           }
         }
 
@@ -50,70 +49,69 @@ export class WickedItemSheet extends ItemSheet {
           }
         }
 
-        // Iterate through ray selectors and pupulate available rays for selector
+        // Iterate through ray selectors and populate available rays for selector
         for (var i = 1; i < 10; i++) {
-          data.config["available_rays" + i] = {};
-          let val = data.data.primal['ds_eye_ray_' + i];
+          sheetData.config["available_rays" + i] = {};
+          let val = sheetData.system.primal['ds_eye_ray_' + i];
           if (val != "") {
             // Add own selected avalue as available
-            data.config['available_rays' + i][val] = CONFIG.WO.doomseeker_eye_rays[val];
+            sheetData.config['available_rays' + i][val] = CONFIG.WO.doomseeker_eye_rays[val];
           }
 
           // Add available values to the list to select from
           for (const [key, value] of Object.entries(available_rays)) {
             available_rays[key] = CONFIG.WO.doomseeker_eye_rays[key];
-            data.config['available_rays' + i][key] = CONFIG.WO.doomseeker_eye_rays[key];
+            sheetData.config['available_rays' + i][key] = CONFIG.WO.doomseeker_eye_rays[key];
           }
         }
       }
 
-      if (data.data.ability_type == "be_psi") {
-        data.data.source = game.i18n.localize("FITD.Braineater");
-      } else if (data.data.ability_type == "ds_eyes") {
-        data.data.source = game.i18n.localize("FITD.Doomseeker");
-      } else if (data.data.ability_type == "fs_face") {
-        data.data.source = game.i18n.localize("FITD.Facestealer");
-      } else if (data.data.ability_type == "gm_path") {
-        data.data.source = game.i18n.localize("FITD.Goldmonger");
+      if (sheetData.system.ability_type == "be_psi") {
+        sheetData.system.source = game.i18n.localize("FITD.Braineater");
+      } else if (sheetData.system.ability_type == "ds_eyes") {
+        sheetData.system.source = game.i18n.localize("FITD.Doomseeker");
+      } else if (sheetData.system.ability_type == "fs_face") {
+        sheetData.system.source = game.i18n.localize("FITD.Facestealer");
+      } else if (sheetData.system.ability_type == "gm_path") {
+        sheetData.system.source = game.i18n.localize("FITD.Goldmonger");
       }
 
     } else {
-      switch (data.item.type) {
+      switch (sheetData.item.type) {
         // Prepare dungeon duty data
         case "duty":
-          data.data.type_hint_prompt = "";
-          data.data.type_hint_paragraph1 = "";
-          data.data.type_hint_paragraph2 = "";
-          switch (data.data.type) {
+          sheetData.system.type_hint_prompt = "";
+          sheetData.system.type_hint_paragraph1 = "";
+          sheetData.system.type_hint_paragraph2 = "";
+          switch (sheetData.system.type) {
             case "FITD.DUTY_TYPE.Creature":
-              data.data.type_hint_prompt = game.i18n.localize("FITD.DUTY_TYPE.HINT.CreaturePrompt");
-              data.data.type_hint_paragraph1 = game.i18n.localize("FITD.DUTY_TYPE.HINT.CreatureParagraph");
+              sheetData.system.type_hint_prompt = game.i18n.localize("FITD.DUTY_TYPE.HINT.CreaturePrompt");
+              sheetData.system.type_hint_paragraph1 = game.i18n.localize("FITD.DUTY_TYPE.HINT.CreatureParagraph");
               break;
             case "FITD.DUTY_TYPE.Lock":
-              data.data.type_hint_prompt = game.i18n.localize("FITD.DUTY_TYPE.HINT.LockPrompt");
-              data.data.type_hint_paragraph1 = game.i18n.localize("FITD.DUTY_TYPE.HINT.LockParagraph1");
-              data.data.type_hint_paragraph2 = game.i18n.localize("FITD.DUTY_TYPE.HINT.LockParagraph2");
+              sheetData.system.type_hint_prompt = game.i18n.localize("FITD.DUTY_TYPE.HINT.LockPrompt");
+              sheetData.system.type_hint_paragraph1 = game.i18n.localize("FITD.DUTY_TYPE.HINT.LockParagraph1");
+              sheetData.system.type_hint_paragraph2 = game.i18n.localize("FITD.DUTY_TYPE.HINT.LockParagraph2");
               break;
             case "FITD.DUTY_TYPE.Trap":
-              data.data.type_hint_prompt = game.i18n.localize("FITD.DUTY_TYPE.HINT.TrapPrompt");
-              data.data.type_hint_paragraph1 = game.i18n.localize("FITD.DUTY_TYPE.HINT.TrapParagraph1");
-              data.data.type_hint_paragraph2 = game.i18n.localize("FITD.DUTY_TYPE.HINT.TrapParagraph2");
+              sheetData.system.type_hint_prompt = game.i18n.localize("FITD.DUTY_TYPE.HINT.TrapPrompt");
+              sheetData.system.type_hint_paragraph1 = game.i18n.localize("FITD.DUTY_TYPE.HINT.TrapParagraph1");
+              sheetData.system.type_hint_paragraph2 = game.i18n.localize("FITD.DUTY_TYPE.HINT.TrapParagraph2");
               break;
             case "FITD.DUTY_TYPE.Trick":
-              data.data.type_hint_prompt = game.i18n.localize("FITD.DUTY_TYPE.HINT.TrickPrompt");
-              data.data.type_hint_paragraph1 = game.i18n.localize("FITD.DUTY_TYPE.HINT.TrickParagraph");
+              sheetData.system.type_hint_prompt = game.i18n.localize("FITD.DUTY_TYPE.HINT.TrickPrompt");
+              sheetData.system.type_hint_paragraph1 = game.i18n.localize("FITD.DUTY_TYPE.HINT.TrickParagraph");
               break;
 
             default:
           }
           break;
-
         default:
       }
 
     }
 
-    return data;
+    return sheetData;
   }
 
   /* -------------------------------------------- */
@@ -122,9 +120,9 @@ export class WickedItemSheet extends ItemSheet {
   get template() {
       const path = "systems/wicked-ones/templates/items";
     let simple_item_types = ["defense", "minionimpulse", "minion_type", "revelry", "wickedimpulse" ];
-    let template_name = `${this.item.data.type}`;
+    let template_name = `${this.item.type}`;
 
-    if (simple_item_types.indexOf(this.item.data.type) >= 0) {
+    if (simple_item_types.indexOf(this.item.type) >= 0) {
       template_name = "simple";
     }
 
@@ -184,7 +182,7 @@ export class WickedItemSheet extends ItemSheet {
           newEdges.push(inputs[i].value);
         }
       }
-      item.update({ ['data.edges']: newEdges });
+      item.update({ ['system.edges']: newEdges });
     });
 
     /* -------------------------------------------- */
@@ -198,7 +196,7 @@ export class WickedItemSheet extends ItemSheet {
       const selected = ev.currentTarget.value;
       const propertyToSet = ev.currentTarget.dataset.propertyToSet;
       if (selected == "" || selected == "custom") {
-        item.update({ ['data.' + propertyToSet]: "" });
+        item.update({ ['system.' + propertyToSet]: "" });
       } else if (selected == "random") {
         const options = ev.currentTarget.length - 3;
         const choice = Math.floor(Math.random() * options ) + 3;
@@ -207,18 +205,18 @@ export class WickedItemSheet extends ItemSheet {
             ev.currentTarget[i].selected = true;
             if (ev.currentTarget.dataset.propertyToSet == 'adventurer_class_custom') {
               let data = this.getAdventurerTraits(ev.currentTarget[i].value);
-              data['data.' + propertyToSet] = game.i18n.localize(ev.currentTarget[i].value);
+              data['system.' + propertyToSet] = game.i18n.localize(ev.currentTarget[i].value);
               item.update(data);
 
             } else {
-              item.update({['data.' + propertyToSet]: game.i18n.localize(ev.currentTarget[i].value)});
+              item.update({ ['system.' + propertyToSet]: game.i18n.localize(ev.currentTarget[i].value)});
             }
           } else {
             ev.currentTarget[i].selected = false;
           }
         }
       } else {
-        item.update({ ['data.' + propertyToSet]: game.i18n.localize(selected) });
+        item.update({ ['system.' + propertyToSet]: game.i18n.localize(selected) });
       }
     });
 
@@ -230,10 +228,10 @@ export class WickedItemSheet extends ItemSheet {
       const idOffset = element[0].id.lastIndexOf('-') + 1;
       const id = element[0].id.substring(idOffset);
       const item = this.actor ? this.actor.items.get(id) : this.object;
-      if (ev.target.value < item.data.data.clock_progress) {
-        item.update({ ['data.clock_progress']: ev.target.value });
+      if (ev.target.value < item.system.clock_progress) {
+        item.update({ ['system.clock_progress']: ev.target.value });
       }
-      item.update({ ['data.clock_size']: ev.target.value });
+      item.update({ ['system.clock_size']: ev.target.value });
     });
 
   }
@@ -248,15 +246,15 @@ export class WickedItemSheet extends ItemSheet {
   async _onSharedSupplyChange(event) {
     event.preventDefault();
 
-    let name = this.object.data.name;
+    let name = this.object.name;
     let value = event.currentTarget.value;
 
-    const actors = game.actors.filter(entry => entry.data.type === "character");
+    const actors = game.actors.filter(entry => entry.type === "character");
     actors.forEach(actor => {
       actor.items.forEach(item => {
         if (item.name == name && item.type == "gearsupply") {
-          if (item.data.data.gear_or_supply == "supply" && item.data.data.use_type == "shared") {
-            item.update({ ['data.uses_left' ]: value });
+          if (item.system.gear_or_supply == "supply" && item.system.use_type == "shared") {
+            item.update({ ['system.uses_left' ]: value });
           }
         }
       });
@@ -443,23 +441,23 @@ export class WickedItemSheet extends ItemSheet {
       default:
     }
 
-    this.object.update({ ['name']: newName, ['data.passive']: newPassive });
+    this.object.update({ ['name']: newName, ['system.passive']: newPassive });
 
     let data = {
       ['name']: newName,
-      ['data.passive']: newPassive,
-      ['data.motivation_1']: newMotivation,
-      ['data.motivation_1_custom']: game.i18n.localize(newMotivation),
-      ['data.motivation_2']: '',
-      ['data.motivation_2_custom']: '',
-      ['data.trait_pos_1']: newPos,
-      ['data.trait_pos_1_custom']: game.i18n.localize(newPos),
-      ['data.trait_pos_2']: '',
-      ['data.trait_pos_2_custom']: '',
-      ['data.trait_neg_1']: newNeg,
-      ['data.trait_neg_1_custom']: game.i18n.localize(newNeg),
-      ['data.trait_neg_2']: '',
-      ['data.trait_neg_2_custom']: ''
+      ['system.passive']: newPassive,
+      ['system.motivation_1']: newMotivation,
+      ['system.motivation_1_custom']: game.i18n.localize(newMotivation),
+      ['system.motivation_2']: '',
+      ['system.motivation_2_custom']: '',
+      ['system.trait_pos_1']: newPos,
+      ['system.trait_pos_1_custom']: game.i18n.localize(newPos),
+      ['system.trait_pos_2']: '',
+      ['system.trait_pos_2_custom']: '',
+      ['system.trait_neg_1']: newNeg,
+      ['system.trait_neg_1_custom']: game.i18n.localize(newNeg),
+      ['system.trait_neg_2']: '',
+      ['system.trait_neg_2_custom']: ''
     }
     return data;
   }

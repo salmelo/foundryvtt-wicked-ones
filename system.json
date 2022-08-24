@@ -1,13 +1,8 @@
 {
-  "name": "wicked-ones",
   "title": "Wicked Ones",
   "description": "Official system for the Wicked Ones game made by Bandit Camp. Including official compendium content, all you need to slay some adventurers!",
   "version": "WILL BE AUTO REPLACED",
-  "minimumCoreVersion": "0.8.4",
-  "compatibleCoreVersion": "9.245",
-  "templateVersion": 1,
-  "background": "styles/assets/images/WO-Header.webp",
-  "author": "Spearhead, LorduFreeman",
+  "background": "systems/wicked-ones/styles/assets/images/WO-Header.webp",
   "authors": [
     {
       "name": "Spearhead",
@@ -39,161 +34,198 @@
       "name": "adventurer",
       "label": "Adventurers",
       "system": "wicked-ones",
-      "path": "./packs/adventurers.db",
-      "entity": "Item",
-      "type": "Item"
+      "path": "packs/adventurers.db",
+      "type": "Item",
+      "private": false
     },
     {
       "name": "calling",
       "label": "Callings",
       "system": "wicked-ones",
-      "path": "./packs/callings.db",
-      "entity": "Item",
-      "type": "Item"
+      "path": "packs/callings.db",
+      "type": "Item",
+      "private": false
     },
     {
       "name": "minion_upgrade",
       "label": "Minion Upgrades",
       "system": "wicked-ones",
-      "path": "./packs/minion_upgrades.db",
-      "entity": "Item",
-      "type": "Item"
+      "path": "packs/minion_upgrades.db",
+      "type": "Item",
+      "private": false
     },
     {
       "name": "minion_type",
       "label": "Minion Types",
       "system": "wicked-ones",
-      "path": "./packs/minion_types.db",
-      "entity": "Item",
-      "type": "Item"
+      "path": "packs/minion_types.db",
+      "type": "Item",
+      "private": false
     },
     {
       "name": "monster_race",
       "label": "Monster Races",
       "system": "wicked-ones",
-      "path": "./packs/monsterraces.db",
-      "entity": "Item",
-      "type": "Item"
+      "path": "packs/monsterraces.db",
+      "type": "Item",
+      "private": false
     },
     {
       "name": "goldmonger_type",
       "label": "Goldmonger Types",
       "system": "wicked-ones",
-      "path": "./packs/goldmongertypes.db",
-      "entity": "Item",
-      "type": "Item"
+      "path": "packs/goldmongertypes.db",
+      "type": "Item",
+      "private": false
     },
     {
       "name": "revelry",
       "label": "Revelries",
       "system": "wicked-ones",
-      "path": "./packs/revelries.db",
-      "entity": "Item",
-      "type": "Item"
+      "path": "packs/revelries.db",
+      "type": "Item",
+      "private": false
     },
     {
       "name": "wickedimpulse",
       "label": "Wicked One Impulses",
       "system": "wicked-ones",
-      "path": "./packs/wickedimpulses.db",
-      "entity": "Item",
-      "type": "Item"
+      "path": "packs/wickedimpulses.db",
+      "type": "Item",
+      "private": false
     },
     {
       "name": "defense",
       "label": "Defenses",
       "system": "wicked-ones",
-      "path": "./packs/defenses.db",
-      "entity": "Item",
-      "type": "Item"
+      "path": "packs/defenses.db",
+      "type": "Item",
+      "private": false
     },
     {
       "name": "minionimpulse",
       "label": "Minion Impulses",
       "system": "wicked-ones",
-      "path": "./packs/minionimpulses.db",
-      "entity": "Item",
-      "type": "Item"
+      "path": "packs/minionimpulses.db",
+      "type": "Item",
+      "private": false
     },
     {
       "name": "gearsupply",
       "label": "Gear & Supply",
       "system": "wicked-ones",
-      "path": "./packs/gearsupply.db",
-      "entity": "Item",
-      "type": "Item"
+      "path": "packs/gearsupply.db",
+      "type": "Item",
+      "private": false
     },
     {
       "name": "duty",
       "label": "Duties",
       "system": "wicked-ones",
-      "path": "./packs/duties.db",
-      "entity": "Item",
-      "type": "Item"
+      "path": "packs/duties.db",
+      "type": "Item",
+      "private": false
     },
     {
       "name": "project",
       "label": "Projects",
       "system": "wicked-ones",
-      "path": "./packs/projects.db",
-      "entity": "Item",
-      "type": "Item"
+      "path": "packs/projects.db",
+      "type": "Item",
+      "private": false
     },
     {
       "name": "specialability",
       "label": "Special Abilities",
       "system": "wicked-ones",
-      "path": "./packs/specialabilities.db",
-      "entity": "Item",
-      "type": "Item"
+      "path": "packs/specialabilities.db",
+      "type": "Item",
+      "private": false
     },
     {
       "name": "invasion",
       "label": "Major Invasions",
       "system": "wicked-ones",
-      "path": "./packs/invasions.db",
-      "entity": "Item",
-      "type": "Item"
+      "path": "packs/invasions.db",
+      "type": "Item",
+      "private": false
     },
     {
       "name": "dungeon_theme",
       "label": "Dungeon Themes",
       "system": "wicked-ones",
-      "path": "./packs/dungeon_themes.db",
-      "entity": "Item",
-      "type": "Item"
+      "path": "packs/dungeon_themes.db",
+      "type": "Item",
+      "private": false
     },
     {
       "name": "tier3room",
       "label": "Tier-3 Rooms",
       "system": "wicked-ones",
-      "path": "./packs/tier3rooms.db",
-      "entity": "Item",
-      "type": "Item"
+      "path": "packs/tier3rooms.db",
+      "type": "Item",
+      "private": false
     },
     {
       "name": "rollable-tables",
       "label": "Rollable Tables",
       "system": "wicked-ones",
       "path": "packs/rollable-tables.db",
-      "entity": "RollTable",
-      "type": "RollTable"
+      "type": "RollTable",
+      "private": false
     },
     {
       "name": "dungeon-generator",
       "label": "Dungeon Generator",
       "system": "wicked-ones",
       "path": "packs/dungeon-generator.db",
-      "entity": "RollTable",
-      "type": "RollTable"
+      "type": "RollTable",
+      "private": false
     },
     {
       "name": "wo-macros",
       "label": "Macros",
       "system": "wicked-ones",
       "path": "packs/macros.db",
-      "entity": "Macro",
-      "type": "Macro"
+      "type": "Macro",
+      "private": false
+    },
+    {
+      "name": "character",
+      "label": "Sample Characters",
+      "system": "wicked-ones",
+      "path": "packs/sample-characters.db",
+      "type": "Actor",
+      "private": false
+    },
+    {
+      "name": "dungeon",
+      "label": "Sample Dungeons",
+      "system": "wicked-ones",
+      "path": "packs/sample-dungeons.db",
+      "type": "Actor",
+      "private": false
+    },
+    {
+      "name": "minion_pack",
+      "label": "Sample Minion Packs",
+      "system": "wicked-ones",
+      "path": "packs/sample-minions.db",
+      "type": "Actor",
+      "private": false
+    },
+    {
+      "name": "party",
+      "label": "Sample Adventuring Parties",
+      "system": "wicked-ones",
+      "path": "packs/sample-parties.db",
+      "type": "Actor",
+      "private": false
     }
-  ]
+  ],
+  "id": "wicked-ones",
+  "compatibility": {
+    "minimum": "10",
+    "verified": "10.278"
+  }
 }
