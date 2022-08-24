@@ -8,15 +8,23 @@ export class WickedItem extends Item {
    * Fill new empty hirelings with random data
    * @override
    **/
-  _preCreate(data, options, user) {
+  async _preCreate(data, options, user) {
+    await super._preCreate(data, options, user);
+
     if (data.type == "adventurer") {
       if (data.system.adventurer_type == "hireling" && data.system.hireling_type == "") {
-        data.system.hireling_type = this.getRandomHirelingType();
-        data.system.hireling_type_custom = game.i18n.localize(data.system.hireling_type);
-        data.name = data.system.hireling_type_custom;
+        const hirelingType = this.getRandomHirelingType();
+        const i18n = game.i18n.localize(hirelingType);
+
+        this.updateSource({
+          name: i18n,
+          system: {
+            hireling_type: hirelingType,
+            hireling_type_custom: i18n
+          }
+        });
       }
     }
-    return super._preCreate(data, options, user);
   }
 
   // Helper for random hireling types
