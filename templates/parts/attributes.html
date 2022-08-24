@@ -4,7 +4,7 @@
     {{#if (ne @root.actor.type "minion_pack")}}
 	  <div class="tooltip" data-tooltip="{{{localize "FITD.TOOLTIP.Shock"}}}">
 		  <div class="shock">
-		    <input type="checkbox" id="attributes-{{../actor._id}}-{{attribute_name}}-shocked" name="system.attributes.{{attribute_name}}.shocked" value="{{shocked}}" {{checked shocked}}>
+        <input type="checkbox" id="attributes-{{../actor._id}}-{{attribute_name}}-shocked" name="system.attributes.{{attribute_name}}.shocked" {{checked shocked}}/>
 		    <label for="attributes-{{../actor._id}}-{{attribute_name}}-shocked"></label>
 		  </div>
 	  </div>
@@ -54,7 +54,7 @@
   <div id="attributes-bloodied" class="attribute flex-horizontal">
     <div class="tooltip" data-tooltip="{{{escdq (localize "FITD.TOOLTIP.BloodiedMinions")}}}">
       <div class="bloodied-minion">
-        <input type="checkbox" id="{{actor._id}}-bloodied" name="system.bloodied" value="{{system.bloodied}}" {{checked system.bloodied}}>
+        <input type="checkbox" id="{{actor._id}}-bloodied" name="system.bloodied" {{checked system.bloodied}}>
         <label for="{{actor._id}}-bloodied"></label>
         <i class="splash"></i>
       </div>
@@ -68,7 +68,7 @@
   <div id="attributes-morale" class="attribute flex-horizontal">
     <div class="tooltip" data-tooltip="{{{escdq (localize "FITD.TOOLTIP.Morale")}}}">
       <div class="morale-minion">
-        <input type="checkbox" id="{{actor._id}}-morale" name="system.morale" value="{{system.morale}}" {{checked system.morale}}>
+        <input type="checkbox" id="{{actor._id}}-morale" name="system.morale" {{checked system.morale}}>
         <label for="{{actor._id}}-morale"></label>
       </div>
     </div>
@@ -82,7 +82,7 @@
   <div id="attributes-bloodied" class="attribute flex-horizontal">
     <div class="tooltip" data-tooltip="{{{escdq (localize "FITD.TOOLTIP.Bloodied")}}}">
       <div class="bloodied">
-        <input type="checkbox" id="{{actor._id}}-bloodied" name="system.bloodied" value="{{system.bloodied}}" {{checked system.bloodied}}>
+        <input type="checkbox" id="{{actor._id}}-bloodied" name="system.bloodied" {{checked system.bloodied}}>
         <label for="{{actor._id}}-bloodied"></label>
         <i class="splash"></i>
       </div>
