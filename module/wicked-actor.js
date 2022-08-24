@@ -180,9 +180,9 @@ export class WickedActor extends Actor {
       for (var i = 0; i < data.length; i++) {
         if (data[i].type == "adventurer") {
           data[i].name = this.getUniqueName(data[i].name);
-          if (data[i].data.adventurer_type == "hireling" && data[i].data.hireling_type == "") {
-            data[i].data.hireling_type = this.getRandomHirelingType();
-            data[i].data.hireling_type_custom = game.i18n.localize(data[i].data.hireling_type);
+          if (data[i].system.adventurer_type == "hireling" && data[i].system.hireling_type == "") {
+            data[i].system.hireling_type = this.getRandomHirelingType();
+            data[i].system.hireling_type_custom = game.i18n.localize(data[i].system.hireling_type);
           }
         } else if (data[i].type == "invasion") {
           data[i].name = this.getUniqueName(data[i].name);
@@ -190,9 +190,9 @@ export class WickedActor extends Actor {
       }
     } else if (data.type == "adventurer") {
       data.name = this.getUniqueName(data.name);
-      if (data.data.adventurer_type == "hireling" && data.data.hireling_type == "") {
-        data.data.hireling_type = this.getRandomHirelingType();
-        data.data.hireling_type_custom = game.i18n.localize(data.data.hireling_type);
+      if (data.system.adventurer_type == "hireling" && data.system.hireling_type == "") {
+        data.system.hireling_type = this.getRandomHirelingType();
+        data.system.hireling_type_custom = game.i18n.localize(data.system.hireling_type);
       }
     } else if(data[i].type == "invasion") {
       data[i].name = this.getUniqueName(data[i].name);
@@ -433,7 +433,7 @@ export class WickedActor extends Actor {
   createListOfActions() {
 
     let text, attribute, skill;
-    let attributes = this.data.data.attributes;
+    let attributes = this.system.attributes;
 
     for ( attribute in attributes ) {
 
