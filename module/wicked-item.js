@@ -5,6 +5,27 @@
 export class WickedItem extends Item {
 
   /**
+   * Fill new empty hirelings with random data
+   * @override
+   **/
+  _preCreate(data, options, user) {
+    if (data.type == "adventurer") {
+      if (data.system.adventurer_type == "hireling" && data.system.hireling_type == "") {
+        data.system.hireling_type = this.getRandomHirelingType();
+        data.system.hireling_type_custom = game.i18n.localize(data.system.hireling_type);
+        data.name = data.system.hireling_type_custom;
+      }
+    }
+    return super._preCreate(data, options, user);
+  }
+
+  // Helper for random hireling types
+  getRandomHirelingType() {
+    return Object.values(CONFIG.WO.hireling_types)[Math.floor(Math.random() * Object.values(CONFIG.WO.hireling_types).length)] ?? ""
+      ;
+  }
+
+  /**
     * Create a new entity using provided input data
     * @override
     */

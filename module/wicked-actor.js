@@ -171,62 +171,6 @@ export class WickedActor extends Actor {
     return data;
   }
 
-
-  /* -------------------------------------------- */
-
-  /** @override */
-  async createEmbeddedDocuments(embeddedName, data, options) {
-    if (data instanceof Array) {
-      for (var i = 0; i < data.length; i++) {
-        if (data[i].type == "adventurer") {
-          data[i].name = this.getUniqueName(data[i].name);
-          if (data[i].system.adventurer_type == "hireling" && data[i].system.hireling_type == "") {
-            data[i].system.hireling_type = this.getRandomHirelingType();
-            data[i].system.hireling_type_custom = game.i18n.localize(data[i].system.hireling_type);
-          }
-        } else if (data[i].type == "invasion") {
-          data[i].name = this.getUniqueName(data[i].name);
-        }
-      }
-    } else if (data.type == "adventurer") {
-      data.name = this.getUniqueName(data.name);
-      if (data.system.adventurer_type == "hireling" && data.system.hireling_type == "") {
-        data.system.hireling_type = this.getRandomHirelingType();
-        data.system.hireling_type_custom = game.i18n.localize(data.system.hireling_type);
-      }
-    } else if(data[i].type == "invasion") {
-      data[i].name = this.getUniqueName(data[i].name);
-    }
-    super.createEmbeddedDocuments(embeddedName, data, options);
-  }
-
-  /* -------------------------------------------- */
-
-  getUniqueName(oldName) {
-    let namesUsed = [];
-    for (var i = 0; i < this.items.length; i++) {
-      namesUsed.push(this.items[i].name);
-    }
-
-    let newName = oldName;
-    if (namesUsed.indexOf(newName) != -1) {
-      let j = 1;
-      do {
-        j++;
-        newName = oldName + ' ' + j;
-      } while (namesUsed.indexOf(newName) != -1 || j > 999);
-    }
-    return newName;
-  }
-
-  /* -------------------------------------------- */
-
-
-  getRandomHirelingType() {
-    return Object.values(CONFIG.WO.hireling_types)[Math.floor(Math.random() * Object.values(CONFIG.WO.hireling_types).length)] ?? ""
-    ;
-  }
-
   /* -------------------------------------------- */
 
   /**
