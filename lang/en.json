@@ -458,7 +458,7 @@
         "Success": "You pull a mundane or valuable item from the loot.",
         "Mixed": "You gain 1 gold or spend it on revelry instead.",
         "Failure": "You enjoy some revelry, gaining a dark heart.",
-        "Note": "If you gain excess dark hearts, you overdo it, suffering a frustrating or devastating consequence based your revelry!"
+        "Note": "If you gain excess dark hearts, you overdo it, suffering a frustrating or devastating consequence based on your revelry!"
       },
 
       "RESISTANCE": {
