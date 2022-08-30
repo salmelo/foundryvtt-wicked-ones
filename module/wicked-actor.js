@@ -31,6 +31,7 @@ export class WickedActor extends Actor {
           break;
         case "clock":
           data.prototypeToken.actorLink = true;
+          data.prototypeToken.displayName = 50;
           break;
         default:
       }

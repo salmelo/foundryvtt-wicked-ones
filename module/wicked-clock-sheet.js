@@ -44,14 +44,7 @@ export class WickedClockSheet extends WickedSheet {
     formData['token.img'] = image_path;
 
     let update = {
-      img: image_path,
-      width: 1,
-      height: 1,
-      scale: 1,
-      mirrorX: false,
-      mirrorY: false,
-      tint: "",
-      displayName: 50
+      texture: { src: image_path }
     };
 
 		let tokens = this.actor.getActiveTokens();
