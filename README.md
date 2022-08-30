@@ -15,7 +15,7 @@ Based on the great Blades in the Dark system by `megastruktur`.
 ### Using Foundry System Browser
 Navigate to the Wicked Ones system and hit install!
 ## Usage
-The module contains six "actor" types: Wicked Ones, Minion Packs, Dungeons, Factions, Adventurer Parties and finally Clocks, each with their own customized styled sheets.
+The module contains six "actor" types: Wicked Ones, Minion Packs, Dungeons, Factions, Adventuring Parties and finally Clocks, each with their own customized styled sheets.
 
 Most parts of these sheets can be filled in by selecting and customizing "items". Those consist of: Adventurers, Callings, Defenses, Downtime Projects, Dungeon Duties, Rooms and Themes, Gear, Supply, Impulses, Monster Races, Revelries and more.
 
@@ -35,7 +35,7 @@ Most of the items and official content from the book can be found in the compend
 - Actions and Resistance Rolls are rolled by clicking the appropriate Action Attribute, opening a Roll Popup with further options
 - Practice XP can be counted by clicking the first empty checkbox of each skill, filling it up until full.
 #### Clocks
-- To add a clock, go to the Actors tab and create a new actor of type "🕛 Clock". You can drag it onto the scene to create a clock token displaying progress synced with the sidebar clock (great to have progress always visible on scenes). You can edit the token as usual to change the size as well.
+- To add a clock, go to the Actors tab and create a new actor of type "🕛 Clock". You can drag it onto the scene to create a clock token displaying progress synced with the sidebar clock (great to have progress always visible on scenes). You can edit the token as usual to change the segment count as well.
 #### GM Rolls
 - GM Rolls are done using the dice icon on the left side of the screen, last icon in the toolbar. Clicking pops up a Roll Prompt containing every type of role described in the book. Players may roll less commonly needed rolls like Creature Rolls, Trap Rolls or Loot Rolls here. 
 #### Translation
@@ -66,7 +66,6 @@ Skill-Roller pops up on **clicking skills on the sheets**, adjusts to selected o
 ![Editable items](readme-images/items.png)
 ## Mod Recommendations
 - **Dice So Nice!** to use the 3D dice coming with this system
-- **Pings** OR **Pointers and Pings** if you want pings like in other VTTs and dislike having always visible cursors
 - **Chat Images** it's always nice to be able to post or drag inspirational images into the chat when world building
 - **Drag Upload** Good for populating the map fast with tokens you do not need to fill with stats (Monster or Human Camps)
 - **Select tool everywhere** + **Better Text Drawings** help with dealing with dungeon drawing
@@ -81,7 +80,7 @@ Skill-Roller pops up on **clicking skills on the sheets**, adjusts to selected o
 - Quality of life improvements and limited automation
 - Evaluate user input for further improvements
 
-## To be done in the far future
+## To be done in the near future
 - Add UA Content when it comes out (and after getting permission of course) ;)
 
 ## Troubleshooting
