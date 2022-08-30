@@ -36,23 +36,19 @@ export class WickedActor extends Actor {
         default:
       }
 
-      switch (data.type) {
-        case "faction":
-          mergeObject(
-            data.token,
-            {
-              displayName: 50,
-              lockRotation: true,
-              vision: false,
-              actorLink: true
-            },
-            { overwrite: false }
-          );
-          break;
-        default:
+      // Special settings for the faction token
+      if (data.type == "faction") {
+        mergeObject(
+          data.prototypeToken,
+          {
+            displayName: 50,
+            lockRotation: true,
+            vision: false,
+            actorLink: true
+          },
+          { overwrite: false }
+        );
       }
-
-
     }
     await super.create(data, options);
   }
