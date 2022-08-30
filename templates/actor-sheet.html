@@ -125,7 +125,7 @@
               <select name="system.minionpack">
                 {{#select system.minionpack}}
                 <option value="">{{localize "FITD.NoneParentheses"}}</option>
-                {{#each actor.system.existing_minions as |minion id|}}
+                {{#each system.existing_minions as |minion id|}}
                 <option value="{{this.id}}">{{minion.name}}</option>
                 {{/each}}
                 {{/select}}
