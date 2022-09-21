@@ -11,8 +11,13 @@
     "TypeDungeon": "Dungeon",
     "TypeFaction": "Faction",
     "TypeParty": "Adventurer Party",
-    "TypeClock": "⏰ Clock",
-    "TypeGm_sheet": "GM Sheet"
+    "TypeGm_sheet": "GM Sheet",
+    "TypeAwakened": "Awakened (UA)",
+    "TypeMinion_pack_ua": "Minion Pack (UA)",
+    "TypeCampaign_ua": "Campaign (UA)",
+    "TypeFaction_ua": "Faction (UA)",
+    "TypeGm_sheet_ua": "GM Sheet (UA)",
+    "TypeClock": "⏰ Clock"
   },
   "ITEM": {
     "TypeItem": "Item",

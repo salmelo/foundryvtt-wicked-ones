@@ -1,116 +1,162 @@
 {
   "Actor": {
-    "types": [ "character", "minion_pack", "dungeon", "faction", "party", "clock", "gm_sheet" ],
+    "types": [ "character", "minion_pack", "dungeon", "faction", "party", "gm_sheet", "awakened", "minion_pack_ua", "campaign_ua", "faction_ua", "gm_sheet_ua", "clock" ],
+    "templates": {
+      "player_template": {
+        "look": "",
+        "vilefriend": "",
+        "minionpack": "",
+        "wickedxp": {
+          "value": 0,
+          "max": 9,
+          "max_default": 9,
+          "name_default": "FITD.WickedXP",
+          "name": "FITD.WickedXP"
+        },
+        "recklessxp": {
+          "value": 0,
+          "max": 3,
+          "max_default": 3,
+          "name_default": "FITD.RecklessXP",
+          "name": "FITD.RecklessXP"
+        },
+        "stress": {
+          "min": 0,
+          "value": 0,
+          "max": 6
+        },
+        "bloodied": false,
+        "supply": {
+          "min": 0,
+          "value": 0,
+          "max": 2
+        },
+        "attribute_max_value": 3
+      },
+      "attributes_template_base": {
+        "attributes": {
+          "brains": {
+            "shocked": false,
+            "label": "FITD.SkillsBrains",
+            "skills": {
+              "scan": {
+                "label": "FITD.SkillsScan",
+                "value": 0,
+                "practice": 0
+              },
+              "tinker": {
+                "label": "FITD.SkillsTinker",
+                "value": 0,
+                "practice": 0
+              },
+              "trick": {
+                "label": "FITD.SkillsTrick",
+                "value": 0,
+                "practice": 0
+              }
+            }
+          },
+          "muscles": {
+            "shocked": false,
+            "label": "FITD.SkillsMuscles",
+            "skills": {
+              "finesse": {
+                "label": "FITD.SkillsFinesse",
+                "value": 0,
+                "practice": 0
+              },
+              "skulk": {
+                "label": "FITD.SkillsSkulk",
+                "value": 0,
+                "practice": 0
+              },
+              "smash": {
+                "label": "FITD.SkillsSmash",
+                "value": 0,
+                "practice": 0
+              }
+            }
+          },
+          "guts": {
+            "shocked": false,
+            "label": "FITD.SkillsGuts",
+            "skills": {
+              "invoke": {
+                "label": "FITD.SkillsInvoke",
+                "value": 0,
+                "practice": 0
+              }
+            }
+          }
+        }
+      },
+      "attributes_template_wo": {
+        "attributes": {
+          "guts": {
+            "shocked": false,
+            "label": "FITD.SkillsGuts",
+            "skills": {
+              "banter": {
+                "label": "FITD.SkillsBanter",
+                "value": 0,
+                "practice": 0
+              },
+              "threaten": {
+                "label": "FITD.SkillsThreaten",
+                "value": 0,
+                "practice": 0
+              }
+            }
+          }
+        }
+      },
+      "attributes_template_ua": {
+        "attributes": {
+          "guts": {
+            "shocked": false,
+            "label": "FITD.SkillsGuts",
+            "skills": {
+              "command": {
+                "label": "FITD.SkillsCommand",
+                "value": 0,
+                "practice": 0
+              },
+              "horrify": {
+                "label": "FITD.SkillsHorrify",
+                "value": 0,
+                "practice": 0
+              }
+            }
+          }
+        }
+      }
+    },
     "character": {
-      "look": "",
-      "vilefriend": "",
-      "minionpack": "",
-      "wickedxp": {
-        "value": 0,
-        "max": 9,
-        "max_default": 9,
-        "name_default": "FITD.WickedXP",
-        "name": "FITD.WickedXP"
-      },
-      "recklessxp": {
-        "value": 0,
-        "max": 3,
-        "max_default": 3,
-        "name_default": "FITD.RecklessXP",
-        "name": "FITD.RecklessXP"
-      },
-      "stress": {
-        "min": 0,
-        "value": 0,
-        "max": 6
-      },
-      "bloodied": false,
+      "templates": [ "player_template", "attributes_template_base", "attributes_template_wo" ],
+      "downtime_action_used": false,
       "dark_hearts": {
         "min": 0,
         "value": 0,
         "max": 2
       },
-      "downtime_action_used": false,
       "gold": {
         "min": 0,
         "value": 0,
         "max": 3
       },
       "goldmonger_size": 0,
-      "goldmonger_pleased": false,
-      "supply": {
+      "goldmonger_pleased": false
+    },
+    "awakened": {
+      "templates": [ "player_template", "attributes_template_base", "attributes_template_ua" ],
+      "essence": {
         "min": 0,
         "value": 0,
         "max": 2
-      },
-      "attribute_max_value": 3,
-      "attributes": {
-        "brains": {
-          "shocked": false,
-          "label": "FITD.SkillsBrains",
-          "skills": {
-            "scan": {
-              "label": "FITD.SkillsScan",
-              "value": 0,
-              "practice": 0
-            },
-            "tinker": {
-              "label": "FITD.SkillsTinker",
-              "value": 0,
-              "practice": 0
-            },
-            "trick": {
-              "label": "FITD.SkillsTrick",
-              "value": 0,
-              "practice": 0
-            }
-          }
-        },
-        "muscles": {
-          "shocked": false,
-          "label": "FITD.SkillsMuscles",
-          "skills": {
-            "finesse": {
-              "label": "FITD.SkillsFinesse",
-              "value": 0,
-              "practice": 0
-            },
-            "skulk": {
-              "label": "FITD.SkillsSkulk",
-              "value": 0,
-              "practice": 0
-            },
-            "smash": {
-              "label": "FITD.SkillsSmash",
-              "value": 0,
-              "practice": 0
-            }
-          }
-        },
-        "guts": {
-          "shocked": false,
-          "label": "FITD.SkillsGuts",
-          "skills": {
-            "banter": {
-              "label": "FITD.SkillsBanter",
-              "value": 0,
-              "practice": 0
-            },
-            "invoke": {
-              "label": "FITD.SkillsInvoke",
-              "value": 0,
-              "practice": 0
-            },
-            "threaten": {
-              "label": "FITD.SkillsThreaten",
-              "value": 0,
-              "practice": 0
-            }
-          }
-        }
       }
     },
     "minion_pack": {
+      "templates": [ "attributes_template_base", "attributes_template_wo" ],
       "bloodied": false,
       "morale": false,
       "number": {
@@ -118,60 +164,18 @@
         "value": 4,
         "max": 10
       },
-      "attribute_max_value": 2,
-      "attributes": {
-        "brains": {
-          "label": "FITD.SkillsBrains",
-          "skills": {
-            "scan": {
-              "label": "FITD.SkillsScan",
-              "value": 0
-            },
-            "tinker": {
-              "label": "FITD.SkillsTinker",
-              "value": 0
-            },
-            "trick": {
-              "label": "FITD.SkillsTrick",
-              "value": 0
-            }
-          }
-        },
-        "muscles": {
-          "label": "FITD.SkillsMuscles",
-          "skills": {
-            "finesse": {
-              "label": "FITD.SkillsFinesse",
-              "value": 0
-            },
-            "skulk": {
-              "label": "FITD.SkillsSkulk",
-              "value": 0
-            },
-            "smash": {
-              "label": "FITD.SkillsSmash",
-              "value": 0
-            }
-          }
-        },
-        "guts": {
-          "label": "FITD.SkillsGuts",
-          "skills": {
-            "banter": {
-              "label": "FITD.SkillsBanter",
-              "value": 0
-            },
-            "invoke": {
-              "label": "FITD.SkillsInvoke",
-              "value": 0
-            },
-            "threaten": {
-              "label": "FITD.SkillsThreaten",
-              "value": 0
-            }
-          }
-        }
-      }
+      "attribute_max_value": 2
+    },
+    "minion_pack_ua": {
+      "templates": [ "attributes_template_base", "attributes_template_ua" ],
+      "bloodied": false,
+      "morale": false,
+      "number": {
+        "min": 0,
+        "value": 4,
+        "max": 10
+      },
+      "attribute_max_value": 2
     },
     "dungeon": {
       "tier": {
@@ -195,6 +199,9 @@
         "step6": ""
       }
     },
+    "campaign_ua": {
+      "notes": "DATA FOR UA CAMPAIGNS HERE"
+    },
     "faction": {
       "category": "neutral",
       "tier": {
@@ -215,6 +222,9 @@
         "text": ""
       }
     },
+    "faction_ua": {
+      "notes": "DATA FOR UA FACTIONS HERE"
+    },
     "clock": {
       "name": "",
       "type": 4,
@@ -223,6 +233,13 @@
       "style": "red"
     },
     "gm_sheet": {
+      "current_phase": {
+        "value": 1,
+        "min": 1,
+        "max": 12
+      }
+    },
+    "gm_sheet_ua": {
       "current_phase": {
         "value": 1,
         "min": 1,
