@@ -1,5 +1,18 @@
 <form class="{{cssClass}} actor-sheet wicked-one-sheet" autocomplete="off">
-
+  <div class="top-bar flex-horizontal">
+    {{!-- Character Sheet Type Selection --}}
+    <div class="sheet-type">
+      <select name="system.pc_type">
+        {{#select system.pc_type}}
+        <option value="wicked_one">{{localize "FITD.WickedOne"}}</option>
+        <option value="awakened">{{localize "FITD.Awakened"}}</option>
+        {{/select}}
+      </select>
+    </div>
+    <div class="top-decoration">
+      {{!-- Empty space for background decoration --}}
+    </div>
+  </div>
 
   {{!-- Base Character Information --}}
   <section class="section">

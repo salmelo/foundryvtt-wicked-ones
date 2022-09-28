@@ -7,17 +7,43 @@
 form.wicked-one-sheet {
 	
 	/* Top-Decoration Styling  */
-	background: url(../styles/assets/decorations/border-top.png);
+
+	/*background: url(../styles/assets/decorations/border-top.png);
     background-repeat: no-repeat;
     background-size: 600px;
-    background-position-x: center;
+    background-position-x: center;*/
     /* background-position-y: 5px;
+
+    /* Sheet Type Selection Styling  */
+    .top-bar {
+
+        background: none;
+        margin-top: -20px;
+        margin-bottom: 0px;
+
+        .sheet-type {
+            height: 80%;
+            margin-bottom: 5px;
+        }
+
+        .top-decoration {
+            flex-grow: 1;
+            background: url(../styles/assets/decorations/border-top.png);
+            background-repeat: no-repeat;
+            background-size: 600px;
+            background-position-x: center;
+            background-position-y: bottom;
+        }
+    }
+
 
     /*
      *   Basic Character Info Table
      */
 
     table.base-info {
+
+        margin-top: 0px;
 
         .minionpack {
             justify-content: start;

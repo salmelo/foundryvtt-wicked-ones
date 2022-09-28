@@ -133,6 +133,7 @@
     },
     "character": {
       "templates": [ "player_template", "attributes_template_base", "attributes_template_wo" ],
+      "pc_type": "wicked_one",
       "downtime_action_used": false,
       "dark_hearts": {
         "min": 0,

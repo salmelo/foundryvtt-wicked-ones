@@ -43,6 +43,9 @@
     "TypeDungeon_ability": "Dungeon Ability"
   },
   "FITD": {
+    "WickedOne": "Wicked One",
+    "Awakened": "Awakened",
+
     "DowntimeAction": "Downtime Action",
     "DowntimeActions": "Downtime Actions",
     "DowntimeActionHint": "<div><b>Brew</b> potions and alchemicals</div><div><b>Build</b> locks, traps, tricks, and rooms.</div><div><b>Contact</b> vile friends, npcs, or factions.</div><div><b>Craft</b> an item, edge, or contraption.</div><div><b>Incant</b> a ritual.</div><div><b>Recruit</b> a pack of minions.</div><div><b>Torture</b> a prisoner.</div>",
@@ -132,7 +135,7 @@
     "Players": "Players",
     "Invasions": "Invasions",
     "MajorInvasions": "Major Invasions",
-    "For":  "for",
+    "For": "for",
 
     "TOOLTIP": {
       "Reset": "Reset",

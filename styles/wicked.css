@@ -276,12 +276,13 @@
  */
 form.wicked-one-sheet {
   /* Top-Decoration Styling  */
-  background: url(../styles/assets/decorations/border-top.png);
-  background-repeat: no-repeat;
-  background-size: 600px;
-  background-position-x: center;
+  /*background: url(../styles/assets/decorations/border-top.png);
+     background-repeat: no-repeat;
+     background-size: 600px;
+     background-position-x: center;*/
   /* background-position-y: 5px;
 
+  /* Sheet Type Selection Styling  */
   /*
    *   Basic Character Info Table
    */
@@ -291,6 +292,26 @@ form.wicked-one-sheet {
   /*
    *   Tabs and Abilities
    */
+}
+form.wicked-one-sheet .top-bar {
+  background: none;
+  margin-top: -20px;
+  margin-bottom: 0px;
+}
+form.wicked-one-sheet .top-bar .sheet-type {
+  height: 80%;
+  margin-bottom: 5px;
+}
+form.wicked-one-sheet .top-bar .top-decoration {
+  flex-grow: 1;
+  background: url(../styles/assets/decorations/border-top.png);
+  background-repeat: no-repeat;
+  background-size: 600px;
+  background-position-x: center;
+  background-position-y: bottom;
+}
+form.wicked-one-sheet table.base-info {
+  margin-top: 0px;
 }
 form.wicked-one-sheet table.base-info .minionpack {
   justify-content: start;
