@@ -29,6 +29,23 @@ export class WickedActorSheet extends WickedSheet {
     sheetData.system = sheetData.document.system // project system data so that handlebars has the same name and value paths
     sheetData.notes = await TextEditor.enrichHTML(this.object.system.description, { async: true });
 
+    // Change the action ratings on display and flags depending on the sheet type
+    sheetData.system.is_awakened = false;
+    switch (sheetData.system.pc_type) {
+      case "wicked_one":
+        delete sheetData.system.attributes.guts.skills.horrify;
+        delete sheetData.system.attributes.guts.skills.command;
+        break;
+
+      case "awakened":
+        delete sheetData.system.attributes.guts.skills.banter;
+        delete sheetData.system.attributes.guts.skills.threaten;
+        sheetData.system.is_awakened = true;
+        break;
+
+      default:
+    }
+
     // look for abilities that change the number of gold, supply and dark heart icons
     // also check for Doomseeker rays and add translations
     sheetData.actor.system.supply.max = 2;

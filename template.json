@@ -1,39 +1,8 @@
 {
   "Actor": {
-    "types": [ "character", "minion_pack", "dungeon", "faction", "party", "gm_sheet", "awakened", "minion_pack_ua", "campaign_ua", "faction_ua", "gm_sheet_ua", "clock" ],
+    "types": [ "character", "minion_pack", "dungeon", "faction", "party", "gm_sheet", "campaign_ua", "faction_ua", "gm_sheet_ua", "clock" ],
     "templates": {
-      "player_template": {
-        "look": "",
-        "vilefriend": "",
-        "minionpack": "",
-        "wickedxp": {
-          "value": 0,
-          "max": 9,
-          "max_default": 9,
-          "name_default": "FITD.WickedXP",
-          "name": "FITD.WickedXP"
-        },
-        "recklessxp": {
-          "value": 0,
-          "max": 3,
-          "max_default": 3,
-          "name_default": "FITD.RecklessXP",
-          "name": "FITD.RecklessXP"
-        },
-        "stress": {
-          "min": 0,
-          "value": 0,
-          "max": 6
-        },
-        "bloodied": false,
-        "supply": {
-          "min": 0,
-          "value": 0,
-          "max": 2
-        },
-        "attribute_max_value": 3
-      },
-      "attributes_template_base": {
+      "attributes_template": {
         "attributes": {
           "brains": {
             "shocked": false,
@@ -81,21 +50,6 @@
             "shocked": false,
             "label": "FITD.SkillsGuts",
             "skills": {
-              "invoke": {
-                "label": "FITD.SkillsInvoke",
-                "value": 0,
-                "practice": 0
-              }
-            }
-          }
-        }
-      },
-      "attributes_template_wo": {
-        "attributes": {
-          "guts": {
-            "shocked": false,
-            "label": "FITD.SkillsGuts",
-            "skills": {
               "banter": {
                 "label": "FITD.SkillsBanter",
                 "value": 0,
@@ -105,24 +59,19 @@
                 "label": "FITD.SkillsThreaten",
                 "value": 0,
                 "practice": 0
-              }
-            }
-          }
-        }
-      },
-      "attributes_template_ua": {
-        "attributes": {
-          "guts": {
-            "shocked": false,
-            "label": "FITD.SkillsGuts",
-            "skills": {
+              },
+              "horrify": {
+                "label": "FITD.SkillsHorrify",
+                "value": 0,
+                "practice": 0
+              },
               "command": {
                 "label": "FITD.SkillsCommand",
                 "value": 0,
                 "practice": 0
               },
-              "horrify": {
-                "label": "FITD.SkillsHorrify",
+              "invoke": {
+                "label": "FITD.SkillsInvoke",
                 "value": 0,
                 "practice": 0
               }
@@ -132,8 +81,37 @@
       }
     },
     "character": {
-      "templates": [ "player_template", "attributes_template_base", "attributes_template_wo" ],
+      "templates": [ "attributes_template" ],
       "pc_type": "wicked_one",
+      "look": "",
+      "vilefriend": "",
+      "minionpack": "",
+      "wickedxp": {
+        "value": 0,
+        "max": 9,
+        "max_default": 9,
+        "name_default": "FITD.WickedXP",
+        "name": "FITD.WickedXP"
+      },
+      "recklessxp": {
+        "value": 0,
+        "max": 3,
+        "max_default": 3,
+        "name_default": "FITD.RecklessXP",
+        "name": "FITD.RecklessXP"
+      },
+      "stress": {
+        "min": 0,
+        "value": 0,
+        "max": 6
+      },
+      "bloodied": false,
+      "supply": {
+        "min": 0,
+        "value": 0,
+        "max": 2
+      },
+      "attribute_max_value": 3,
       "downtime_action_used": false,
       "dark_hearts": {
         "min": 0,
@@ -145,30 +123,16 @@
         "value": 0,
         "max": 3
       },
+      "rot": {
+        "min": 1,
+        "value": 1,
+        "max": 4
+      },
       "goldmonger_size": 0,
       "goldmonger_pleased": false
     },
-    "awakened": {
-      "templates": [ "player_template", "attributes_template_base", "attributes_template_ua" ],
-      "essence": {
-        "min": 0,
-        "value": 0,
-        "max": 2
-      }
-    },
     "minion_pack": {
-      "templates": [ "attributes_template_base", "attributes_template_wo" ],
-      "bloodied": false,
-      "morale": false,
-      "number": {
-        "min": 0,
-        "value": 4,
-        "max": 10
-      },
-      "attribute_max_value": 2
-    },
-    "minion_pack_ua": {
-      "templates": [ "attributes_template_base", "attributes_template_ua" ],
+      "templates": [ "attributes_template" ],
       "bloodied": false,
       "morale": false,
       "number": {
@@ -249,7 +213,7 @@
     }
   },
   "Item": {
-    "types": [ "adventurer", "calling", "defense", "project", "duty", "dungeon_theme", "gearsupply", "goldmonger_type", "invasion", "minionimpulse", "minion_type", "minion_upgrade", "monster_race", "revelry", "specialability", "tier3room", "wickedimpulse" ],
+    "types": [ "adventurer", "awakened_type", "calling", "defense", "project", "duty", "dungeon_theme", "gearsupply", "goldmonger_type", "invasion", "minionimpulse", "minion_type", "minion_upgrade", "monster_race", "revelry", "specialability", "tier3room", "wickedimpulse" ],
     "templates": {
       "default": {
         "description": ""
@@ -281,6 +245,9 @@
       "motivation_1_custom": "",
       "motivation_2": "",
       "motivation_2_custom": ""
+    },
+    "awakened_type": {
+      "templates": [ "default" ]
     },
     "gearsupply": {
       "templates": [ "default" ],

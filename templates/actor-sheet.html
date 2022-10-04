@@ -31,6 +31,7 @@
       </tr>
       <tr>
         <td>
+          {{#unless system.is_awakened}}
           {{!-- Monster Race --}}
           <div class="item-block flex-vertical draggable-items">
             <div class="item-class-label"><a class="item-add-popup" data-distinct="true" data-item-type="monster_race">{{localize "FITD.MonsterRace"}}</a></div>
@@ -45,6 +46,22 @@
             {{/if}}
             {{/each}}
           </div>
+          {{else}}
+          {{!-- Awakened Type --}}
+          <div class="item-block flex-vertical draggable-items">
+            <div class="item-class-label"><a class="item-add-popup" data-distinct="true" data-item-type="awakened_type">{{localize "FITD.AwakenedType"}}</a></div>
+            {{#each actor.items as |item id|}}
+            {{#if (eq item.type "awakened_type")}}
+            <div class="item flex-horizontal" data-item-id="{{item._id}}">
+              <div class="item-body flex-horizontal">
+                <div class="item-name item-open-editor">{{item.name}}</div>
+              </div>
+              <a class="item-control item-delete" title="{{localize 'FITD.TitleDeleteItem'}}"><i class="fas fa-trash"></i></a>
+            </div>
+            {{/if}}
+            {{/each}}
+          </div>
+          {{/unless}}
         </td>
         <td colspan="1">
           {{!-- Look --}}
@@ -173,7 +190,11 @@
             {{#multiboxes system.wickedxp.value}}
             <input type="radio" id="character-{{actor._id}}-wickedxp-0" name="system.wickedxp.value" value="0" dtype="Radio">
             <div class="tooltip" data-tooltip="{{{escdq (localize "FITD.TOOLTIP.Wicked")}}}" >
+              {{#unless system.is_awakened}}
               <label class="black-label" for="character-{{actor._id}}-wickedxp-0">{{localize system.wickedxp.name}}</label>
+              {{else}}
+              <label class="black-label" for="character-{{actor._id}}-wickedxp-0">{{localize "FITD.UndeadXP"}}</label>
+              {{/unless}}
             </div>
 
             {{#times_from_1 system.wickedxp.max}}
@@ -205,7 +226,7 @@
             {{#multiboxes system.recklessxp.value}}
             <input type="radio" id="character-{{actor._id}}-recklessxp-0" name="system.recklessxp.value" value="0" dtype="Radio">
             <div class="tooltip" data-tooltip="{{{escdq (localize "FITD.TOOLTIP.Guardian")}}}" >
-              <label class="black-label" for="character-{{actor._id}}-recklessxp-0">{{localize "FITD.GuardianXP"}}</label>
+              <label class="black-label" for="character-{{actor._id}}-recklessxp-0">{{localize "FITD.DSGuardianXP"}}</label>
             </div>
             {{#times_from_1 system.recklessxp.max}}
             <input type="radio" id="character-{{../actor._id}}-recklessxp-{{this}}" name="system.recklessxp.value" value="{{this}}" dtype="Radio">
