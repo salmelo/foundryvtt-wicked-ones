@@ -31,16 +31,17 @@ export class WickedActorSheet extends WickedSheet {
 
     // Change the action ratings on display and flags depending on the sheet type
     sheetData.system.is_awakened = false;
+    sheetData.system.has_gold = true;
     switch (sheetData.system.pc_type) {
       case "wicked_one":
         delete sheetData.system.attributes.guts.skills.horrify;
         delete sheetData.system.attributes.guts.skills.command;
         break;
-
       case "awakened":
         delete sheetData.system.attributes.guts.skills.banter;
         delete sheetData.system.attributes.guts.skills.threaten;
         sheetData.system.is_awakened = true;
+        sheetData.system.has_gold = false;
         break;
 
       default:
@@ -66,6 +67,11 @@ export class WickedActorSheet extends WickedSheet {
     // check if Braineater and remove invoke skill
     if (sheetData.system.primal_monster_type == game.i18n.localize("FITD.GAME_LOGIC.Braineater")) {
       delete sheetData.system.attributes.guts.skills.invoke;
+    }
+
+    // check if Goldmonger and set Gold to bot be tracked
+    if (sheetData.system.primal_monster_type == game.i18n.localize("FITD.GAME_LOGIC.Goldmonger")) {
+      sheetData.system.has_gold = false;
     }
 
     // Get list of minions

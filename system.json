@@ -71,6 +71,14 @@
       "private": false
     },
     {
+      "name": "awakened_type",
+      "label": "Awakened Types",
+      "system": "wicked-ones",
+      "path": "packs/awakened-types.db",
+      "type": "Item",
+      "private": false
+    },
+    {
       "name": "goldmonger_type",
       "label": "Goldmonger Types",
       "system": "wicked-ones",

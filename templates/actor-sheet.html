@@ -107,14 +107,33 @@
           {{/unless}}
         </td>
         <td>
+          {{#unless system.is_awakened}}
           {{!-- Vile Friend --}}
           <div class="text-input" id="vilefriend">
             <label for="character-{{actor._id}}-vilefriend">{{localize "FITD.VileFriend"}}</label>
             <input type="text" id="character-{{actor._id}}-vilefriend" name="system.vilefriend" value="{{system.vilefriend}}">
           </div>
+          {{else}}
+          {{!-- Minion Pack (for Awakened) --}}
+          <div class="minionpack flex-horizontal" data-item-id="{{item._id}}">
+            <div class="text-input flex-vertical">
+              <label for="character-{{actor._id}}-minionpack">{{localize "FITD.MinionPack"}}</label>
+              <select name="system.minionpack">
+                {{#select system.minionpack}}
+                <option value="">{{localize "FITD.NoneParentheses"}}</option>
+                {{#each system.existing_minions as |minion id|}}
+                <option value="{{this.id}}">{{minion.name}}</option>
+                {{/each}}
+                {{/select}}
+              </select>
+            </div>
+            <button class="open-minion-pack" {{#if (eq system.minionpack "")}} disabled {{/if}}>{{localize "FITD.Open"}}</button>
+          </div>
+          {{/unless}}
         </td>
       </tr>
       <tr>
+        {{#unless system.is_awakened}}
         <td>
           {{!-- Revelry --}}
           {{#unless (eq actor.system.primal_monster_type (localize "FITD.GAME_LOGIC.Goldmonger"))}}
@@ -164,10 +183,12 @@
             <button class="open-minion-pack" {{#if (eq system.minionpack "")}} disabled {{/if}}>{{localize "FITD.Open"}}</button>
           </div>
         </td>
+        {{/unless}}
       </tr>
       <tr class="xp-stripe">
         {{#unless (eq actor.system.primal_monster_type (localize "FITD.GAME_LOGIC.Goldmonger"))}}
         <td>
+          {{#if system.has_gold}}
           {{!-- Gold --}}
           <div id="character-{{actor._id}}-gold" class="big-teeth gold">
             {{#multiboxes system.gold.value}}
@@ -183,6 +204,7 @@
 
             {{/multiboxes}}
           </div>
+          {{/if}}
         </td>
         <td>
           {{!-- Wicked XP --}}
@@ -206,6 +228,21 @@
           </div>
         </td>
         <td>
+          {{#if system.is_awakened}}
+          {{!-- Rot --}}
+          <div id="character-{{actor._id}}-rot" class="big-teeth xp-bar">
+            {{#multiboxes system.rot.value}}
+            <div class="tooltip" data-tooltip="{{{escdq (localize "FITD.TOOLTIP.Rot")}}}" >
+              <label class="black-label" for="character-{{actor._id}}-rot-0">{{localize "FITD.Rot"}}</label>
+            </div>
+            {{#times_from_1 system.rot.max}}
+            <input type="radio" id="character-{{../actor._id}}-rot-{{this}}" name="system.rot.value" value="{{this}}" dtype="Radio">
+            <label for="character-{{../actor._id}}-rot-{{this}}"></label>
+            {{/times_from_1}}
+            {{/multiboxes}}
+          </div>
+
+          {{else}}
           {{#unless (eq actor.system.primal_monster_type (localize "FITD.GAME_LOGIC.Doomseeker"))}}
           {{!-- Reckless XP --}}
           <div id="character-{{actor._id}}-recklessxp" class="big-teeth xp-bar">
@@ -218,9 +255,9 @@
             <input type="radio" id="character-{{../actor._id}}-recklessxp-{{this}}" name="system.recklessxp.value" value="{{this}}" dtype="Radio">
             <label for="character-{{../actor._id}}-recklessxp-{{this}}"></label>
             {{/times_from_1}}
-
             {{/multiboxes}}
           </div>
+
           {{else}}
           <div id="character-{{actor._id}}-guardianxp" class="big-teeth xp-bar">
             {{#multiboxes system.recklessxp.value}}
@@ -232,10 +269,10 @@
             <input type="radio" id="character-{{../actor._id}}-recklessxp-{{this}}" name="system.recklessxp.value" value="{{this}}" dtype="Radio">
             <label for="character-{{../actor._id}}-recklessxp-{{this}}"></label>
             {{/times_from_1}}
-
             {{/multiboxes}}
           </div>
           {{/unless}}
+          {{/if}}
         </td>
         {{else}}
         <td colspan="2">

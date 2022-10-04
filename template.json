@@ -282,7 +282,8 @@
     },
     "calling": {
       "templates": [ "default" ],
-      "flashback_clues": ""
+      "flashback_clues": "",
+      "is_ua_calling":  false
     },
     "specialability": {
       "templates": [ "default" ],

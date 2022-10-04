@@ -119,7 +119,7 @@ export class WickedItemSheet extends ItemSheet {
   /** @override */
   get template() {
       const path = "systems/wicked-ones/templates/items";
-    let simple_item_types = ["defense", "minionimpulse", "minion_type", "revelry", "wickedimpulse" ];
+    let simple_item_types = ["defense", "minionimpulse", "minion_type", "revelry", "wickedimpulse", "awakened_type" ];
     let template_name = `${this.item.type}`;
 
     if (simple_item_types.indexOf(this.item.type) >= 0) {

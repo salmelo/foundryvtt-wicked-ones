@@ -11,7 +11,7 @@
     <textarea name="system.description">{{system.description}}</textarea>
     <label class="label-stripe">{{localize "FITD.IsPrimalMonster"}}</label>
     <div>
-      <input type="checkbox" name="system.primal" value="{{system.primal}}" {{checked system.primal}}>
+      <input type="checkbox" name="system.primal" {{checked system.primal}}>
       <label>{{localize "FITD.IsPrimalMonsterHint"}}</label>
     </div>
     {{#if system.primal}}

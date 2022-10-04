@@ -46,6 +46,9 @@ export class WickedItem extends Item {
         case "adventurer":
           path += 'Icon.1_05';
           break;
+        case "awakened_type":
+          path += 'Icon.1_57';
+          break;
         case "calling":
           path += 'Icon.1_66';
           break;
