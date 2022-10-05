@@ -101,7 +101,7 @@ export class WickedItem extends Item {
           path = "";
       }
       if (path != "") {
-          data.img = path + `.png`;
+        data.img = data.img || path + `.png`;
       }
 
     }

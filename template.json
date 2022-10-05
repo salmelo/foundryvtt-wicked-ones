@@ -290,6 +290,7 @@
       "ability_type": "basic",
       "ability_group": "group_general",
       "source": "",
+      "is_ua_ability": false,
       "ability_checkbox_1_text": "",
       "ability_checkbox_1_checked": false,
       "ability_checkbox_2_text": "",
@@ -304,6 +305,11 @@
       "downtime_checkbox_1_checked": false,
       "downtime_checkbox_2_text": "",
       "downtime_checkbox_2_checked": false,
+      "counter": {
+        "value": 0,
+        "max": 2,
+        "text": ""
+      },
       "primal": {
         "be_psi_skill_name": "",
         "be_psi_skill_tooltip": "",
