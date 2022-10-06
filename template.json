@@ -289,6 +289,7 @@
       "templates": [ "default" ],
       "ability_type": "basic",
       "ability_group": "group_general",
+      "flex_slot":  false,
       "source": "",
       "is_ua_ability": false,
       "ability_checkbox_1_text": "",

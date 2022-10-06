@@ -472,12 +472,28 @@
             {{#each actor.items as |item id|}}
             {{#if (eq item.type "specialability")}}
             {{#if (eq item.system.ability_group "group_core")}}
+            {{log item.system}}
             <tr class="item group-core" data-item-id="{{item._id}}">
               <td class="item-body">
                 <div class="item-name item-open-editor">{{item.name}}</div>
               </td>
               <td>
-                <div class="item-description">{{item.system.description}}</div>
+                <div class="item-description">{{system.description}}</div>
+                {{#unless (eq item.system.counter.text "")}}
+                {{!-- Value Tracker --}}
+                <div id="item-{{item._id}}-valuetracker" class="value-tracker item-radio">
+                  {{#multiboxes system.counter.value}}
+                  <input type="radio" id="item-{{item._id}}-valuetracker-0" name="{{item._id}}-system.counter.value" value="0" dtype="Radio" data-property-to-set="counter.value">
+                  <div class="tooltip" data-tooltip="{{{escdq (localize "FITD.TOOLTIP.Reset")}}}" >
+                    <label class="black-label" for="item-{{item._id}}-valuetracker-0">{{localize system.counter.text}}</label>
+                  </div>
+                  {{#times_from_1 system.counter.max}}
+                  <input type="radio" id="item-{{item._id}}-valuetracker-{{this}}" name="{{item._id}}-system.counter.value" value="{{this}}" dtype="Radio"data-property-to-set="counter.value">
+                  <label for="item-{{item._id}}-valuetracker-{{this}}"></label>
+                  {{/times_from_1}}
+                  {{/multiboxes}}
+                </div>
+                {{/unless}}
               </td>
               <td>
                 <a class="item-control item-delete" title="{{localize 'FITD.TitleDeleteItem'}}"><i class="fas fa-trash"></i></a>
@@ -681,6 +697,7 @@
             {{#each actor.items as |item id|}}
             {{#if (eq item.type "specialability")}}
             {{#if (eq item.system.ability_group "group_general")}}
+            {{#unless item.system.flex_slot}}
             <tr class="item" data-item-id="{{item._id}}">
               <td class="item-body">
                 <div class="item-name item-open-editor">{{item.name}}</div>
@@ -708,12 +725,28 @@
                   </div>
                   {{/unless}}
                 </div>
+                {{#unless (eq item.system.counter.text "")}}
+                {{!-- Value Tracker --}}
+                <div id="item-{{item._id}}-valuetracker" class="value-tracker item-radio">
+                  {{#multiboxes system.counter.value}}
+                  <input type="radio" id="item-{{item._id}}-valuetracker-0" name="{{item._id}}-system.counter.value" value="0" dtype="Radio" data-property-to-set="counter.value">
+                  <div class="tooltip" data-tooltip="{{{escdq (localize "FITD.TOOLTIP.Reset")}}}" >
+                    <label class="black-label" for="item-{{item._id}}-valuetracker-0">{{localize system.counter.text}}</label>
+                  </div>
+                  {{#times_from_1 system.counter.max}}
+                  <input type="radio" id="item-{{item._id}}-valuetracker-{{this}}" name="{{item._id}}-system.counter.value" value="{{this}}" dtype="Radio"data-property-to-set="counter.value">
+                  <label for="item-{{item._id}}-valuetracker-{{this}}"></label>
+                  {{/times_from_1}}
+                  {{/multiboxes}}
+                </div>
+                {{/unless}}
                 {{/if}}
               </td>
               <td>
                 <a class="item-control item-delete" title="{{localize 'FITD.TitleDeleteItem'}}"><i class="fas fa-trash"></i></a>
               </td>
             </tr>
+            {{/unless}}
             {{/if}}
             {{/if}}
             {{/each}}
@@ -721,7 +754,7 @@
             {{!-- Flexibility --}}
             {{#each actor.items as |item id|}}
             {{#if (eq item.type "specialability")}}
-            {{#if (eq item.system.ability_group "group_flex")}}
+            {{#if item.system.flex_slot}}
             <tr class="item group-flex" data-item-id="{{item._id}}">
               <td class="item-body">
                 <div class="item-name item-open-editor">{{item.name}}<br /><i>({{localize "FITD.Flexibility"}})</i></div>
@@ -749,6 +782,21 @@
                   </div>
                   {{/unless}}
                 </div>
+                {{#unless (eq item.system.counter.text "")}}
+                {{!-- Value Tracker --}}
+                <div id="item-{{item._id}}-valuetracker" class="value-tracker item-radio">
+                  {{#multiboxes system.counter.value}}
+                  <input type="radio" id="item-{{item._id}}-valuetracker-0" name="{{item._id}}-system.counter.value" value="0" dtype="Radio" data-property-to-set="counter.value">
+                  <div class="tooltip" data-tooltip="{{{escdq (localize "FITD.TOOLTIP.Reset")}}}" >
+                    <label class="black-label" for="item-{{item._id}}-valuetracker-0">{{localize system.counter.text}}</label>
+                  </div>
+                  {{#times_from_1 system.counter.max}}
+                  <input type="radio" id="item-{{item._id}}-valuetracker-{{this}}" name="{{item._id}}-system.counter.value" value="{{this}}" dtype="Radio"data-property-to-set="counter.value">
+                  <label for="item-{{item._id}}-valuetracker-{{this}}"></label>
+                  {{/times_from_1}}
+                  {{/multiboxes}}
+                </div>
+                {{/unless}}
                 {{/if}}
               </td>
               <td>
@@ -790,6 +838,21 @@
                   </div>
                   {{/unless}}
                 </div>
+                {{#unless (eq item.system.counter.text "")}}
+                {{!-- Value Tracker --}}
+                <div id="item-{{item._id}}-valuetracker" class="value-tracker item-radio">
+                  {{#multiboxes system.counter.value}}
+                  <input type="radio" id="item-{{item._id}}-valuetracker-0" name="{{item._id}}-system.counter.value" value="0" dtype="Radio" data-property-to-set="counter.value">
+                  <div class="tooltip" data-tooltip="{{{escdq (localize "FITD.TOOLTIP.Reset")}}}" >
+                    <label class="black-label" for="item-{{item._id}}-valuetracker-0">{{localize system.counter.text}}</label>
+                  </div>
+                  {{#times_from_1 system.counter.max}}
+                  <input type="radio" id="item-{{item._id}}-valuetracker-{{this}}" name="{{item._id}}-system.counter.value" value="{{this}}" dtype="Radio"data-property-to-set="counter.value">
+                  <label for="item-{{item._id}}-valuetracker-{{this}}"></label>
+                  {{/times_from_1}}
+                  {{/multiboxes}}
+                </div>
+                {{/unless}}
                 {{/if}}
               </td>
               <td>

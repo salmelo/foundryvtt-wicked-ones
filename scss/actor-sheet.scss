@@ -351,6 +351,20 @@ form.wicked-one-sheet {
             }
         }
 
+        // Value Tracker
+        .value-tracker {
+            @include toothradio(20px, 20px, "assets/boxes/bloodied-minion-empty.png", "assets/boxes/bloodied-minion-filled.png");
+            align-items: center;
+            margin-top: 0.5em;
+
+            label.black-label {
+                @include changeable(0.1s, 0.8, 0.9, $highlight_red);
+                background: none;
+                color: $almost_black;
+                text-shadow: none;
+            }
+        }
+
         // Braineater psi-discipline
         .psi-discipline .item-radio {
             @include toothradio(15px, 15px, "assets/boxes/box-white-filled.png", "assets/boxes/box-white-dotted.png");

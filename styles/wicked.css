@@ -659,6 +659,59 @@ form.wicked-one-sheet #abilities-list .group-ext {
 form.wicked-one-sheet #abilities-list .group-ext td.item-body i {
   font-size: 14px;
 }
+form.wicked-one-sheet #abilities-list .value-tracker {
+  display: flex;
+  /* Hide the browser's default checkbox */
+  align-items: center;
+  margin-top: 0.5em;
+}
+form.wicked-one-sheet #abilities-list .value-tracker label {
+  height: 20px;
+  width: 20px;
+  background-image: url("assets/boxes/bloodied-minion-filled.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin-right: 5px;
+  transition: filter 0.1s;
+  cursor: pointer;
+}
+form.wicked-one-sheet #abilities-list .value-tracker label:last-of-type {
+  margin-right: 0px;
+}
+form.wicked-one-sheet #abilities-list .value-tracker label[for$="-0"] {
+  width: auto;
+  height: auto;
+  background-image: none !important;
+  color: #EEEFFF;
+}
+form.wicked-one-sheet #abilities-list .value-tracker label[for$="-0"] i {
+  margin-top: 4px;
+}
+form.wicked-one-sheet #abilities-list .value-tracker label:hover {
+  filter: brightness(0.8);
+  opacity: 0.9;
+}
+form.wicked-one-sheet #abilities-list .value-tracker input {
+  display: none;
+}
+form.wicked-one-sheet #abilities-list .value-tracker input:checked ~ label {
+  background-image: url("assets/boxes/bloodied-minion-empty.png");
+}
+form.wicked-one-sheet #abilities-list .value-tracker input:checked + label {
+  background-image: url("assets/boxes/bloodied-minion-filled.png");
+}
+form.wicked-one-sheet #abilities-list .value-tracker label.black-label {
+  transition: filter 0.1s;
+  cursor: pointer;
+  background: none;
+  color: #191919;
+  text-shadow: none;
+}
+form.wicked-one-sheet #abilities-list .value-tracker label.black-label:hover {
+  filter: brightness(0.8);
+  opacity: 0.9;
+  color: #a20000;
+}
 form.wicked-one-sheet #abilities-list .psi-discipline .item-radio {
   display: flex;
   /* Hide the browser's default checkbox */

@@ -103,12 +103,12 @@ export class WickedActor extends Actor {
       if (items[i].type == "specialability" && items[i].system.ability_group == "group_general") {
         if (data.is_primal_monster) {
           if (items[i].system.source != data.primal_monster_type) {
-            items[i].system.ability_group = "group_flex";
+            items[i].system.flex_slot = true;
           } else {
-            items[i].system.ability_group = "group_general";
+            items[i].flex_slot = false;
           }
         } else if (items[i].system.source != data.calling_name) {
-          items[i].system.ability_group = "group_flex";
+          items[i].system.flex_slot = true;
         }
       } else if (items[i].type == "calling" && data.is_primal_monster) {
         removeAt = i;
