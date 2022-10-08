@@ -149,6 +149,11 @@ form.wicked-one-sheet {
                     margin-right: 0px;
                 }
             }
+
+            // Rot
+            &.rot {
+                @include toothradio(20px, 20px, "assets/boxes/bloodied-minion-empty-white.png", "assets/boxes/bloodied-minion-filled.png");
+            }
         }
 
         // Goldmonger Size

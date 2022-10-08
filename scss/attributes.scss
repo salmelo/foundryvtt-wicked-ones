@@ -92,7 +92,7 @@
         }
     }
 
-    .bloodied {
+    .bloodied, .exposed {
 
         input {
             display: none;
@@ -113,7 +113,6 @@
         input:checked ~ i.splash {
             display: block;
             height: 100px;
-            background-image: url("assets/decorations/bloodsplat.png");
             background-size: 100px 100px;
             background-repeat: no-repeat;
             margin: -50px;
@@ -123,6 +122,15 @@
             z-index: -1;
         }
     }
+
+    .bloodied input:checked ~ i.splash {
+            background-image: url("assets/decorations/bloodsplat.png");
+    }
+
+    .exposed input:checked ~ i.splash {
+            background-image: url("assets/decorations/torn-paper.png");
+    }
+
 
     #attributes-bloodied {
         margin-bottom: 0px;
@@ -204,6 +212,24 @@
 
                 & + label.dark-heart {
                     background-image: url("assets/boxes/heart-filled.png");
+                }
+            }
+
+            label.essence {
+                background-image: url("assets/boxes/bloodied-minion-filled.png");
+                margin-right: 8px;
+                position: relative;
+                top: -2px;
+            }
+
+            input:checked {
+
+                & ~ label.essence {
+                    background-image: url("assets/boxes/bloodied-minion-empty.png");
+                }
+
+                & + label.essence {
+                    background-image: url("assets/boxes/bloodied-minion-filled.png");
                 }
             }
         }

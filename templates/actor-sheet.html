@@ -230,8 +230,9 @@
         <td>
           {{#if system.is_awakened}}
           {{!-- Rot --}}
-          <div id="character-{{actor._id}}-rot" class="big-teeth xp-bar">
+          <div id="character-{{actor._id}}-rot" class="big-teeth rot">
             {{#multiboxes system.rot.value}}
+            <input type="radio" id="character-{{actor._id}}-rot-0" name="system.rot.value" value="0" dtype="Radio">
             <div class="tooltip" data-tooltip="{{{escdq (localize "FITD.TOOLTIP.Rot")}}}" >
               <label class="black-label" for="character-{{actor._id}}-rot-0">{{localize "FITD.Rot"}}</label>
             </div>
