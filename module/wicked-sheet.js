@@ -75,7 +75,12 @@ export class WickedSheet extends ActorSheet {
           items.sort(WickedHelpers.monsterRaceSort);
           break;
         case "specialability":
-          items.sort(WickedHelpers.specialAbilitySort);
+          if (this.object.system.is_awakened) {
+            items.sort(WickedHelpers.specialAbilitySortUA);
+          }
+          else {
+            items.sort(WickedHelpers.specialAbilitySortWO);
+          }
           break;
         case "tier3room":
           items.sort(WickedHelpers.tierThreeRoomSort);
@@ -130,7 +135,17 @@ export class WickedSheet extends ActorSheet {
       }
 
       html += `<input id="select-item-${e._id}" type="${input_type}" name="select_items" value="${e._id}">`;
-      html += `<label class="flex-horizontal" for="select-item-${e._id}">`;
+      html += `<label class="`;
+      if (e.system.ability_group == 'group_ext') {
+        html += `flex-horizontal external`;
+      }
+      else if (this.object.system.is_awakened == e.system.is_ua_ability) {
+        html += `flex-horizontal `;
+      }
+      else {
+        html += `flex-horizontal cross-system`;
+      }
+      html += `" for="select-item-${e._id}">`;
       html += `${itemPrefix}${game.i18n.localize(e.name)}${itemSuffix}`;
       if (itemTooltip != "") {
         var cleanTip = itemTooltip.replace('"', '&quot;');

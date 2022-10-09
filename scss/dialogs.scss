@@ -45,6 +45,11 @@
         border-bottom: 1px solid $bloody5c;
     }
 
+    label.cross-system:nth-of-type(2n),
+    label.external:nth-of-type(2n){
+        background: $gray3f;
+    }
+
     label:nth-of-type(2n) {
         background: $mud3f;
     }

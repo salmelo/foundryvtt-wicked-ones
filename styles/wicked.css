@@ -1045,6 +1045,20 @@ form.wicked-one-sheet #duties-tab .downtime-hints > div {
 form.wicked-one-sheet #duties-tab .downtime-hints > div b {
   font-style: normal;
 }
+form.wicked-one-sheet #duties-tab .conquest-hints {
+  padding: 3px 0px;
+}
+form.wicked-one-sheet #duties-tab .conquest-hints > div {
+  margin: 5px 6px;
+  font-style: italic;
+}
+form.wicked-one-sheet #duties-tab .conquest-hints > div b {
+  font-style: normal;
+}
+form.wicked-one-sheet #duties-tab .conquest-hints > div em {
+  font-style: normal;
+  font-weight: 600;
+}
 form.wicked-one-sheet #duties-tab #downtime-risk {
   margin-top: 5px;
 }
@@ -3795,6 +3809,10 @@ form.special-ability-sheet #ray-selection div.ray-line select:nth-child(2) {
 #items-to-add > flex-horizontal {
   padding: 3px;
   border-bottom: 1px solid #4000005c;
+}
+#items-to-add label.cross-system:nth-of-type(2n),
+#items-to-add label.external:nth-of-type(2n) {
+  background: #9999993f;
 }
 #items-to-add label:nth-of-type(2n) {
   background: #68332c3f;

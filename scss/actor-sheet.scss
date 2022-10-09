@@ -623,6 +623,25 @@ form.wicked-one-sheet {
                 }
             }
         }
+
+        .conquest-hints {
+            padding:  3px 0px;
+
+            > div {
+                margin: 5px 6px;
+                font-style: italic;
+
+                b {
+                    font-style: normal;
+                }
+
+                em {
+                    font-style: normal;
+                    font-weight: 600;
+                }
+            }
+        }
+
 		#downtime-risk{
 			margin-top: 5px;
 		}

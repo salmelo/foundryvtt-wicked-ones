@@ -387,7 +387,7 @@
       {{#unless (eq actor.system.primal_monster_type (localize "FITD.GAME_LOGIC.Goldmonger"))}}
       <a class="item" data-tab="loadout">{{localize "FITD.Loadout"}}</a>
       {{/unless}}
-      <a class="item" data-tab="duties">{{localize "FITD.DutiesProjects"}}</a>
+      <a class="item" data-tab="duties">{{#if system.is_awakened}}{{localize "FITD.ConquestTab"}}{{else}}{{localize "FITD.DutiesProjects"}}{{/if}}</a>
       <a class="item" data-tab="character-notes">{{localize "FITD.Notes"}}</a>
       <a class="item" data-tab="all-character-items">{{localize "FITD.AllItems"}}</a>
     </nav>
@@ -865,6 +865,8 @@
             {{/each}}
           </tbody>
         </table>
+
+        {{#unless system.is_awakened}}
         {{#each actor.items as |item id|}}
         {{#if (eq item.type "calling")}}
         <div class="item flex-horizontal">
@@ -881,6 +883,7 @@
         {{/if}}
         {{/if}}
         {{/each}}
+        {{/unless}}
       </div>
 
 
@@ -890,7 +893,7 @@
         {{#unless (eq actor.system.primal_monster_type (localize "FITD.GAME_LOGIC.Facestealer"))}}
         {{#unless (eq actor.system.primal_monster_type (localize "FITD.GAME_LOGIC.Doomseeker"))}}
         <div class="label-stripe flex-horizontal">
-          <p>{{localize "FITD.Gear"}}</p>
+          <p>{{#if system.is_awakened}}{{localize "FITD.GearAnatomy"}}{{else}}{{localize "FITD.Gear"}}{{/if}}</p>
           <p><a class="item-add-popup" data-item-type="gearsupply"><i class="fas fa-plus-square"></i></a></p>
         </div>
         <table class="draggable-items">
@@ -940,7 +943,18 @@
           <p class="flex-horizontal">
             {{#multiboxes system.supply.value}}
             <input type="radio" id="character-{{actor._id}}-supply-0" name="system.supply.value" value="0" dtype="Radio">
-            <label for="character-{{actor._id}}-supply-0">{{localize "FITD.Supply"}}</label>
+            <label for="character-{{actor._id}}-supply-0">
+            {{#if system.is_awakened}}
+              {{log actor.system.calling_name}}
+              {{#if (eq actor.system.calling_name (localize "FITD.Defiler"))}}
+                {{localize "FITD.SupplyTrophies"}}
+              {{else}}
+                {{localize "FITD.SupplySecretions"}}
+              {{/if}}
+            {{else}}
+              {{localize "FITD.Supply"}}
+            {{/if}}
+            </label>
             {{#times_from_1 system.supply.max}}
             <input type="radio" id="character-{{../actor._id}}-supply-{{this}}" name="system.supply.value" value="{{this}}" dtype="Radio">
             <label for="character-{{../actor._id}}-supply-{{this}}"></label>
@@ -1073,16 +1087,28 @@
           <tbody class="draggable-items">
             <tr>
               <td colspan="2">
+                {{#if system.is_awakened}}
+                <div class="conquest-hints">
+                  {{{localize "FITD.ConquestMovesHint"}}}
+                </div>
+                {{else}}
                 <div class="downtime-hints">
                   {{{localize "FITD.DowntimeActionHint"}}}
                 </div>
+                {{/if}}
                 <div class="checkbox-container">
                   <div class="standard-checkbox">
                     <input type="checkbox" id="{{actor._id}}-dtaused" name="system.downtime_action_used" {{checked system.downtime_action_used}}>
                     <label for="{{actor._id}}-dtaused"></label>
+                    {{#if system.is_awakened}}
+                    {{localize "FITD.ConquestMoveUsed"}}
+                    {{else}}
                     {{localize "FITD.DowntimeActionUsed"}}
+                    {{/if}}
                   </div>
-				  <div id="downtime-risk">{{{localize "FITD.DowntimeActionRiskIt"}}}</div>
+                  {{#unless system.is_awakened}}
+				          <div id="downtime-risk">{{{localize "FITD.DowntimeActionRiskIt"}}}</div>
+                  {{/unless}}
                 </div>
               </td>
             </tr>
@@ -1127,6 +1153,7 @@
           </tbody>
         </table>
 
+        {{#unless system.is_awakened}}
         <div class="label-stripe flex-horizontal">
           <p class="tooltip" data-tooltip="{{{escdq (localize "FITD.ProjectsHelp")}}}">{{localize "FITD.Projects"}}</p>
           <p><a class="item-add-popup" data-item-type="project"><i class="fas fa-plus-square"></i></a></p>
@@ -1157,6 +1184,9 @@
             {{/each}}
           </tbody>
         </table>
+        {{/unless}}
+
+        {{#unless system.is_awakened}}
         <div class="label-stripe flex-horizontal">
           <p>{{localize "FITD.Duties"}}</p>
           <p><a class="item-add-popup" data-item-type="duty"><i class="fas fa-plus-square"></i></a></p>
@@ -1189,6 +1219,7 @@
             {{/each}}
           </tbody>
         </table>
+        {{/unless}}
       </div>
 
 

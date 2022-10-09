@@ -243,13 +243,45 @@ export class WickedHelpers {
 /**
  * Sorts Special Abilities by External, Primal Calling, Source, Core Status and Alphabet
  */
-  static specialAbilitySort(a, b) {
+  static specialAbilitySortWO(a, b) {
     if (!(a.system.ability_group == "group_ext") && (b.system.ability_group == "group_ext")) {
       return -1;
     }
     if ((a.system.ability_group == "group_ext") && !(b.system.ability_group == "group_ext")) {
       return 1;
     }
+
+    if (!a.system.is_ua_ability && b.system.is_ua_ability) {
+      return -1;
+    }
+    if (a.system.is_ua_ability && !b.system.is_ua_ability) {
+      return 1;
+    }
+
+    // Sort by remaining criteria
+    return WickedHelpers.specialAbilitySort(a, b);
+  }
+
+  static specialAbilitySortUA(a, b) {
+    if (!(a.system.ability_group == "group_ext") && (b.system.ability_group == "group_ext")) {
+      return -1;
+    }
+    if ((a.system.ability_group == "group_ext") && !(b.system.ability_group == "group_ext")) {
+      return 1;
+    }
+
+    if (a.system.is_ua_ability && !b.system.is_ua_ability) {
+      return -1;
+    }
+    if (!a.system.is_ua_ability && b.system.is_ua_ability) {
+      return 1;
+    }
+
+    // Sort by remaining criteria
+    return WickedHelpers.specialAbilitySort(a, b);
+  }
+
+  static specialAbilitySort(a, b) {
 
     if (!WickedHelpers.isPrimalCalling(a.system.source) && WickedHelpers.isPrimalCalling(b.system.source)) {
       return -1;
