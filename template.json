@@ -1,6 +1,6 @@
 {
   "Actor": {
-    "types": [ "character", "minion_pack", "dungeon", "faction", "party", "gm_sheet", "campaign_ua", "faction_ua", "gm_sheet_ua", "clock" ],
+    "types": [ "character", "minion_pack", "dungeon", "faction", "party", "gm_sheet", "conquest_ua", "faction_ua", "gm_sheet_ua", "clock" ],
     "templates": {
       "attributes_template": {
         "attributes": {
@@ -164,7 +164,7 @@
         "step6": ""
       }
     },
-    "campaign_ua": {
+    "conquest_ua": {
       "theme_txt": "",
       "horde_txt": "",
       "horror_txt": "",
@@ -198,7 +198,8 @@
         "max": 3
       },
       "corruption_empowered": false,
-      "corruption_threatened": false
+      "corruption_threatened": false,
+      "notes": ""
     },
     "faction": {
       "category": "neutral",

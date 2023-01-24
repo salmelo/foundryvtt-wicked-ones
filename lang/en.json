@@ -12,7 +12,7 @@
     "TypeFaction": "Faction",
     "TypeParty": "Adventurer Party",
     "TypeGm_sheet": "GM Sheet",
-    "TypeCampaign_ua": "Campaign (UA)",
+    "TypeConquest_ua": "Conquest (UA)",
     "TypeFaction_ua": "Faction (UA)",
     "TypeGm_sheet_ua": "GM Sheet (UA)",
     "TypeClock": "⏰ Clock"
@@ -22,6 +22,7 @@
     "TypeAdventurer": "Adventurer",
     "TypeAwakened_type": "Awakened Type",
     "TypeCalling": "Calling",
+    "TypeConquest_ability": "Conquest Ability",
     "TypeDefense": "Defense",
     "TypeGearsupply": "Gear / Supply",
     "TypeGoldmonger_type": "Goldmonger Type",
@@ -727,6 +728,20 @@
         "TrickPrompt": "Describe an intent and its trigger.",
         "TrickParagraph": "Each trick has an intent, something that happens to the adventurers, and a trigger which causes the trick to happen."
       }
+    },
+    "UA_CONQUEST_SHEET": {
+      "Horde": "Horde",
+      "Horror": "Horror",
+      "Corruption": "Corruption",
+      "CampaignTheme": "Campaign Theme",
+      "Origin": "Origin",
+      "FactionHistory": "Faction History",
+      "DarkPlan": "The Dark Plan",
+      "Candle": "Candle",
+      "Empowered": "Empowered",
+      "Threatened": "Threatened",
+      "CoreAbility": "Core Ability",
+      "AbilityDomain": "Ability Domain"
     },
     "CYCLE": {
       "Name": "Cycle of Play",
