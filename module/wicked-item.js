@@ -52,6 +52,9 @@ export class WickedItem extends Item {
         case "calling":
           path += 'Icon.1_66';
           break;
+        case "conquest_ability":
+          path += 'Icon.2_57';
+          break;
         case "defense":
           path += 'Icon.1_04';
           break;

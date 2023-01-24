@@ -151,6 +151,14 @@
       "private": false
     },
     {
+      "name": "conquest_ability",
+      "label": "Conquest Abilities (UA)",
+      "system": "wicked-ones",
+      "path": "packs/conquestabilities.db",
+      "type": "Item",
+      "private": false
+    },
+    {
       "name": "invasion",
       "label": "Major Invasions",
       "system": "wicked-ones",

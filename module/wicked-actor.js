@@ -24,6 +24,7 @@ export class WickedActor extends Actor {
         case "faction":
         case "minion_pack":
         case "party":
+        case "conquest_ua":
           // Replace default image
           data.img = data.img || `systems/wicked-ones/styles/assets/default-images/${data.type}.webp`;
           data.prototypeToken.texture.src = data.prototypeToken.texture.src || `systems/wicked-ones/styles/assets/default-images/${data.type}-token.webp`;

@@ -219,3 +219,9 @@ WO.duty_types = {
   "trap": "FITD.DUTY_TYPE.Trap",
   "trick": "FITD.DUTY_TYPE.Trick"
 };
+
+WO.ua_conquest_domains = {
+  "horde": "FITD.UA_CONQUEST_SHEET.Horde",
+  "horror": "FITD.UA_CONQUEST_SHEET.Horror",
+  "corruption": "FITD.UA_CONQUEST_SHEET.Corruption"
+};
