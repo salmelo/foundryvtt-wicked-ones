@@ -12,7 +12,7 @@ export const registerSystemSettings = function() {
   });
 
   /**
-   * Track the system version upon which point a migration was last applied
+   * Configuration for showing expanded roll results in the chat log
    */
   game.settings.register("wicked-ones", "showExpandedRollResults", {
     name: "SETTINGS.WOExpandedResults.Name",
