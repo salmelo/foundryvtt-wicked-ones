@@ -731,9 +731,13 @@
     },
     "UA_CONQUEST_SHEET": {
       "Horde": "Horde",
+      "HordeHints": "What form does the horde take?",
       "Horror": "Horror",
+      "HorrorHints": "What do humans now fear, considering it a sign of the undead?",
       "Corruption": "Corruption",
+      "CorruptionHints": "How does corruption manifest in the environment?",
       "CampaignTheme": "Campaign Theme",
+      "CampaignThemeHints": "Doom - Madness - Wrath",
       "Origin": "Origin",
       "FactionHistory": "Faction History",
       "DarkPlan": "The Dark Plan",
@@ -741,7 +745,9 @@
       "Empowered": "Empowered",
       "Threatened": "Threatened",
       "CoreAbility": "Core Ability",
-      "AbilityDomain": "Ability Domain"
+      "AbilityDomain": "Ability Domain",
+      "ConquestAbilities": "Conquest Abilities",
+      "Description": "Description"
     },
     "CYCLE": {
       "Name": "Cycle of Play",

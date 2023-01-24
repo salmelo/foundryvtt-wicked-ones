@@ -13,7 +13,7 @@ export class WickedConquestSheet extends WickedSheet {
           template: "systems/wicked-ones/templates/conquest-sheet.html",
       width: 600,
       height: 850,
-      tabs: []
+      tabs: [{ navSelector: ".tabs", contentSelector: ".tab-content", initial: "rooms" }]
     });
   }
 
