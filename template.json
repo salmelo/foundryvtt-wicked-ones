@@ -291,7 +291,7 @@
     "conquest_ability": {
       "templates": [ "default" ],
       "is_core": false,
-      "ability_group": ""
+      "domain": ""
     },
     "defense": {
       "templates": [ "default" ],

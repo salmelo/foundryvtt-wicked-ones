@@ -730,6 +730,7 @@
       }
     },
     "UA_CONQUEST_SHEET": {
+      "Domain": "Domain",
       "Horde": "Horde",
       "HordeHints": "What form does the horde take?",
       "Horror": "Horror",
@@ -737,14 +738,19 @@
       "Corruption": "Corruption",
       "CorruptionHints": "How does corruption manifest in the environment?",
       "CampaignTheme": "Campaign Theme",
-      "CampaignThemeHints": "Doom - Madness - Wrath",
+      "CampaignThemeHints": "E.g: Doom - Madness - Wrath",
       "Origin": "Origin",
+      "OriginHints": "Describe the event which caused the Awakening",
       "FactionHistory": "Faction History",
+      "FactionHistoryHints1": "How did events caused by the living lead to the Awakening?",
+      "FactionHistoryHints2": "What belief or cause gives the living resolve?",
       "DarkPlan": "The Dark Plan",
+      "DarkPlanHints": "When the candle burns down, the Dark Plan is revealed!",
       "Candle": "Candle",
       "Empowered": "Empowered",
       "Threatened": "Threatened",
       "CoreAbility": "Core Ability",
+      "CoreAbilityHint": "Check if this is a Core Ability",
       "AbilityDomain": "Ability Domain",
       "ConquestAbilities": "Conquest Abilities",
       "Description": "Description"

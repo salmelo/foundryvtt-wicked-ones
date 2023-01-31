@@ -14,11 +14,15 @@
       </tr>
       <tr id="campaign-theme-bar" class="label-stripe">
         <td>
+
+          <!--
           {{!-- Campaign Theme Info --}}
           <div class="text-input">
             <label class="label-stripe">{{localize "FITD.UA_CONQUEST_SHEET.CampaignTheme"}}</label>
             <input type="text" name="system.theme_txt" value="{{system.theme_txt}}">
           </div>
+          -->
+
         </td>
         <td>
           {{!-- Next Conquest Text Field to right --}}
@@ -239,7 +243,36 @@
           {{#if (eq system.corruption_txt "")}}
           <label>{{localize "FITD.UA_CONQUEST_SHEET.CorruptionHints"}}</label>
           {{/if}}
-          <input type="text" id="horror-description-input" name="system.corruption_txt" value="{{system.corruption_txt}}">
+          <input type="text" id="corruption-description-input" name="system.corruption_txt" value="{{system.corruption_txt}}">
+        </div>
+
+        <div class="text-input">
+          <label class="label-stripe">{{localize "FITD.UA_CONQUEST_SHEET.Origin"}}</label>
+          {{#if (eq system.origin_txt "")}}
+          <label>{{localize "FITD.UA_CONQUEST_SHEET.OriginHints"}}</label>
+          {{/if}}
+          <input type="text" id="origin-description-input" name="system.origin_txt" value="{{system.origin_txt}}">
+        </div>
+        <div class="text-input">
+          <label class="label-stripe">{{localize "FITD.UA_CONQUEST_SHEET.FactionHistory"}}</label>
+          {{#if (eq system.history_txt_1 "")}}
+          <label>{{localize "FITD.UA_CONQUEST_SHEET.FactionHistoryHints1"}}</label>
+          {{/if}}
+          <input type="text" id="faction-history-1-description-input" name="system.history_txt_1" value="{{system.history_txt_1}}">
+        </div>
+        <div class="text-input">
+          <label class="label-stripe">{{localize "FITD.UA_CONQUEST_SHEET.FactionHistory"}}</label>
+          {{#if (eq system.history_txt_2 "")}}
+          <label>{{localize "FITD.UA_CONQUEST_SHEET.FactionHistoryHints2"}}</label>
+          {{/if}}
+          <input type="text" id="faction-history-2-description-input" name="system.history_txt_2" value="{{system.history_txt_2}}">
+        </div>
+        <div class="text-input">
+          <label class="label-stripe">{{localize "FITD.UA_CONQUEST_SHEET.DarkPlan"}}</label>
+          {{#if (eq system.dark_plan_txt "")}}
+          <label>{{localize "FITD.UA_CONQUEST_SHEET.DarkPlanHints"}}</label>
+          {{/if}}
+          <input type="text" id="dark-plan-description-input" name="system.dark_plan_txt" value="{{system.dark_plan_txt}}">
         </div>
 
         <!--
