@@ -398,4 +398,38 @@ export class WickedHelpers {
 
   /* -------------------------------------------- */
 
+  /**
+   * Sorts Conquest Abilities by Domain, Core and then Alphabet
+   */
+  static conquestAbilitySort(a, b) {
+
+    if (a.system.domain < b.system.domain) {
+      return -1;
+    }
+
+    if (a.system.domain > b.system.domain) {
+      return 1;
+    }
+
+    if (!(a.system.is_core) && (b.system.is_core)) {
+      return 1;
+    }
+
+    if ((a.system.is_core) && !(b.system.is_core)) {
+      return -1;
+    }
+
+    if (a.name < b.name) {
+      return -1;
+    }
+    if (a.name > b.name) {
+      return 1;
+    }
+
+    // names must be equal
+    return 0;
+  }
+
+  /* -------------------------------------------- */
+
 }

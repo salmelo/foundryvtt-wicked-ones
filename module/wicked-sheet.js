@@ -62,6 +62,9 @@ export class WickedSheet extends ActorSheet {
     // Sort Special Abilities, Rooms, Upgrades and Monster Races
     if (items.length > 0) {
       switch (items[0].type) {
+        case "conquest_ability":
+          items.sort(WickedHelpers.conquestAbilitySort);
+          break;
         case "minion_upgrade":
           items.sort(WickedHelpers.minionUpgradeSort);
           break;
@@ -97,17 +100,26 @@ export class WickedSheet extends ActorSheet {
       let itemTooltip = e.system.description ?? "";
       switch (item_type) {
 
+        case "conquest_ability":
+          if (typeof e.system.domain !== "undefined") {
+            itemPrefix += `(${game.i18n.localize(CONFIG.WO.ua_conquest_domains[e.system.domain])}): `
+          }
+          if (e.system.is_core) {
+            itemSuffix += ` (` + game.i18n.localize(`FITD.Core`) + `)`
+          }
+          break;
+
         case "minion_upgrade":
           if (e.system.upgrade_type == 'external') {
-            itemSuffix += ` (External)`
+            itemSuffix += ` (` + game.i18n.localize(`FITD.External`) + `)`
           } else if (e.system.upgrade_type == 'path') {
-            itemSuffix += ` (Magic Path)`
+            itemSuffix += ` (` + game.i18n.localize(`FITD.MagicPath`) + `)`
           }
           break;
 
         case "monster_race":
           if (e.system.primal) {
-            itemSuffix += ` (Primal)`
+            itemSuffix += ` (` + game.i18n.localize(`FITD.Primal`) + `)`
           }
           break;
 
@@ -116,9 +128,9 @@ export class WickedSheet extends ActorSheet {
             itemPrefix += `(${e.system.source}): `
           }
           if (e.system.ability_group == 'group_core') {
-            itemSuffix += ` (Core)`
+            itemSuffix += ` (` + game.i18n.localize(`FITD.Core`) + `)`
           } else if (e.system.ability_group == 'group_ext') {
-            itemSuffix += ` (External)`
+            itemSuffix += ` (` + game.i18n.localize(`FITD.External`) + `)`
           }
           if (itemTooltip == "") {
             itemTooltip = game.i18n.localize('FITD.ItemIsOfType') + ' ' + game.i18n.localize(CONFIG.WO.special_ability_types[e.system.ability_type]);
