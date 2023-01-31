@@ -473,7 +473,7 @@
             {{#each actor.items as |item id|}}
             {{#if (eq item.type "specialability")}}
             {{#if (eq item.system.ability_group "group_core")}}
-            {{log item.system}}
+            <!-- {{log item.system}} -->
             <tr class="item group-core" data-item-id="{{item._id}}">
               <td class="item-body">
                 <div class="item-name item-open-editor">{{item.name}}</div>
