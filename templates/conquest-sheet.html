@@ -336,6 +336,13 @@
           <input type="text" id="theme-description-input" name="system.theme_txt" value="{{system.theme_txt}}">
         </div>
         <div class="text-input">
+          <label class="label-stripe">{{localize "FITD.UA_CONQUEST_SHEET.Corruption"}}</label>
+          {{#if (eq system.corruption_txt "")}}
+          <label>{{localize "FITD.UA_CONQUEST_SHEET.CorruptionHints"}}</label>
+          {{/if}}
+          <input type="text" id="corruption-description-input" name="system.corruption_txt" value="{{system.corruption_txt}}">
+        </div>
+        <div class="text-input">
           <label class="label-stripe">{{localize "FITD.UA_CONQUEST_SHEET.Horde"}}</label>
           {{#if (eq system.horde_txt "")}}
           <label>{{localize "FITD.UA_CONQUEST_SHEET.HordeHints"}}</label>
@@ -348,13 +355,6 @@
           <label>{{localize "FITD.UA_CONQUEST_SHEET.HorrorHints"}}</label>
           {{/if}}
           <input type="text" id="horror-description-input" name="system.horror_txt" value="{{system.horror_txt}}">
-        </div>
-        <div class="text-input">
-          <label class="label-stripe">{{localize "FITD.UA_CONQUEST_SHEET.Corruption"}}</label>
-          {{#if (eq system.corruption_txt "")}}
-          <label>{{localize "FITD.UA_CONQUEST_SHEET.CorruptionHints"}}</label>
-          {{/if}}
-          <input type="text" id="corruption-description-input" name="system.corruption_txt" value="{{system.corruption_txt}}">
         </div>
         <div class="text-input">
           <label class="label-stripe">{{localize "FITD.UA_CONQUEST_SHEET.Origin"}}</label>
