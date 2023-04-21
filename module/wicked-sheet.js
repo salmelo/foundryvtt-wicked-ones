@@ -18,6 +18,7 @@ export class WickedSheet extends ActorSheet {
     html.find('.eye-rays area').mouseover(this._onDSMouseOver.bind(this));
     html.find('.eye-rays area').mouseout(this._onDSMouseOut.bind(this));
     html.find(".open-minion-pack").click(this._onMinionOpenClick.bind(this));
+    html.find(".candle-button").click(this._onCandleButtonPressed.bind(this));
 
     // Item Dragging
     if (this.document.isOwner) {
@@ -367,6 +368,36 @@ export class WickedSheet extends ActorSheet {
 
     // Otherwise render the sheet
     else sheet.render(true);
+  }
+
+  /* -------------------------------------------- */
+
+
+  async _onCandleButtonPressed(event) {
+    event.preventDefault();
+    let pressed_button = event.currentTarget;
+    const button_name = pressed_button.id.split("-")[3];
+    let candle = this.document.system.candle_progress;
+
+    // Set Candle Value
+    if (button_name == "plus") {
+      candle.value += 1;
+    }
+    else if (button_name == "minus") {
+      candle.value -= 1;
+    }
+    if (candle.value > candle.max) {
+      candle.value = candle.max
+    }
+    else if (candle.value < candle.min) {
+      candle.value = candle.min
+    }
+
+    // Update Data
+    this.document.update({ ['system.candle_progress.value']: candle.value });
+
+    // Submit click
+    // pressed_button.click();
   }
 
   /* -------------------------------------------- */

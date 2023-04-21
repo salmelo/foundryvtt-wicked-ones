@@ -1,4 +1,4 @@
-<form class="{{cssClass}} actor-sheet conquest-sheet" autocomplete="off">
+﻿<form class="{{cssClass}} actor-sheet conquest-sheet" autocomplete="off">
 
   {{!-- Base Conquest Information --}}
   <section class="section flex-vertical">
@@ -56,64 +56,41 @@
       {{!-- Candle Tab --}}
       <div id="conquest-{{actor._id}}-candle" class="tab flex-vertical" data-tab="conquest-candle">
         <div class="label-stripe">
-          <p>{{localize "FITD.DungeonDescription"}}</p>
+          <p>{{localize "FITD.UA_CONQUEST_SHEET.TheCandle"}}</p>
         </div>
-        <div id="theme-description">
-          {{#each actor.items as |item id|}}
-          {{#if (eq item.type "dungeon_theme")}}
-          <div class="item flex-horizontal" data-item-id="{{item._id}}">
-            <div class="item-body flex-vertical">
-              <div class="item-name item-open-editor">{{item.name}}</div>
-              <div class="item-description">{{item.system.description}}</div>
-            </div>
-            <a class="item-control item-delete" title="{{localize 'FITD.TitleDeleteItem'}}"><i class="fas fa-trash"></i></a>
-          </div>
-          {{/if}}
-          {{/each}}
-        </div>
-        <div class="text-input">
-          <label class="label-stripe">{{localize "FITD.Entrance"}}</label>
-          {{#if (eq system.entrance "")}}
-          <label>{{localize "FITD.EntranceHints"}}</label>
-          {{/if}}
-          <input type="text" id="entrance-description-input" name="system.entrance" value="{{system.entrance}}">
-        </div>
-        <div class="text-input">
-          <label class="label-stripe">{{localize "FITD.Structure"}}</label>
-          {{#if (eq system.structure "")}}
-          <label>{{localize "FITD.StructureHints"}}</label>
-          {{/if}}
-          <input type="text" id="structure-description-input" name="system.structure" value="{{system.structure}}">
-        </div>
-        <div class="text-input">
-          <label class="label-stripe">{{localize "FITD.Lighting"}}</label>
-          {{#if (eq system.lighting "")}}
-          <label>{{localize "FITD.LightingHints"}}</label>
-          {{/if}}
-          <input type="text" id="lighting-description-input" name="system.lighting" value="{{system.lighting}}">
-        </div>
-        <div class="text-input">
-          <label class="label-stripe">{{localize "FITD.Atmospherics"}}</label>
-          {{#if (eq system.atmospherics "")}}
-          <label>{{localize "FITD.AtmosphericsHints"}}</label>
-          {{/if}}
-          <input type="text" id="atmospherics-description-input" name="system.atmospherics" value="{{system.atmospherics}}">
-        </div>
-        <div class="text-input">
-          <label class="label-stripe">{{localize "FITD.Hoard"}}</label>
-          {{#if (eq system.hoard "")}}
-          <label>{{localize "FITD.HoardHints"}}</label>
-          {{/if}}
-          <input type="text" id="hoard-description-input" name="system.hoard" value="{{system.hoard}}">
-        </div>
-        <div class="text-input">
-          <label class="label-stripe">{{localize "FITD.Imps"}}</label>
-          {{#if (eq system.imps "")}}
-          <label>{{localize "FITD.ImpsHints1"}}</label><br />
-          <label>{{localize "FITD.ImpsHints2"}}</label>
-          {{/if}}
-          <input type="text" id="imps-description-input" name="system.imps" value="{{system.imps}}">
-        </div>
+        {{!-- Table for Candle display --}}
+        <table class="candle">
+          <tr>
+            <td><b>{{localize "FITD.UA_CONQUEST_SHEET.GM"}}:</b></td>
+            <td><b>{{localize "FITD.UA_CONQUEST_SHEET.PCs"}}:</b></td>
+            <td rowspan="5">
+              <img src="/systems/wicked-ones/styles/assets/candle/candle_stage_{{system.candle_progress.value}}.png" />
+              <div class="flex-horizontal">
+                <button class="candle-button" id="conquest-{{actor._id}}-candle-minus" {{#if (eq system.candle_progress.value system.candle_progress.min)}} disabled {{/if}}>-</button>
+                <button class="candle-button" id="conquest-{{actor._id}}-candle-plus" {{#if (eq system.candle_progress.value system.candle_progress.max)}} disabled {{/if}}>+</button>
+              </div>
+            </td>
+          </tr>
+          <tr {{#if (eq system.candle_progress.value 2)}}class="highlighted"{{/if}}{{#if (eq system.candle_progress.value 3)}}class="highlighted"{{/if}}>
+            <td>{{localize "FITD.UA_CONQUEST_SHEET.CandleDescription1A"}}<br />{{localize "FITD.UA_CONQUEST_SHEET.CandleDescription1B"}}</td>
+            <td>{{localize "FITD.UA_CONQUEST_SHEET.CandleDescription1C"}}<br />{{localize "FITD.UA_CONQUEST_SHEET.CandleDescription1D"}}</td>
+          </tr>
+          <tr {{#if (eq system.candle_progress.value 4)}}class="highlighted"{{/if}}{{#if (eq system.candle_progress.value 5)}}class="highlighted"{{/if}}>
+            <td>{{localize "FITD.UA_CONQUEST_SHEET.CandleDescription2A"}}<br />{{localize "FITD.UA_CONQUEST_SHEET.CandleDescription2B"}}</td>
+            <td>{{localize "FITD.UA_CONQUEST_SHEET.CandleDescription2C"}}<br />{{localize "FITD.UA_CONQUEST_SHEET.CandleDescription2D"}}</td>
+          </tr>
+          <tr {{#if (eq system.candle_progress.value 6)}}class="highlighted"{{/if}}>
+            <td>{{localize "FITD.UA_CONQUEST_SHEET.CandleDescription3A"}}<br />{{localize "FITD.UA_CONQUEST_SHEET.CandleDescription3B"}}</td>
+            <td>{{localize "FITD.UA_CONQUEST_SHEET.CandleDescription3C"}}<br />{{localize "FITD.UA_CONQUEST_SHEET.CandleDescription3D"}}</td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <ul>
+                <li>{{localize "FITD.UA_CONQUEST_SHEET.CandleHint"}}</li>
+              </ul>
+            </td>
+          </tr>
+        </table>
       </div>
 
       {{!-- Domains / Conquest Abilities Tab --}}
@@ -121,28 +98,31 @@
 
         {{!-- Horde abilities --}}
         <div id="conquest-{{actor._id}}-horde" class="label-stripe flex-horizontal horde">
-          <p class="flex-horizontal">
-            {{#multiboxes system.horde_value.value}}
-            <input type="radio" id="character-{{actor._id}}-horde-0" name="system.horde_value.value" value="0" dtype="Radio">
-            <label for="character-{{actor._id}}-horde-0">
-            {{localize "FITD.UA_CONQUEST_SHEET.Horde"}}
-            </label>
-            {{#times_from_1 system.horde_value.max}}
-            <input type="radio" id="character-{{../actor._id}}-horde-{{this}}" name="system.horde_value.value" value="{{this}}" dtype="Radio">
-            <label for="character-{{../actor._id}}-horde-{{this}}"></label>
-            {{/times_from_1}}
-            {{/multiboxes}}
-          </p>
-          <p><a class="item-add-popup" data-item-type="conquest_ability"><i class="fas fa-plus-square"></i></a></p>
-        </div>
-        {{!-- Insert Row (maybe in table) for Empowered & Treatened --}}
-        <div class="label-stripe flex-horizontal conquest-status horde">
-          <p class="flex-horizontal">
+          <div id="character-{{actor._id}}-gold" class="big-teeth domain">
+            <p class="flex-horizontal">
+              {{#multiboxes system.horde_value.value}}
+              <input type="radio" id="character-{{actor._id}}-horde-0" name="system.horde_value.value" value="0" dtype="Radio">
+              <label for="character-{{actor._id}}-horde-0">
+              {{localize "FITD.UA_CONQUEST_SHEET.Horde"}}
+              </label>
+              {{#times_from_1 system.horde_value.max}}
+              <input type="radio" id="character-{{../actor._id}}-horde-{{this}}" name="system.horde_value.value" value="{{this}}" dtype="Radio">
+              <label for="character-{{../actor._id}}-horde-{{this}}"></label>
+              {{/times_from_1}}
+              {{/multiboxes}}
+            </p>
+          </div>
+          <div class="standard-checkbox empowered">
             <input type="checkbox" id="item-{{actor._id}}-horde-empowered" name="system.horde_empowered" value="system.horde_empowered" {{checked system.horde_empowered}}>
-            <label for="item-{{actor._id}}-horde-empowered">{{localize "FITD.UA_CONQUEST_SHEET.Empowered"}}</label>
+            <label for="item-{{actor._id}}-horde-empowered"></label>
+            {{localize "FITD.UA_CONQUEST_SHEET.Empowered"}}
+          </div>
+          <div class="standard-checkbox threatened">
             <input type="checkbox" id="item-{{actor._id}}-horde-threatened" name="system.horde_threatened" value="system.horde_threatened" {{checked system.horde_threatened}}>
-            <label for="item-{{actor._id}}-horde-threatened">{{localize "FITD.UA_CONQUEST_SHEET.Threatened"}}</label>
-          </p>
+            <label for="item-{{actor._id}}-horde-threatened"></label>
+            {{localize "FITD.UA_CONQUEST_SHEET.Threatened"}}
+          </div>
+          <p><a class="item-add-popup" data-item-type="conquest_ability"><i class="fas fa-plus-square"></i></a></p>
         </div>
         <table class="draggable-items">
           <tbody>
@@ -188,29 +168,32 @@
 
 
         {{!-- Horror abilities --}}
-        <div id="conquest-{{actor._id}}-horor" class="label-stripe flex-horizontal horor">
-          <p class="flex-horizontal">
-            {{#multiboxes system.horror_value.value}}
-            <input type="radio" id="character-{{actor._id}}-horror-0" name="system.horror_value.value" value="0" dtype="Radio">
-            <label for="character-{{actor._id}}-horror-0">
-            {{localize "FITD.UA_CONQUEST_SHEET.Horror"}}
-            </label>
-            {{#times_from_1 system.horror_value.max}}
-            <input type="radio" id="character-{{../actor._id}}-horror-{{this}}" name="system.horror_value.value" value="{{this}}" dtype="Radio">
-            <label for="character-{{../actor._id}}-horror-{{this}}"></label>
-            {{/times_from_1}}
-            {{/multiboxes}}
-          </p>
-          <p><a class="item-add-popup" data-item-type="conquest_ability"><i class="fas fa-plus-square"></i></a></p>
-        </div>
-        {{!-- Insert Row (maybe in table) for Empowered & Treatened --}}
-        <div class="label-stripe flex-horizontal conquest-status horror">
-          <p class="flex-horizontal">
+        <div id="conquest-{{actor._id}}-horror" class="label-stripe flex-horizontal horror">
+          <div id="character-{{actor._id}}-gold" class="big-teeth domain">
+            <p class="flex-horizontal">
+              {{#multiboxes system.horror_value.value}}
+              <input type="radio" id="character-{{actor._id}}-horror-0" name="system.horror_value.value" value="0" dtype="Radio">
+              <label for="character-{{actor._id}}-horror-0">
+              {{localize "FITD.UA_CONQUEST_SHEET.Horror"}}
+              </label>
+              {{#times_from_1 system.horror_value.max}}
+              <input type="radio" id="character-{{../actor._id}}-horror-{{this}}" name="system.horror_value.value" value="{{this}}" dtype="Radio">
+              <label for="character-{{../actor._id}}-horror-{{this}}"></label>
+              {{/times_from_1}}
+              {{/multiboxes}}
+            </p>
+          </div>
+          <div class="standard-checkbox empowered">
             <input type="checkbox" id="item-{{actor._id}}-horror-empowered" name="system.horror_empowered" value="system.horror_empowered" {{checked system.horror_empowered}}>
-            <label for="item-{{actor._id}}-horror-empowered">{{localize "FITD.UA_CONQUEST_SHEET.Empowered"}}</label>
+            <label for="item-{{actor._id}}-horror-empowered"></label>
+            {{localize "FITD.UA_CONQUEST_SHEET.Empowered"}}
+          </div>
+          <div class="standard-checkbox threatened">
             <input type="checkbox" id="item-{{actor._id}}-horror-threatened" name="system.horror_threatened" value="system.horror_threatened" {{checked system.horror_threatened}}>
-            <label for="item-{{actor._id}}-horror-threatened">{{localize "FITD.UA_CONQUEST_SHEET.Threatened"}}</label>
-          </p>
+            <label for="item-{{actor._id}}-horror-threatened"></label>
+            {{localize "FITD.UA_CONQUEST_SHEET.Threatened"}}
+          </div>
+          <p><a class="item-add-popup" data-item-type="conquest_ability"><i class="fas fa-plus-square"></i></a></p>
         </div>
         <table class="draggable-items">
           <tbody>
@@ -257,28 +240,31 @@
 
         {{!-- Corruption abilities --}}
         <div id="conquest-{{actor._id}}-corruption" class="label-stripe flex-horizontal corruption">
-          <p class="flex-horizontal">
-            {{#multiboxes system.corruption_value.value}}
-            <input type="radio" id="character-{{actor._id}}-corruption-0" name="system.corruption_value.value" value="0" dtype="Radio">
-            <label for="character-{{actor._id}}-corruption-0">
-            {{localize "FITD.UA_CONQUEST_SHEET.Corruption"}}
-            </label>
-            {{#times_from_1 system.corruption_value.max}}
-            <input type="radio" id="character-{{../actor._id}}-corruption-{{this}}" name="system.corruption_value.value" value="{{this}}" dtype="Radio">
-            <label for="character-{{../actor._id}}-corruption-{{this}}"></label>
-            {{/times_from_1}}
-            {{/multiboxes}}
-          </p>
-          <p><a class="item-add-popup" data-item-type="conquest_ability"><i class="fas fa-plus-square"></i></a></p>
-        </div>
-        {{!-- Insert Row (maybe in table) for Empowered & Treatened --}}
-        <div class="label-stripe flex-horizontal conquest-status corruption">
-          <p class="flex-horizontal">
+          <div id="character-{{actor._id}}-gold" class="big-teeth domain">
+            <p class="flex-horizontal">
+              {{#multiboxes system.corruption_value.value}}
+              <input type="radio" id="character-{{actor._id}}-corruption-0" name="system.corruption_value.value" value="0" dtype="Radio">
+              <label for="character-{{actor._id}}-corruption-0">
+              {{localize "FITD.UA_CONQUEST_SHEET.Corruption"}}
+              </label>
+              {{#times_from_1 system.corruption_value.max}}
+              <input type="radio" id="character-{{../actor._id}}-corruption-{{this}}" name="system.corruption_value.value" value="{{this}}" dtype="Radio">
+              <label for="character-{{../actor._id}}-corruption-{{this}}"></label>
+              {{/times_from_1}}
+              {{/multiboxes}}
+            </p>
+          </div>
+          <div class="standard-checkbox empowered">
             <input type="checkbox" id="item-{{actor._id}}-corruption-empowered" name="system.corruption_empowered" value="system.corruption_empowered" {{checked system.corruption_empowered}}>
-            <label for="item-{{actor._id}}-corruption-empowered">{{localize "FITD.UA_CONQUEST_SHEET.Empowered"}}</label>
+            <label for="item-{{actor._id}}-corruption-empowered"></label>
+            {{localize "FITD.UA_CONQUEST_SHEET.Empowered"}}
+          </div>
+          <div class="standard-checkbox threatened">
             <input type="checkbox" id="item-{{actor._id}}-corruption-threatened" name="system.corruption_threatened" value="system.corruption_threatened" {{checked system.corruption_threatened}}>
-            <label for="item-{{actor._id}}-corruption-threatened">{{localize "FITD.UA_CONQUEST_SHEET.Threatened"}}</label>
-          </p>
+            <label for="item-{{actor._id}}-corruption-threatened"></label>
+            {{localize "FITD.UA_CONQUEST_SHEET.Threatened"}}
+          </div>
+          <p><a class="item-add-popup" data-item-type="conquest_ability"><i class="fas fa-plus-square"></i></a></p>
         </div>
         <table class="draggable-items">
           <tbody>
