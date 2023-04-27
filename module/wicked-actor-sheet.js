@@ -49,7 +49,8 @@ export class WickedActorSheet extends WickedSheet {
 
     // look for abilities that change the number of gold, supply and dark heart icons
     // also check for Doomseeker rays and add translations
-    sheetData.actor.system.supply.max = 2;
+    //sheetData.actor.system.supply.max = 2;
+    sheetData.system.supply.max = 2;
     sheetData.items.forEach(i => {
       if (i.type == "specialability") {
         if (i.name == game.i18n.localize("FITD.GAME_LOGIC.PackMule")) {
