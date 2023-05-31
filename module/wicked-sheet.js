@@ -68,6 +68,40 @@ export class WickedSheet extends ActorSheet {
           break;
         case "minion_upgrade":
           items.sort(WickedHelpers.minionUpgradeSort);
+          // Remove non-applicable upgrades for Minion Sheets
+          if (this.object.system.mp_type == "normal") {
+            items = items.filter(function (item, index, arr) {
+              return item.system.is_for_wo;
+            });
+          } else if (this.object.system.mp_type == "undead") {
+            items = items.filter(function (item, index, arr) {
+              return item.system.is_for_ua;
+            });
+          }
+          break;
+        case "wickedimpulse":
+          // Remove non-applicable upgrades for Minion Sheets
+          if (this.object.system.is_awakened) {
+            items = items.filter(function (item, index, arr) {
+              return item.system.is_for_ua;
+            });
+          } else {
+            items = items.filter(function (item, index, arr) {
+              return !(item.system.is_for_ua);
+            });
+          }
+          break;
+        case "minionimpulse":
+          // Remove non-applicable upgrades for Minion Sheets
+          if (this.object.system.mp_type == "undead") {
+            items = items.filter(function (item, index, arr) {
+              return item.system.is_for_ua;
+            });
+          } else {
+            items = items.filter(function (item, index, arr) {
+              return !(item.system.is_for_ua);
+            });
+          }
           break;
         case "monster_race":
           // Remove primals for Minion Sheets

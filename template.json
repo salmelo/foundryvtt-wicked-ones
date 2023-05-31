@@ -331,7 +331,8 @@
       "hirelings": 0
     },
     "minionimpulse": {
-      "templates": [ "default" ]
+      "templates": [ "default" ],
+      "is_for_ua": false
     },
     "minion_job": {
       "templates": [ "default" ]
@@ -439,7 +440,8 @@
       "room_checkbox_2_checked": false
     },
     "wickedimpulse": {
-      "templates": [ "default" ]
+      "templates": [ "default" ],
+      "is_for_ua": false
     }
   }
 }

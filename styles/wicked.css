@@ -3254,19 +3254,19 @@ form.conquest-sheet table.candle img {
   left: 22px;
   z-index: -1;
 }
-#attributes .bloodied input:checked ~ i.splash {
+#attributes .bloodied input:checked ~ i.splash, #attributes .bloodied-minion input:checked ~ i.splash {
   background-image: url("assets/decorations/bloodsplat.png");
 }
-#attributes .exposed input:checked ~ i.splash {
+#attributes .exposed input:checked ~ i.splash, #attributes .exposed-minion input:checked ~ i.splash {
   background-image: url("assets/decorations/torn-paper.png");
 }
 #attributes #attributes-bloodied {
   margin-bottom: 0px;
 }
-#attributes .bloodied-minion input {
+#attributes .bloodied-minion input, #attributes .exposed-minion input {
   display: none;
 }
-#attributes .bloodied-minion label {
+#attributes .bloodied-minion label, #attributes .exposed-minion label {
   height: 24px;
   width: 24px;
   display: block;
@@ -3279,17 +3279,16 @@ form.conquest-sheet table.candle img {
   margin: 0px 2px -2px 1px;
   top: -2px;
 }
-#attributes .bloodied-minion label:hover {
+#attributes .bloodied-minion label:hover, #attributes .exposed-minion label:hover {
   filter: brightness(0.8);
   opacity: 0.9;
 }
-#attributes .bloodied-minion input:checked + label {
+#attributes .bloodied-minion input:checked + label, #attributes .exposed-minion input:checked + label {
   background-image: url("assets/boxes/bloodied-minion-filled-white.png");
 }
-#attributes .bloodied-minion input:checked ~ i.splash {
+#attributes .bloodied-minion input:checked ~ i.splash, #attributes .exposed-minion input:checked ~ i.splash {
   display: block;
   height: 75px;
-  background-image: url("assets/decorations/bloodsplat.png");
   background-size: 75px 75px;
   background-repeat: no-repeat;
   margin: -40px;

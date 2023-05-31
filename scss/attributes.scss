@@ -123,11 +123,11 @@
         }
     }
 
-    .bloodied input:checked ~ i.splash {
+    .bloodied input:checked ~ i.splash, .bloodied-minion input:checked ~ i.splash {
             background-image: url("assets/decorations/bloodsplat.png");
     }
 
-    .exposed input:checked ~ i.splash {
+    .exposed input:checked ~ i.splash, .exposed-minion input:checked ~ i.splash {
             background-image: url("assets/decorations/torn-paper.png");
     }
 
@@ -136,7 +136,7 @@
         margin-bottom: 0px;
     }
 
-    .bloodied-minion {
+    .bloodied-minion, .exposed-minion {
 
         input {
             display: none;
@@ -155,7 +155,6 @@
         input:checked ~ i.splash {
             display: block;
             height: 75px;
-            background-image: url("assets/decorations/bloodsplat.png");
             background-size: 75px 75px;
             background-repeat: no-repeat;
             margin: -40px;

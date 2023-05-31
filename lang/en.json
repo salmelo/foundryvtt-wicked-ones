@@ -51,6 +51,8 @@
     "NormalMinionsHint": "This upgrade is for normal Minion Packs",
     "UAMinions": "UA minions",
     "UAMinionsHint": "This upgrade is for Minion Packs in Undead Awakening",
+    "UACheckboxText": "Undead Awakening",
+    "UAImpulseHint": "This impulse is for use with Undead Awakening",
 
     "DowntimeAction": "Downtime Action",
     "DowntimeActions": "Downtime Actions",

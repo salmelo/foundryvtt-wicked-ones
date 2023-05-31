@@ -1,0 +1,24 @@
+<form class="{{cssClass}} item-sheet simple-sheet" autocomplete="off">
+  <header class="sheet-header">
+      <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}"/>
+      <div class="header-fields">
+          <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'FITD.Name'}}"/></h1>
+      </div>
+  </header>
+  
+  {{!-- Sheet Body --}}
+  <section class="sheet-body flex-vertical">
+    <label class="label-stripe">{{localize "FITD.Description"}}</label>
+    <textarea name="system.description" placeholder="{{localize "FITD.DescriptionHint"}}">{{system.description}}</textarea>
+  </section>
+
+  {{!-- UA Applicability --}}
+  <section class="flex-vertical">
+    <label class="label-stripe">{{localize "FITD.UACheckboxText"}}</label>
+    <div>
+      <input type="checkbox" name="system.is_for_ua" {{checked system.is_for_ua}}>
+      <label>{{localize "FITD.UAImpulseHint"}}</label>
+    </div>
+  </section>
+
+</form>

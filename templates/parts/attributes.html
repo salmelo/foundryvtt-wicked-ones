@@ -53,15 +53,27 @@
   {{#if (eq actor.type "minion_pack")}}
   <div id="attributes-bloodied" class="attribute flex-horizontal">
     <div class="tooltip" data-tooltip="{{{escdq (localize "FITD.TOOLTIP.BloodiedMinions")}}}">
-      <div class="bloodied-minion">
-        <input type="checkbox" id="{{actor._id}}-bloodied" name="system.bloodied" {{checked system.bloodied}}>
-        <label for="{{actor._id}}-bloodied"></label>
-        <i class="splash"></i>
-      </div>
+      {{#unless system.is_undead}}
+        <div class="bloodied-minion">
+          <input type="checkbox" id="{{actor._id}}-bloodied" name="system.bloodied" {{checked system.bloodied}}>
+          <label for="{{actor._id}}-bloodied"></label>
+          <i class="splash"></i>
+        </div>
+      {{else}}
+        <div class="exposed-minion">
+          <input type="checkbox" id="{{actor._id}}-exposed" name="system.bloodied" {{checked system.bloodied}}>
+          <label for="{{actor._id}}-exposed"></label>
+          <i class="splash"></i>
+        </div>
+      {{/unless}}
     </div>
     <div class="main">
       <div class="stripe">
+        {{#unless system.is_undead}}
         <label class="attribute-label">{{localize "FITD.Bloodied"}}</label>
+        {{else}}
+        <label class="attribute-label">{{localize "FITD.Exposed"}}</label>
+        {{/unless}}
       </div>
     </div>
   </div>
@@ -82,17 +94,17 @@
   <div id="attributes-bloodied" class="attribute flex-horizontal">
     <div class="tooltip" data-tooltip="{{{escdq (localize "FITD.TOOLTIP.Bloodied")}}}">
       {{#unless system.is_awakened}}
-      <div class="bloodied">
-        <input type="checkbox" id="{{actor._id}}-bloodied" name="system.bloodied" {{checked system.bloodied}}>
-        <label for="{{actor._id}}-bloodied"></label>
-        <i class="splash"></i>
-      </div>
+        <div class="bloodied">
+          <input type="checkbox" id="{{actor._id}}-bloodied" name="system.bloodied" {{checked system.bloodied}}>
+          <label for="{{actor._id}}-bloodied"></label>
+          <i class="splash"></i>
+        </div>
       {{else}}
         <div class="exposed">
-        <input type="checkbox" id="{{actor._id}}-exposed" name="system.bloodied" {{checked system.bloodied}}>
-        <label for="{{actor._id}}-exposed"></label>
-        <i class="splash"></i>
-      </div>
+          <input type="checkbox" id="{{actor._id}}-exposed" name="system.bloodied" {{checked system.bloodied}}>
+          <label for="{{actor._id}}-exposed"></label>
+          <i class="splash"></i>
+        </div>
       {{/unless}}
     </div>
     <div class="main">
