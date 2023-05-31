@@ -6,6 +6,46 @@
 
 form.minion-sheet {
 
+    /* Sheet Type Selection Styling  */
+    .top-bar {
+
+        background: none;
+        margin-top: -20px;
+        margin-bottom: 0px;
+
+        .sheet-type {
+            height: 80%;
+            margin-bottom: 5px;
+        }
+
+        /*
+        .top-decoration {
+            flex-grow: 1;
+            background: url(../styles/assets/decorations/border-top.png);
+            background-repeat: no-repeat;
+            background-size: 600px;
+            background-position-x: center;
+            background-position-y: bottom;
+        }
+
+        */
+    }
+
+    // MP Job Padding
+    #job {
+        padding-right: 12px;
+
+        label {
+            padding-left: 10px;
+        }
+
+        input {
+            text-align: left;
+            margin-left: 10px;
+            display: block;
+        }
+    }
+
     // MP Number Padding
     #number {
         padding-right: 12px;

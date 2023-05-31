@@ -29,6 +29,22 @@ export class WickedMinionSheet extends WickedSheet {
     sheetData.system = sheetData.document.system // project system data so that handlebars has the same name and value paths
     sheetData.notes = await TextEditor.enrichHTML(this.object.system.description, { async: true });
 
+    // Change the action ratings on display and flags depending on the sheet type
+    sheetData.system.is_undead = false;
+    switch (sheetData.system.mp_type) {
+      case "normal":
+        delete sheetData.system.attributes.guts.skills.horrify;
+        delete sheetData.system.attributes.guts.skills.command;
+        break;
+      case "undead":
+        delete sheetData.system.attributes.guts.skills.banter;
+        delete sheetData.system.attributes.guts.skills.threaten;
+        sheetData.system.is_undead = true;
+        break;
+
+      default:
+    }
+
     // get localization string for the item roll name
     sheetData.items.forEach(i => {
       if (i.type == "minion_upgrade") {

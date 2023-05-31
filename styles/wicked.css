@@ -1310,6 +1310,40 @@ form.wicked-one-sheet #duties-table tbody td:nth-of-type(1) {
 /* 
  *  Make clock resets invisible unless hovered
  */
+form.minion-sheet {
+  /* Sheet Type Selection Styling  */
+}
+form.minion-sheet .top-bar {
+  background: none;
+  margin-top: -20px;
+  margin-bottom: 0px;
+  /*
+  .top-decoration {
+      flex-grow: 1;
+      background: url(../styles/assets/decorations/border-top.png);
+      background-repeat: no-repeat;
+      background-size: 600px;
+      background-position-x: center;
+      background-position-y: bottom;
+  }
+
+  */
+}
+form.minion-sheet .top-bar .sheet-type {
+  height: 80%;
+  margin-bottom: 5px;
+}
+form.minion-sheet #job {
+  padding-right: 12px;
+}
+form.minion-sheet #job label {
+  padding-left: 10px;
+}
+form.minion-sheet #job input {
+  text-align: left;
+  margin-left: 10px;
+  display: block;
+}
 form.minion-sheet #number {
   padding-right: 12px;
 }

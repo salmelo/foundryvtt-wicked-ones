@@ -1,6 +1,6 @@
 {
   "Actor": {
-    "types": [ "character", "minion_pack", "dungeon", "faction", "party", "gm_sheet", "conquest_ua", "faction_ua", "gm_sheet_ua", "clock" ],
+    "types": [ "character", "minion_pack", "dungeon", "faction", "party", "gm_sheet", "conquest_ua", "faction_ua", "clock" ],
     "templates": {
       "attributes_template": {
         "attributes": {
@@ -133,6 +133,8 @@
     },
     "minion_pack": {
       "templates": [ "attributes_template" ],
+      "mp_type": "normal",
+      "ua_job": "",
       "bloodied": false,
       "morale": false,
       "number": {
@@ -232,13 +234,6 @@
       "style": "red"
     },
     "gm_sheet": {
-      "current_phase": {
-        "value": 1,
-        "min": 1,
-        "max": 12
-      }
-    },
-    "gm_sheet_ua": {
       "current_phase": {
         "value": 1,
         "min": 1,
@@ -349,7 +344,9 @@
       "upgrade_checkbox_2_text": "",
       "upgrade_checkbox_2_checked": false,
       "upgrade_skill_name": "",
-      "upgrade_skill_value": 2
+      "upgrade_skill_value": 2,
+      "is_for_wo": true,
+      "is_for_ua": true
     },
     "monster_race": {
       "templates": [ "default" ],

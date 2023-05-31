@@ -45,6 +45,12 @@
   "FITD": {
     "WickedOne": "Wicked One",
     "Awakened": "Awakened",
+    "Normal_MP": "Normal",
+    "Undead_MP": "Undead",
+    "NormalMinions": "Normal minions",
+    "NormalMinionsHint": "This upgrade is for normal Minion Packs",
+    "UAMinions": "UA minions",
+    "UAMinionsHint": "This upgrade is for Minion Packs in Undead Awakening",
 
     "DowntimeAction": "Downtime Action",
     "DowntimeActions": "Downtime Actions",
@@ -72,6 +78,7 @@
     "Look": "Look",
     "MinionPack": "Minion Pack",
     "VileFriend": "Vile Friend",
+    "UA_Job": "Job",
     "LessEffect": "Less Effect",
     "Description": "Description",
     "DescriptionHint": "Enter a short description here...",
