@@ -224,7 +224,12 @@
       }
     },
     "faction_ua": {
-      "notes": "DATA FOR UA FACTIONS HERE"
+      "is_primary": true,
+      "domain": "",
+      "defense1": "",
+      "defense2": "",
+      "defense3": "",
+      "notes": ""
     },
     "clock": {
       "name": "",

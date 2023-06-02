@@ -22,6 +22,7 @@ export class WickedActor extends Actor {
         case "character":
         case "dungeon":
         case "faction":
+        case "faction_ua":
         case "minion_pack":
         case "party":
         case "conquest_ua":
@@ -68,6 +69,7 @@ export class WickedActor extends Actor {
     if (this.type === 'character') this._prepareWickedOneData();
     if (this.type === 'dungeon') this._prepareDungeonData();
     if (this.type === 'faction') this._prepareFactionData();
+    if (this.type === 'faction_ua') this._prepareFactionUAData();
   }
 
 
@@ -159,6 +161,17 @@ export class WickedActor extends Actor {
 
   /* -------------------------------------------- */
 
+  /**
+   * Prepare UA Faction data
+   */
+  _prepareFactionUAData() {
+    const data = this.system;
+
+    // Make modifications to data here.
+
+  }
+
+  /* -------------------------------------------- */
   /** @override */
   getRollData() {
     const data = super.getRollData();

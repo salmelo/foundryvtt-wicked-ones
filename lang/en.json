@@ -258,7 +258,9 @@
     "Morale": "Morale",
     "DarkHearts": "Dark Hearts",
     "Essence": "Essence",
+    "Defense": "Defense",
     "Defenses": "Defenses",
+    "DefensePlaceholder": "Enter Defense...",
     "WickedXP": "Wicked XP",
     "UndeadXP": "Undead XP",
     "RecklessXP": "Reckless XP",
@@ -744,6 +746,7 @@
     "UA_CONQUEST_SHEET": {
       "Domain": "Domain",
       "DomainsAbilities": "Domains & Abilities",
+      "PrimaryFaction": "Primary Faction",
       "Horde": "Horde",
       "HordeHints": "What form does the horde take?",
       "Horror": "Horror",

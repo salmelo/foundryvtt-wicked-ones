@@ -2111,6 +2111,365 @@ form.faction-sheet #faction-sheet .editor, form.faction-sheet #faction-sheet .ed
 /* 
  *  Make clock resets invisible unless hovered
  */
+form.faction-ua-sheet {
+  padding: 5px 5px !important;
+}
+form.faction-ua-sheet #faction-sheet table.name-and-image {
+  margin: 0px;
+  border: none;
+}
+form.faction-ua-sheet #faction-sheet table.name-and-image td:nth-child(2) {
+  width: 50px;
+}
+form.faction-ua-sheet #faction-sheet table.name-and-image td:nth-child(2) img {
+  max-height: 50px;
+}
+form.faction-ua-sheet #faction-sheet .large-name input {
+  height: 45px;
+  font-size: 40px;
+  min-width: 250px;
+}
+form.faction-ua-sheet #faction-sheet div.label-stripe {
+  margin: 0px;
+}
+form.faction-ua-sheet #faction-sheet div.primary-domain {
+  justify-content: flex-start;
+  align-items: start;
+  margin: 5px 0px;
+}
+form.faction-ua-sheet #faction-sheet div.primary-domain label, form.faction-ua-sheet #faction-sheet div.primary-domain div.standard-checkbox {
+  color: #68332c;
+  font-weight: 700;
+  font-size: 20px;
+  margin-left: 12px;
+  margin-right: 12px;
+}
+form.faction-ua-sheet #faction-sheet div.primary-domain input {
+  margin-right: 20px;
+  text-align: center;
+}
+form.faction-ua-sheet #faction-sheet #faction-clocks {
+  margin-top: 0px;
+}
+form.faction-ua-sheet #faction-sheet #faction-clocks td {
+  width: 50%;
+}
+form.faction-ua-sheet #faction-sheet #faction-clocks td textarea {
+  resize: none;
+  margin-bottom: 0px;
+  min-height: unset;
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display {
+  width: 60px;
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-4 {
+  position: relative;
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-4 .blades-clock {
+  position: relative;
+  padding: 0;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  list-style: none;
+  overflow: hidden;
+  background-size: cover;
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-4 .blades-clock label {
+  overflow: hidden;
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 100%;
+  height: 100%;
+  transform-origin: 0% 100%;
+  transition: filter 0.1s;
+  cursor: pointer;
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-4 .blades-clock label:hover {
+  filter: brightness(0.8);
+  opacity: 0.9;
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-4 .blades-clock input {
+  position: absolute;
+  display: none;
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-4 .blades-clock input[value="0"] {
+  display: none;
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-4 .blades-clock *:nth-child(3) {
+  transform: rotate(0deg) skewY(180deg);
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-4 .blades-clock *:nth-child(5) {
+  transform: rotate(90deg) skewY(180deg);
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-4 .blades-clock *:nth-child(7) {
+  transform: rotate(180deg) skewY(180deg);
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-4 .blades-clock *:nth-child(9) {
+  transform: rotate(270deg) skewY(180deg);
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-6 {
+  position: relative;
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-6 .blades-clock {
+  position: relative;
+  padding: 0;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  list-style: none;
+  overflow: hidden;
+  background-size: cover;
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-6 .blades-clock label {
+  overflow: hidden;
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 100%;
+  height: 100%;
+  transform-origin: 0% 100%;
+  transition: filter 0.1s;
+  cursor: pointer;
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-6 .blades-clock label:hover {
+  filter: brightness(0.8);
+  opacity: 0.9;
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-6 .blades-clock input {
+  position: absolute;
+  display: none;
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-6 .blades-clock input[value="0"] {
+  display: none;
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-6 .blades-clock *:nth-child(3) {
+  transform: rotate(0deg) skewY(150deg);
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-6 .blades-clock *:nth-child(5) {
+  transform: rotate(60deg) skewY(150deg);
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-6 .blades-clock *:nth-child(7) {
+  transform: rotate(120deg) skewY(150deg);
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-6 .blades-clock *:nth-child(9) {
+  transform: rotate(180deg) skewY(150deg);
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-6 .blades-clock *:nth-child(11) {
+  transform: rotate(240deg) skewY(150deg);
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-6 .blades-clock *:nth-child(13) {
+  transform: rotate(300deg) skewY(150deg);
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-8 {
+  position: relative;
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-8 .blades-clock {
+  position: relative;
+  padding: 0;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  list-style: none;
+  overflow: hidden;
+  background-size: cover;
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-8 .blades-clock label {
+  overflow: hidden;
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 100%;
+  height: 100%;
+  transform-origin: 0% 100%;
+  transition: filter 0.1s;
+  cursor: pointer;
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-8 .blades-clock label:hover {
+  filter: brightness(0.8);
+  opacity: 0.9;
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-8 .blades-clock input {
+  position: absolute;
+  display: none;
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-8 .blades-clock input[value="0"] {
+  display: none;
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-8 .blades-clock *:nth-child(3) {
+  transform: rotate(0deg) skewY(135deg);
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-8 .blades-clock *:nth-child(5) {
+  transform: rotate(45deg) skewY(135deg);
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-8 .blades-clock *:nth-child(7) {
+  transform: rotate(90deg) skewY(135deg);
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-8 .blades-clock *:nth-child(9) {
+  transform: rotate(135deg) skewY(135deg);
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-8 .blades-clock *:nth-child(11) {
+  transform: rotate(180deg) skewY(135deg);
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-8 .blades-clock *:nth-child(13) {
+  transform: rotate(225deg) skewY(135deg);
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-8 .blades-clock *:nth-child(15) {
+  transform: rotate(270deg) skewY(135deg);
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-8 .blades-clock *:nth-child(17) {
+  transform: rotate(315deg) skewY(135deg);
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display .clock-zero-label {
+  position: relative;
+  left: -10px;
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display .blades-clock {
+  top: -10px;
+}
+form.faction-ua-sheet #faction-sheet .editor, form.faction-ua-sheet #faction-sheet .editor-content {
+  min-height: 150px;
+}
+
+/*
+ * Fonts
+ */
+/* bitter-regular - latin_cyrillic */
+@font-face {
+  font-family: "Bitter";
+  font-style: normal;
+  font-weight: 400;
+  src: local(""), url("../fonts/bitter-v16-latin_cyrillic-regular.woff2") format("woff2");
+}
+/* bitter-500 - latin_cyrillic */
+@font-face {
+  font-family: "Bitter";
+  font-style: normal;
+  font-weight: 500;
+  src: local(""), url("../fonts/bitter-v16-latin_cyrillic-500.woff2") format("woff2");
+}
+/* bitter-600 - latin_cyrillic */
+@font-face {
+  font-family: "Bitter";
+  font-style: normal;
+  font-weight: 600;
+  src: local(""), url("../fonts/bitter-v16-latin_cyrillic-600.woff2") format("woff2");
+}
+/* bitter-700 - latin_cyrillic */
+@font-face {
+  font-family: "Bitter";
+  font-style: normal;
+  font-weight: 700;
+  src: local(""), url("../fonts/bitter-v16-latin_cyrillic-700.woff2") format("woff2");
+}
+/* bitter-800 - latin_cyrillic */
+@font-face {
+  font-family: "Bitter";
+  font-style: normal;
+  font-weight: 800;
+  src: local(""), url("../fonts/bitter-v16-latin_cyrillic-800.woff2") format("woff2");
+}
+/* bitter-900 - latin_cyrillic */
+@font-face {
+  font-family: "Bitter";
+  font-style: normal;
+  font-weight: 900;
+  src: local(""), url("../fonts/bitter-v16-latin_cyrillic-900.woff2") format("woff2");
+}
+/* bitter-italic - latin_cyrillic */
+@font-face {
+  font-family: "Bitter";
+  font-style: italic;
+  font-weight: 400;
+  src: local(""), url("../fonts/bitter-v16-latin_cyrillic-italic.woff2") format("woff2");
+}
+/* bitter-500italic - latin_cyrillic */
+@font-face {
+  font-family: "Bitter";
+  font-style: italic;
+  font-weight: 500;
+  src: local(""), url("../fonts/bitter-v16-latin_cyrillic-500italic.woff2") format("woff2");
+}
+/* bitter-600italic - latin_cyrillic */
+@font-face {
+  font-family: "Bitter";
+  font-style: italic;
+  font-weight: 600;
+  src: local(""), url("../fonts/bitter-v16-latin_cyrillic-600italic.woff2") format("woff2");
+}
+/* bitter-700italic - latin_cyrillic */
+@font-face {
+  font-family: "Bitter";
+  font-style: italic;
+  font-weight: 700;
+  src: local(""), url("../fonts/bitter-v16-latin_cyrillic-700italic.woff2") format("woff2");
+}
+/* bitter-800italic - latin_cyrillic */
+@font-face {
+  font-family: "Bitter";
+  font-style: italic;
+  font-weight: 800;
+  src: local(""), url("../fonts/bitter-v16-latin_cyrillic-800italic.woff2") format("woff2");
+}
+/* bitter-900italic - latin_cyrillic */
+@font-face {
+  font-family: "Bitter";
+  font-style: italic;
+  font-weight: 900;
+  src: local(""), url("../fonts/bitter-v16-latin_cyrillic-900italic.woff2") format("woff2");
+}
+/* Blood crow-regular - latin */
+@font-face {
+  font-family: "Blood Crow";
+  font-style: normal;
+  font-weight: 400;
+  src: local(""), url("../fonts/bloodcrow.ttf") format("truetype");
+}
+/* piedra-regular - latin */
+@font-face {
+  font-family: "Piedra";
+  font-style: normal;
+  font-weight: 400;
+  src: local(""), url("../fonts/piedra-v9-latin-regular.woff2") format("woff2");
+}
+/* 
+*  Elements that can be changed will hint this by dimming and fading a little on hover
+*/
+/*
+ * Toothradio. Some (eg trauma) are not changeable, hence the option.
+ */
+/*
+ * Dark Hearts Glow
+ */
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 5px 5px rgba(104, 51, 44, 0.3), inset 0 0 5px 5px rgba(104, 51, 44, 0.3);
+    border-radius: 5px;
+  }
+  100% {
+    box-shadow: 0 0 15px 3px rgba(104, 51, 144, 0.8), inset 0 0 8px 3px rgba(104, 51, 144, 0.6);
+    border-radius: 11px;
+  }
+}
+/*
+ * Custom Radio
+ */
+/*
+ * Create Clock
+ */
+/*
+ * Custom Radio Round
+ */
+/*
+ * Custom label for shocked, bloodied, morale, adventurer hearts and a single hireling move
+ */
+/* 
+ *  Positioning of children by number
+ */
+/* 
+ *  Make clock resets invisible unless hovered
+ */
 form.party-sheet .profile-img {
   vertical-align: middle;
 }
