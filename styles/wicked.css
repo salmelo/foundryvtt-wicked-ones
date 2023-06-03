@@ -276,12 +276,13 @@
  */
 form.wicked-one-sheet {
   /* Top-Decoration Styling  */
-  background: url(../styles/assets/decorations/border-top.png);
-  background-repeat: no-repeat;
-  background-size: 600px;
-  background-position-x: center;
+  /*background: url(../styles/assets/decorations/border-top.png);
+     background-repeat: no-repeat;
+     background-size: 600px;
+     background-position-x: center;*/
   /* background-position-y: 5px;
 
+  /* Sheet Type Selection Styling  */
   /*
    *   Basic Character Info Table
    */
@@ -291,6 +292,26 @@ form.wicked-one-sheet {
   /*
    *   Tabs and Abilities
    */
+}
+form.wicked-one-sheet .top-bar {
+  background: none;
+  margin-top: -20px;
+  margin-bottom: 0px;
+}
+form.wicked-one-sheet .top-bar .sheet-type {
+  height: 80%;
+  margin-bottom: 5px;
+}
+form.wicked-one-sheet .top-bar .top-decoration {
+  flex-grow: 1;
+  background: url(../styles/assets/decorations/border-top.png);
+  background-repeat: no-repeat;
+  background-size: 600px;
+  background-position-x: center;
+  background-position-y: bottom;
+}
+form.wicked-one-sheet table.base-info {
+  margin-top: 0px;
 }
 form.wicked-one-sheet table.base-info .minionpack {
   justify-content: start;
@@ -436,6 +457,45 @@ form.wicked-one-sheet table.base-info .big-teeth.gold input:checked + label {
 }
 form.wicked-one-sheet table.base-info .big-teeth.gold label {
   margin-right: 0px;
+}
+form.wicked-one-sheet table.base-info .big-teeth.rot {
+  display: flex;
+  /* Hide the browser's default checkbox */
+}
+form.wicked-one-sheet table.base-info .big-teeth.rot label {
+  height: 20px;
+  width: 20px;
+  background-image: url("assets/boxes/bloodied-minion-filled.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin-right: 5px;
+  transition: filter 0.1s;
+  cursor: pointer;
+}
+form.wicked-one-sheet table.base-info .big-teeth.rot label:last-of-type {
+  margin-right: 0px;
+}
+form.wicked-one-sheet table.base-info .big-teeth.rot label[for$="-0"] {
+  width: auto;
+  height: auto;
+  background-image: none !important;
+  color: #EEEFFF;
+}
+form.wicked-one-sheet table.base-info .big-teeth.rot label[for$="-0"] i {
+  margin-top: 4px;
+}
+form.wicked-one-sheet table.base-info .big-teeth.rot label:hover {
+  filter: brightness(0.8);
+  opacity: 0.9;
+}
+form.wicked-one-sheet table.base-info .big-teeth.rot input {
+  display: none;
+}
+form.wicked-one-sheet table.base-info .big-teeth.rot input:checked ~ label {
+  background-image: url("assets/boxes/bloodied-minion-empty-white.png");
+}
+form.wicked-one-sheet table.base-info .big-teeth.rot input:checked + label {
+  background-image: url("assets/boxes/bloodied-minion-filled.png");
 }
 form.wicked-one-sheet table.base-info .goldmonger-size {
   display: flex;
@@ -637,6 +697,59 @@ form.wicked-one-sheet #abilities-list .group-ext {
 }
 form.wicked-one-sheet #abilities-list .group-ext td.item-body i {
   font-size: 14px;
+}
+form.wicked-one-sheet #abilities-list .value-tracker {
+  display: flex;
+  /* Hide the browser's default checkbox */
+  align-items: center;
+  margin-top: 0.5em;
+}
+form.wicked-one-sheet #abilities-list .value-tracker label {
+  height: 20px;
+  width: 20px;
+  background-image: url("assets/boxes/bloodied-minion-filled.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin-right: 5px;
+  transition: filter 0.1s;
+  cursor: pointer;
+}
+form.wicked-one-sheet #abilities-list .value-tracker label:last-of-type {
+  margin-right: 0px;
+}
+form.wicked-one-sheet #abilities-list .value-tracker label[for$="-0"] {
+  width: auto;
+  height: auto;
+  background-image: none !important;
+  color: #EEEFFF;
+}
+form.wicked-one-sheet #abilities-list .value-tracker label[for$="-0"] i {
+  margin-top: 4px;
+}
+form.wicked-one-sheet #abilities-list .value-tracker label:hover {
+  filter: brightness(0.8);
+  opacity: 0.9;
+}
+form.wicked-one-sheet #abilities-list .value-tracker input {
+  display: none;
+}
+form.wicked-one-sheet #abilities-list .value-tracker input:checked ~ label {
+  background-image: url("assets/boxes/bloodied-minion-empty.png");
+}
+form.wicked-one-sheet #abilities-list .value-tracker input:checked + label {
+  background-image: url("assets/boxes/bloodied-minion-filled.png");
+}
+form.wicked-one-sheet #abilities-list .value-tracker label.black-label {
+  transition: filter 0.1s;
+  cursor: pointer;
+  background: none;
+  color: #191919;
+  text-shadow: none;
+}
+form.wicked-one-sheet #abilities-list .value-tracker label.black-label:hover {
+  filter: brightness(0.8);
+  opacity: 0.9;
+  color: #a20000;
 }
 form.wicked-one-sheet #abilities-list .psi-discipline .item-radio {
   display: flex;
@@ -932,6 +1045,20 @@ form.wicked-one-sheet #duties-tab .downtime-hints > div {
 form.wicked-one-sheet #duties-tab .downtime-hints > div b {
   font-style: normal;
 }
+form.wicked-one-sheet #duties-tab .conquest-hints {
+  padding: 3px 0px;
+}
+form.wicked-one-sheet #duties-tab .conquest-hints > div {
+  margin: 5px 6px;
+  font-style: italic;
+}
+form.wicked-one-sheet #duties-tab .conquest-hints > div b {
+  font-style: normal;
+}
+form.wicked-one-sheet #duties-tab .conquest-hints > div em {
+  font-style: normal;
+  font-weight: 600;
+}
 form.wicked-one-sheet #duties-tab #downtime-risk {
   margin-top: 5px;
 }
@@ -1183,6 +1310,40 @@ form.wicked-one-sheet #duties-table tbody td:nth-of-type(1) {
 /* 
  *  Make clock resets invisible unless hovered
  */
+form.minion-sheet {
+  /* Sheet Type Selection Styling  */
+}
+form.minion-sheet .top-bar {
+  background: none;
+  margin-top: -20px;
+  margin-bottom: 0px;
+  /*
+  .top-decoration {
+      flex-grow: 1;
+      background: url(../styles/assets/decorations/border-top.png);
+      background-repeat: no-repeat;
+      background-size: 600px;
+      background-position-x: center;
+      background-position-y: bottom;
+  }
+
+  */
+}
+form.minion-sheet .top-bar .sheet-type {
+  height: 80%;
+  margin-bottom: 5px;
+}
+form.minion-sheet #job {
+  padding-right: 12px;
+}
+form.minion-sheet #job label {
+  padding-left: 10px;
+}
+form.minion-sheet #job input {
+  text-align: left;
+  margin-left: 10px;
+  display: block;
+}
 form.minion-sheet #number {
   padding-right: 12px;
 }
@@ -1809,6 +1970,365 @@ form.faction-sheet #faction-sheet .faction-clock-display .blades-clock {
   top: -10px;
 }
 form.faction-sheet #faction-sheet .editor, form.faction-sheet #faction-sheet .editor-content {
+  min-height: 150px;
+}
+
+/*
+ * Fonts
+ */
+/* bitter-regular - latin_cyrillic */
+@font-face {
+  font-family: "Bitter";
+  font-style: normal;
+  font-weight: 400;
+  src: local(""), url("../fonts/bitter-v16-latin_cyrillic-regular.woff2") format("woff2");
+}
+/* bitter-500 - latin_cyrillic */
+@font-face {
+  font-family: "Bitter";
+  font-style: normal;
+  font-weight: 500;
+  src: local(""), url("../fonts/bitter-v16-latin_cyrillic-500.woff2") format("woff2");
+}
+/* bitter-600 - latin_cyrillic */
+@font-face {
+  font-family: "Bitter";
+  font-style: normal;
+  font-weight: 600;
+  src: local(""), url("../fonts/bitter-v16-latin_cyrillic-600.woff2") format("woff2");
+}
+/* bitter-700 - latin_cyrillic */
+@font-face {
+  font-family: "Bitter";
+  font-style: normal;
+  font-weight: 700;
+  src: local(""), url("../fonts/bitter-v16-latin_cyrillic-700.woff2") format("woff2");
+}
+/* bitter-800 - latin_cyrillic */
+@font-face {
+  font-family: "Bitter";
+  font-style: normal;
+  font-weight: 800;
+  src: local(""), url("../fonts/bitter-v16-latin_cyrillic-800.woff2") format("woff2");
+}
+/* bitter-900 - latin_cyrillic */
+@font-face {
+  font-family: "Bitter";
+  font-style: normal;
+  font-weight: 900;
+  src: local(""), url("../fonts/bitter-v16-latin_cyrillic-900.woff2") format("woff2");
+}
+/* bitter-italic - latin_cyrillic */
+@font-face {
+  font-family: "Bitter";
+  font-style: italic;
+  font-weight: 400;
+  src: local(""), url("../fonts/bitter-v16-latin_cyrillic-italic.woff2") format("woff2");
+}
+/* bitter-500italic - latin_cyrillic */
+@font-face {
+  font-family: "Bitter";
+  font-style: italic;
+  font-weight: 500;
+  src: local(""), url("../fonts/bitter-v16-latin_cyrillic-500italic.woff2") format("woff2");
+}
+/* bitter-600italic - latin_cyrillic */
+@font-face {
+  font-family: "Bitter";
+  font-style: italic;
+  font-weight: 600;
+  src: local(""), url("../fonts/bitter-v16-latin_cyrillic-600italic.woff2") format("woff2");
+}
+/* bitter-700italic - latin_cyrillic */
+@font-face {
+  font-family: "Bitter";
+  font-style: italic;
+  font-weight: 700;
+  src: local(""), url("../fonts/bitter-v16-latin_cyrillic-700italic.woff2") format("woff2");
+}
+/* bitter-800italic - latin_cyrillic */
+@font-face {
+  font-family: "Bitter";
+  font-style: italic;
+  font-weight: 800;
+  src: local(""), url("../fonts/bitter-v16-latin_cyrillic-800italic.woff2") format("woff2");
+}
+/* bitter-900italic - latin_cyrillic */
+@font-face {
+  font-family: "Bitter";
+  font-style: italic;
+  font-weight: 900;
+  src: local(""), url("../fonts/bitter-v16-latin_cyrillic-900italic.woff2") format("woff2");
+}
+/* Blood crow-regular - latin */
+@font-face {
+  font-family: "Blood Crow";
+  font-style: normal;
+  font-weight: 400;
+  src: local(""), url("../fonts/bloodcrow.ttf") format("truetype");
+}
+/* piedra-regular - latin */
+@font-face {
+  font-family: "Piedra";
+  font-style: normal;
+  font-weight: 400;
+  src: local(""), url("../fonts/piedra-v9-latin-regular.woff2") format("woff2");
+}
+/* 
+*  Elements that can be changed will hint this by dimming and fading a little on hover
+*/
+/*
+ * Toothradio. Some (eg trauma) are not changeable, hence the option.
+ */
+/*
+ * Dark Hearts Glow
+ */
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 5px 5px rgba(104, 51, 44, 0.3), inset 0 0 5px 5px rgba(104, 51, 44, 0.3);
+    border-radius: 5px;
+  }
+  100% {
+    box-shadow: 0 0 15px 3px rgba(104, 51, 144, 0.8), inset 0 0 8px 3px rgba(104, 51, 144, 0.6);
+    border-radius: 11px;
+  }
+}
+/*
+ * Custom Radio
+ */
+/*
+ * Create Clock
+ */
+/*
+ * Custom Radio Round
+ */
+/*
+ * Custom label for shocked, bloodied, morale, adventurer hearts and a single hireling move
+ */
+/* 
+ *  Positioning of children by number
+ */
+/* 
+ *  Make clock resets invisible unless hovered
+ */
+form.faction-ua-sheet {
+  padding: 5px 5px !important;
+}
+form.faction-ua-sheet #faction-sheet table.name-and-image {
+  margin: 0px;
+  border: none;
+}
+form.faction-ua-sheet #faction-sheet table.name-and-image td:nth-child(2) {
+  width: 50px;
+}
+form.faction-ua-sheet #faction-sheet table.name-and-image td:nth-child(2) img {
+  max-height: 50px;
+}
+form.faction-ua-sheet #faction-sheet .large-name input {
+  height: 45px;
+  font-size: 40px;
+  min-width: 250px;
+}
+form.faction-ua-sheet #faction-sheet div.label-stripe {
+  margin: 0px;
+}
+form.faction-ua-sheet #faction-sheet div.primary-domain {
+  justify-content: flex-start;
+  align-items: start;
+  margin: 5px 0px;
+}
+form.faction-ua-sheet #faction-sheet div.primary-domain label, form.faction-ua-sheet #faction-sheet div.primary-domain div.standard-checkbox {
+  color: #68332c;
+  font-weight: 700;
+  font-size: 20px;
+  margin-left: 12px;
+  margin-right: 12px;
+}
+form.faction-ua-sheet #faction-sheet div.primary-domain input {
+  margin-right: 20px;
+  text-align: center;
+}
+form.faction-ua-sheet #faction-sheet #faction-clocks {
+  margin-top: 0px;
+}
+form.faction-ua-sheet #faction-sheet #faction-clocks td {
+  width: 50%;
+}
+form.faction-ua-sheet #faction-sheet #faction-clocks td textarea {
+  resize: none;
+  margin-bottom: 0px;
+  min-height: unset;
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display {
+  width: 60px;
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-4 {
+  position: relative;
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-4 .blades-clock {
+  position: relative;
+  padding: 0;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  list-style: none;
+  overflow: hidden;
+  background-size: cover;
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-4 .blades-clock label {
+  overflow: hidden;
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 100%;
+  height: 100%;
+  transform-origin: 0% 100%;
+  transition: filter 0.1s;
+  cursor: pointer;
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-4 .blades-clock label:hover {
+  filter: brightness(0.8);
+  opacity: 0.9;
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-4 .blades-clock input {
+  position: absolute;
+  display: none;
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-4 .blades-clock input[value="0"] {
+  display: none;
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-4 .blades-clock *:nth-child(3) {
+  transform: rotate(0deg) skewY(180deg);
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-4 .blades-clock *:nth-child(5) {
+  transform: rotate(90deg) skewY(180deg);
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-4 .blades-clock *:nth-child(7) {
+  transform: rotate(180deg) skewY(180deg);
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-4 .blades-clock *:nth-child(9) {
+  transform: rotate(270deg) skewY(180deg);
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-6 {
+  position: relative;
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-6 .blades-clock {
+  position: relative;
+  padding: 0;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  list-style: none;
+  overflow: hidden;
+  background-size: cover;
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-6 .blades-clock label {
+  overflow: hidden;
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 100%;
+  height: 100%;
+  transform-origin: 0% 100%;
+  transition: filter 0.1s;
+  cursor: pointer;
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-6 .blades-clock label:hover {
+  filter: brightness(0.8);
+  opacity: 0.9;
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-6 .blades-clock input {
+  position: absolute;
+  display: none;
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-6 .blades-clock input[value="0"] {
+  display: none;
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-6 .blades-clock *:nth-child(3) {
+  transform: rotate(0deg) skewY(150deg);
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-6 .blades-clock *:nth-child(5) {
+  transform: rotate(60deg) skewY(150deg);
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-6 .blades-clock *:nth-child(7) {
+  transform: rotate(120deg) skewY(150deg);
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-6 .blades-clock *:nth-child(9) {
+  transform: rotate(180deg) skewY(150deg);
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-6 .blades-clock *:nth-child(11) {
+  transform: rotate(240deg) skewY(150deg);
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-6 .blades-clock *:nth-child(13) {
+  transform: rotate(300deg) skewY(150deg);
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-8 {
+  position: relative;
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-8 .blades-clock {
+  position: relative;
+  padding: 0;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  list-style: none;
+  overflow: hidden;
+  background-size: cover;
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-8 .blades-clock label {
+  overflow: hidden;
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 100%;
+  height: 100%;
+  transform-origin: 0% 100%;
+  transition: filter 0.1s;
+  cursor: pointer;
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-8 .blades-clock label:hover {
+  filter: brightness(0.8);
+  opacity: 0.9;
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-8 .blades-clock input {
+  position: absolute;
+  display: none;
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-8 .blades-clock input[value="0"] {
+  display: none;
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-8 .blades-clock *:nth-child(3) {
+  transform: rotate(0deg) skewY(135deg);
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-8 .blades-clock *:nth-child(5) {
+  transform: rotate(45deg) skewY(135deg);
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-8 .blades-clock *:nth-child(7) {
+  transform: rotate(90deg) skewY(135deg);
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-8 .blades-clock *:nth-child(9) {
+  transform: rotate(135deg) skewY(135deg);
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-8 .blades-clock *:nth-child(11) {
+  transform: rotate(180deg) skewY(135deg);
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-8 .blades-clock *:nth-child(13) {
+  transform: rotate(225deg) skewY(135deg);
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-8 .blades-clock *:nth-child(15) {
+  transform: rotate(270deg) skewY(135deg);
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display.seg-8 .blades-clock *:nth-child(17) {
+  transform: rotate(315deg) skewY(135deg);
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display .clock-zero-label {
+  position: relative;
+  left: -10px;
+}
+form.faction-ua-sheet #faction-sheet .faction-clock-display .blades-clock {
+  top: -10px;
+}
+form.faction-ua-sheet #faction-sheet .editor, form.faction-ua-sheet #faction-sheet .editor-content {
   min-height: 150px;
 }
 
@@ -2654,6 +3174,265 @@ form.gm-sheet #project-clocks-table tr td:nth-of-type(4) {
 /* 
  *  Make clock resets invisible unless hovered
  */
+form.conquest-sheet .big-teeth {
+  justify-content: center;
+  align-items: center;
+}
+form.conquest-sheet .big-teeth.domain {
+  display: flex;
+  /* Hide the browser's default checkbox */
+}
+form.conquest-sheet .big-teeth.domain label {
+  height: 20px;
+  width: 20px;
+  background-image: url("assets/boxes/box-filled.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin-right: 5px;
+  transition: filter 0.1s;
+  cursor: pointer;
+}
+form.conquest-sheet .big-teeth.domain label:last-of-type {
+  margin-right: 0px;
+}
+form.conquest-sheet .big-teeth.domain label[for$="-0"] {
+  width: auto;
+  height: auto;
+  background-image: none !important;
+  color: #EEEFFF;
+}
+form.conquest-sheet .big-teeth.domain label[for$="-0"] i {
+  margin-top: 4px;
+}
+form.conquest-sheet .big-teeth.domain label:hover {
+  filter: brightness(0.8);
+  opacity: 0.9;
+}
+form.conquest-sheet .big-teeth.domain input {
+  display: none;
+}
+form.conquest-sheet .big-teeth.domain input:checked ~ label {
+  background-image: url("assets/boxes/box-empty.png");
+}
+form.conquest-sheet .big-teeth.domain input:checked + label {
+  background-image: url("assets/boxes/box-filled.png");
+}
+form.conquest-sheet .big-teeth.domain label {
+  margin-right: 0px;
+}
+form.conquest-sheet .big-teeth.domain input:checked:nth-of-type(1) ~ label:nth-of-type(2) {
+  background-image: url("assets/boxes/box-filled.png");
+}
+form.conquest-sheet .empowered label {
+  height: 32px;
+  width: 24px;
+  display: block;
+  background-image: url("assets/boxes/empowered-empty.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: relative;
+  transition: filter 0.1s;
+  cursor: pointer;
+  padding-left: 26px;
+  margin-right: 5px;
+}
+form.conquest-sheet .empowered label:hover {
+  filter: brightness(0.8);
+  opacity: 0.9;
+}
+form.conquest-sheet .empowered input[type=checkbox]:checked + label {
+  background-image: url("assets/boxes/empowered-red.png");
+}
+form.conquest-sheet .threatened label {
+  height: 32px;
+  width: 24px;
+  display: block;
+  background-image: url("assets/boxes/threatened-empty.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: relative;
+  transition: filter 0.1s;
+  cursor: pointer;
+  padding-left: 26px;
+  margin-right: 5px;
+}
+form.conquest-sheet .threatened label:hover {
+  filter: brightness(0.8);
+  opacity: 0.9;
+}
+form.conquest-sheet .threatened input[type=checkbox]:checked + label {
+  background-image: url("assets/boxes/threatened-red.png");
+}
+form.conquest-sheet .group-core {
+  background-color: #68332c3f;
+}
+form.conquest-sheet #campaign-theme-bar {
+  font-size: 18px;
+  display: table-row;
+}
+form.conquest-sheet #campaign-theme-bar td:first-child {
+  background-color: #68332c;
+  width: 100%;
+  padding-left: 10px;
+  align-self: center;
+  height: 33px;
+}
+form.conquest-sheet #campaign-theme-bar td:last-child {
+  padding: 0px;
+}
+form.conquest-sheet #campaign-theme-bar tr:hover .item-add-popup {
+  transition: opacity 0.5s;
+  opacity: 1;
+}
+form.conquest-sheet #campaign-theme-bar tr .item-add-popup {
+  transition: opacity 0.5s;
+  opacity: 0.1;
+}
+form.conquest-sheet table.candle .highlighted {
+  background-color: #68332c3f;
+}
+form.conquest-sheet table.candle img {
+  border: hidden;
+}
+
+/*
+ * Fonts
+ */
+/* bitter-regular - latin_cyrillic */
+@font-face {
+  font-family: "Bitter";
+  font-style: normal;
+  font-weight: 400;
+  src: local(""), url("../fonts/bitter-v16-latin_cyrillic-regular.woff2") format("woff2");
+}
+/* bitter-500 - latin_cyrillic */
+@font-face {
+  font-family: "Bitter";
+  font-style: normal;
+  font-weight: 500;
+  src: local(""), url("../fonts/bitter-v16-latin_cyrillic-500.woff2") format("woff2");
+}
+/* bitter-600 - latin_cyrillic */
+@font-face {
+  font-family: "Bitter";
+  font-style: normal;
+  font-weight: 600;
+  src: local(""), url("../fonts/bitter-v16-latin_cyrillic-600.woff2") format("woff2");
+}
+/* bitter-700 - latin_cyrillic */
+@font-face {
+  font-family: "Bitter";
+  font-style: normal;
+  font-weight: 700;
+  src: local(""), url("../fonts/bitter-v16-latin_cyrillic-700.woff2") format("woff2");
+}
+/* bitter-800 - latin_cyrillic */
+@font-face {
+  font-family: "Bitter";
+  font-style: normal;
+  font-weight: 800;
+  src: local(""), url("../fonts/bitter-v16-latin_cyrillic-800.woff2") format("woff2");
+}
+/* bitter-900 - latin_cyrillic */
+@font-face {
+  font-family: "Bitter";
+  font-style: normal;
+  font-weight: 900;
+  src: local(""), url("../fonts/bitter-v16-latin_cyrillic-900.woff2") format("woff2");
+}
+/* bitter-italic - latin_cyrillic */
+@font-face {
+  font-family: "Bitter";
+  font-style: italic;
+  font-weight: 400;
+  src: local(""), url("../fonts/bitter-v16-latin_cyrillic-italic.woff2") format("woff2");
+}
+/* bitter-500italic - latin_cyrillic */
+@font-face {
+  font-family: "Bitter";
+  font-style: italic;
+  font-weight: 500;
+  src: local(""), url("../fonts/bitter-v16-latin_cyrillic-500italic.woff2") format("woff2");
+}
+/* bitter-600italic - latin_cyrillic */
+@font-face {
+  font-family: "Bitter";
+  font-style: italic;
+  font-weight: 600;
+  src: local(""), url("../fonts/bitter-v16-latin_cyrillic-600italic.woff2") format("woff2");
+}
+/* bitter-700italic - latin_cyrillic */
+@font-face {
+  font-family: "Bitter";
+  font-style: italic;
+  font-weight: 700;
+  src: local(""), url("../fonts/bitter-v16-latin_cyrillic-700italic.woff2") format("woff2");
+}
+/* bitter-800italic - latin_cyrillic */
+@font-face {
+  font-family: "Bitter";
+  font-style: italic;
+  font-weight: 800;
+  src: local(""), url("../fonts/bitter-v16-latin_cyrillic-800italic.woff2") format("woff2");
+}
+/* bitter-900italic - latin_cyrillic */
+@font-face {
+  font-family: "Bitter";
+  font-style: italic;
+  font-weight: 900;
+  src: local(""), url("../fonts/bitter-v16-latin_cyrillic-900italic.woff2") format("woff2");
+}
+/* Blood crow-regular - latin */
+@font-face {
+  font-family: "Blood Crow";
+  font-style: normal;
+  font-weight: 400;
+  src: local(""), url("../fonts/bloodcrow.ttf") format("truetype");
+}
+/* piedra-regular - latin */
+@font-face {
+  font-family: "Piedra";
+  font-style: normal;
+  font-weight: 400;
+  src: local(""), url("../fonts/piedra-v9-latin-regular.woff2") format("woff2");
+}
+/* 
+*  Elements that can be changed will hint this by dimming and fading a little on hover
+*/
+/*
+ * Toothradio. Some (eg trauma) are not changeable, hence the option.
+ */
+/*
+ * Dark Hearts Glow
+ */
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 5px 5px rgba(104, 51, 44, 0.3), inset 0 0 5px 5px rgba(104, 51, 44, 0.3);
+    border-radius: 5px;
+  }
+  100% {
+    box-shadow: 0 0 15px 3px rgba(104, 51, 144, 0.8), inset 0 0 8px 3px rgba(104, 51, 144, 0.6);
+    border-radius: 11px;
+  }
+}
+/*
+ * Custom Radio
+ */
+/*
+ * Create Clock
+ */
+/*
+ * Custom Radio Round
+ */
+/*
+ * Custom label for shocked, bloodied, morale, adventurer hearts and a single hireling move
+ */
+/* 
+ *  Positioning of children by number
+ */
+/* 
+ *  Make clock resets invisible unless hovered
+ */
 #attributes {
   height: fit-content;
   min-width: fit-content;
@@ -2798,10 +3577,10 @@ form.gm-sheet #project-clocks-table tr td:nth-of-type(4) {
 #attributes .shock input:checked + label {
   background-image: url("assets/boxes/shock-filled.png");
 }
-#attributes .bloodied input {
+#attributes .bloodied input, #attributes .exposed input {
   display: none;
 }
-#attributes .bloodied label {
+#attributes .bloodied label, #attributes .exposed label {
   height: 36px;
   width: 24px;
   display: block;
@@ -2816,17 +3595,16 @@ form.gm-sheet #project-clocks-table tr td:nth-of-type(4) {
   padding: 10px;
   top: -10px;
 }
-#attributes .bloodied label:hover {
+#attributes .bloodied label:hover, #attributes .exposed label:hover {
   filter: brightness(0.8);
   opacity: 0.9;
 }
-#attributes .bloodied input:checked + label {
+#attributes .bloodied input:checked + label, #attributes .exposed input:checked + label {
   background-image: url("assets/boxes/bloodied-filled-white.png");
 }
-#attributes .bloodied input:checked ~ i.splash {
+#attributes .bloodied input:checked ~ i.splash, #attributes .exposed input:checked ~ i.splash {
   display: block;
   height: 100px;
-  background-image: url("assets/decorations/bloodsplat.png");
   background-size: 100px 100px;
   background-repeat: no-repeat;
   margin: -50px;
@@ -2835,13 +3613,19 @@ form.gm-sheet #project-clocks-table tr td:nth-of-type(4) {
   left: 22px;
   z-index: -1;
 }
+#attributes .bloodied input:checked ~ i.splash, #attributes .bloodied-minion input:checked ~ i.splash {
+  background-image: url("assets/decorations/bloodsplat.png");
+}
+#attributes .exposed input:checked ~ i.splash, #attributes .exposed-minion input:checked ~ i.splash {
+  background-image: url("assets/decorations/torn-paper.png");
+}
 #attributes #attributes-bloodied {
   margin-bottom: 0px;
 }
-#attributes .bloodied-minion input {
+#attributes .bloodied-minion input, #attributes .exposed-minion input {
   display: none;
 }
-#attributes .bloodied-minion label {
+#attributes .bloodied-minion label, #attributes .exposed-minion label {
   height: 24px;
   width: 24px;
   display: block;
@@ -2854,17 +3638,16 @@ form.gm-sheet #project-clocks-table tr td:nth-of-type(4) {
   margin: 0px 2px -2px 1px;
   top: -2px;
 }
-#attributes .bloodied-minion label:hover {
+#attributes .bloodied-minion label:hover, #attributes .exposed-minion label:hover {
   filter: brightness(0.8);
   opacity: 0.9;
 }
-#attributes .bloodied-minion input:checked + label {
+#attributes .bloodied-minion input:checked + label, #attributes .exposed-minion input:checked + label {
   background-image: url("assets/boxes/bloodied-minion-filled-white.png");
 }
-#attributes .bloodied-minion input:checked ~ i.splash {
+#attributes .bloodied-minion input:checked ~ i.splash, #attributes .exposed-minion input:checked ~ i.splash {
   display: block;
   height: 75px;
-  background-image: url("assets/decorations/bloodsplat.png");
   background-size: 75px 75px;
   background-repeat: no-repeat;
   margin: -40px;
@@ -2981,6 +3764,18 @@ form.gm-sheet #project-clocks-table tr td:nth-of-type(4) {
 }
 #attributes #attributes-darkhearts .heart-container input:checked + label.dark-heart {
   background-image: url("assets/boxes/heart-filled.png");
+}
+#attributes #attributes-darkhearts .heart-container label.essence {
+  background-image: url("assets/boxes/bloodied-minion-filled.png");
+  margin-right: 8px;
+  position: relative;
+  top: -2px;
+}
+#attributes #attributes-darkhearts .heart-container input:checked ~ label.essence {
+  background-image: url("assets/boxes/bloodied-minion-empty.png");
+}
+#attributes #attributes-darkhearts .heart-container input:checked + label.essence {
+  background-image: url("assets/boxes/bloodied-minion-filled.png");
 }
 #attributes #hearts-footer {
   margin-left: 37px;
@@ -3666,6 +4461,10 @@ form.special-ability-sheet #ray-selection div.ray-line select:nth-child(2) {
   padding: 3px;
   border-bottom: 1px solid #4000005c;
 }
+#items-to-add label.cross-system:nth-of-type(2n),
+#items-to-add label.external:nth-of-type(2n) {
+  background: #9999993f;
+}
 #items-to-add label:nth-of-type(2n) {
   background: #68332c3f;
 }
@@ -3938,6 +4737,13 @@ textarea {
   outline: none;
   box-shadow: 0 0 5px #d46c1f;
   background: #d46c1f;
+}
+.dialog .dialog-buttons button:disabled, button:disabled {
+  outline: none;
+  border-top: 1px outset #999;
+  border-bottom: 2px outset #999;
+  box-shadow: none;
+  background: #999;
 }
 
 button {

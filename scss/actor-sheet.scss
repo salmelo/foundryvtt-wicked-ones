@@ -7,17 +7,43 @@
 form.wicked-one-sheet {
 	
 	/* Top-Decoration Styling  */
-	background: url(../styles/assets/decorations/border-top.png);
+
+	/*background: url(../styles/assets/decorations/border-top.png);
     background-repeat: no-repeat;
     background-size: 600px;
-    background-position-x: center;
+    background-position-x: center;*/
     /* background-position-y: 5px;
+
+    /* Sheet Type Selection Styling  */
+    .top-bar {
+
+        background: none;
+        margin-top: -20px;
+        margin-bottom: 0px;
+
+        .sheet-type {
+            height: 80%;
+            margin-bottom: 5px;
+        }
+
+        .top-decoration {
+            flex-grow: 1;
+            background: url(../styles/assets/decorations/border-top.png);
+            background-repeat: no-repeat;
+            background-size: 600px;
+            background-position-x: center;
+            background-position-y: bottom;
+        }
+    }
+
 
     /*
      *   Basic Character Info Table
      */
 
     table.base-info {
+
+        margin-top: 0px;
 
         .minionpack {
             justify-content: start;
@@ -122,6 +148,11 @@ form.wicked-one-sheet {
                 & label {
                     margin-right: 0px;
                 }
+            }
+
+            // Rot
+            &.rot {
+                @include toothradio(20px, 20px, "assets/boxes/bloodied-minion-empty-white.png", "assets/boxes/bloodied-minion-filled.png");
             }
         }
 
@@ -322,6 +353,20 @@ form.wicked-one-sheet {
             // Style for external hint
             td.item-body i {
                 font-size: 14px;
+            }
+        }
+
+        // Value Tracker
+        .value-tracker {
+            @include toothradio(20px, 20px, "assets/boxes/bloodied-minion-empty.png", "assets/boxes/bloodied-minion-filled.png");
+            align-items: center;
+            margin-top: 0.5em;
+
+            label.black-label {
+                @include changeable(0.1s, 0.8, 0.9, $highlight_red);
+                background: none;
+                color: $almost_black;
+                text-shadow: none;
             }
         }
 
@@ -578,6 +623,25 @@ form.wicked-one-sheet {
                 }
             }
         }
+
+        .conquest-hints {
+            padding:  3px 0px;
+
+            > div {
+                margin: 5px 6px;
+                font-style: italic;
+
+                b {
+                    font-style: normal;
+                }
+
+                em {
+                    font-style: normal;
+                    font-weight: 600;
+                }
+            }
+        }
+
 		#downtime-risk{
 			margin-top: 5px;
 		}

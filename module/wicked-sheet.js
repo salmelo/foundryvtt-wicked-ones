@@ -18,6 +18,7 @@ export class WickedSheet extends ActorSheet {
     html.find('.eye-rays area').mouseover(this._onDSMouseOver.bind(this));
     html.find('.eye-rays area').mouseout(this._onDSMouseOut.bind(this));
     html.find(".open-minion-pack").click(this._onMinionOpenClick.bind(this));
+    html.find(".candle-button").click(this._onCandleButtonPressed.bind(this));
 
     // Item Dragging
     if (this.document.isOwner) {
@@ -62,8 +63,45 @@ export class WickedSheet extends ActorSheet {
     // Sort Special Abilities, Rooms, Upgrades and Monster Races
     if (items.length > 0) {
       switch (items[0].type) {
+        case "conquest_ability":
+          items.sort(WickedHelpers.conquestAbilitySort);
+          break;
         case "minion_upgrade":
           items.sort(WickedHelpers.minionUpgradeSort);
+          // Remove non-applicable upgrades for Minion Sheets
+          if (this.object.system.mp_type == "normal") {
+            items = items.filter(function (item, index, arr) {
+              return item.system.is_for_wo;
+            });
+          } else if (this.object.system.mp_type == "undead") {
+            items = items.filter(function (item, index, arr) {
+              return item.system.is_for_ua;
+            });
+          }
+          break;
+        case "wickedimpulse":
+          // Remove non-applicable upgrades for Minion Sheets
+          if (this.object.system.is_awakened) {
+            items = items.filter(function (item, index, arr) {
+              return item.system.is_for_ua;
+            });
+          } else {
+            items = items.filter(function (item, index, arr) {
+              return !(item.system.is_for_ua);
+            });
+          }
+          break;
+        case "minionimpulse":
+          // Remove non-applicable upgrades for Minion Sheets
+          if (this.object.system.mp_type == "undead") {
+            items = items.filter(function (item, index, arr) {
+              return item.system.is_for_ua;
+            });
+          } else {
+            items = items.filter(function (item, index, arr) {
+              return !(item.system.is_for_ua);
+            });
+          }
           break;
         case "monster_race":
           // Remove primals for Minion Sheets
@@ -75,7 +113,12 @@ export class WickedSheet extends ActorSheet {
           items.sort(WickedHelpers.monsterRaceSort);
           break;
         case "specialability":
-          items.sort(WickedHelpers.specialAbilitySort);
+          if (this.object.system.is_awakened) {
+            items.sort(WickedHelpers.specialAbilitySortUA);
+          }
+          else {
+            items.sort(WickedHelpers.specialAbilitySortWO);
+          }
           break;
         case "tier3room":
           items.sort(WickedHelpers.tierThreeRoomSort);
@@ -92,17 +135,26 @@ export class WickedSheet extends ActorSheet {
       let itemTooltip = e.system.description ?? "";
       switch (item_type) {
 
+        case "conquest_ability":
+          if (typeof e.system.domain !== "undefined") {
+            itemPrefix += `(${game.i18n.localize(CONFIG.WO.ua_conquest_domains[e.system.domain])}): `
+          }
+          if (e.system.is_core) {
+            itemSuffix += ` (` + game.i18n.localize(`FITD.Core`) + `)`
+          }
+          break;
+
         case "minion_upgrade":
           if (e.system.upgrade_type == 'external') {
-            itemSuffix += ` (External)`
+            itemSuffix += ` (` + game.i18n.localize(`FITD.External`) + `)`
           } else if (e.system.upgrade_type == 'path') {
-            itemSuffix += ` (Magic Path)`
+            itemSuffix += ` (` + game.i18n.localize(`FITD.MagicPath`) + `)`
           }
           break;
 
         case "monster_race":
           if (e.system.primal) {
-            itemSuffix += ` (Primal)`
+            itemSuffix += ` (` + game.i18n.localize(`FITD.Primal`) + `)`
           }
           break;
 
@@ -111,9 +163,9 @@ export class WickedSheet extends ActorSheet {
             itemPrefix += `(${e.system.source}): `
           }
           if (e.system.ability_group == 'group_core') {
-            itemSuffix += ` (Core)`
+            itemSuffix += ` (` + game.i18n.localize(`FITD.Core`) + `)`
           } else if (e.system.ability_group == 'group_ext') {
-            itemSuffix += ` (External)`
+            itemSuffix += ` (` + game.i18n.localize(`FITD.External`) + `)`
           }
           if (itemTooltip == "") {
             itemTooltip = game.i18n.localize('FITD.ItemIsOfType') + ' ' + game.i18n.localize(CONFIG.WO.special_ability_types[e.system.ability_type]);
@@ -130,7 +182,17 @@ export class WickedSheet extends ActorSheet {
       }
 
       html += `<input id="select-item-${e._id}" type="${input_type}" name="select_items" value="${e._id}">`;
-      html += `<label class="flex-horizontal" for="select-item-${e._id}">`;
+      html += `<label class="`;
+      if (e.system.ability_group == 'group_ext') {
+        html += `flex-horizontal external`;
+      }
+      else if (this.object.system.is_awakened == e.system.is_ua_ability) {
+        html += `flex-horizontal `;
+      }
+      else {
+        html += `flex-horizontal cross-system`;
+      }
+      html += `" for="select-item-${e._id}">`;
       html += `${itemPrefix}${game.i18n.localize(e.name)}${itemSuffix}`;
       if (itemTooltip != "") {
         var cleanTip = itemTooltip.replace('"', '&quot;');
@@ -340,6 +402,36 @@ export class WickedSheet extends ActorSheet {
 
     // Otherwise render the sheet
     else sheet.render(true);
+  }
+
+  /* -------------------------------------------- */
+
+
+  async _onCandleButtonPressed(event) {
+    event.preventDefault();
+    let pressed_button = event.currentTarget;
+    const button_name = pressed_button.id.split("-")[3];
+    let candle = this.document.system.candle_progress;
+
+    // Set Candle Value
+    if (button_name == "plus") {
+      candle.value += 1;
+    }
+    else if (button_name == "minus") {
+      candle.value -= 1;
+    }
+    if (candle.value > candle.max) {
+      candle.value = candle.max
+    }
+    else if (candle.value < candle.min) {
+      candle.value = candle.min
+    }
+
+    // Update Data
+    this.document.update({ ['system.candle_progress.value']: candle.value });
+
+    // Submit click
+    // pressed_button.click();
   }
 
   /* -------------------------------------------- */

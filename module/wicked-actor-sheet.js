@@ -29,9 +29,27 @@ export class WickedActorSheet extends WickedSheet {
     sheetData.system = sheetData.document.system // project system data so that handlebars has the same name and value paths
     sheetData.notes = await TextEditor.enrichHTML(this.object.system.description, { async: true });
 
+    // Change the action ratings on display and flags depending on the sheet type
+    sheetData.system.is_awakened = false;
+    sheetData.system.has_gold = true;
+    switch (sheetData.system.pc_type) {
+      case "wicked_one":
+        delete sheetData.system.attributes.guts.skills.horrify;
+        delete sheetData.system.attributes.guts.skills.command;
+        break;
+      case "awakened":
+        delete sheetData.system.attributes.guts.skills.banter;
+        delete sheetData.system.attributes.guts.skills.threaten;
+        sheetData.system.is_awakened = true;
+        sheetData.system.has_gold = false;
+        break;
+
+      default:
+    }
+
     // look for abilities that change the number of gold, supply and dark heart icons
     // also check for Doomseeker rays and add translations
-    sheetData.actor.system.supply.max = 2;
+    sheetData.system.supply.max = 2;
     sheetData.items.forEach(i => {
       if (i.type == "specialability") {
         if (i.name == game.i18n.localize("FITD.GAME_LOGIC.PackMule")) {
@@ -49,6 +67,11 @@ export class WickedActorSheet extends WickedSheet {
     // check if Braineater and remove invoke skill
     if (sheetData.system.primal_monster_type == game.i18n.localize("FITD.GAME_LOGIC.Braineater")) {
       delete sheetData.system.attributes.guts.skills.invoke;
+    }
+
+    // check if Goldmonger and set Gold to bot be tracked
+    if (sheetData.system.primal_monster_type == game.i18n.localize("FITD.GAME_LOGIC.Goldmonger")) {
+      sheetData.system.has_gold = false;
     }
 
     // Get list of minions

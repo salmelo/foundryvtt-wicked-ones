@@ -243,13 +243,45 @@ export class WickedHelpers {
 /**
  * Sorts Special Abilities by External, Primal Calling, Source, Core Status and Alphabet
  */
-  static specialAbilitySort(a, b) {
+  static specialAbilitySortWO(a, b) {
     if (!(a.system.ability_group == "group_ext") && (b.system.ability_group == "group_ext")) {
       return -1;
     }
     if ((a.system.ability_group == "group_ext") && !(b.system.ability_group == "group_ext")) {
       return 1;
     }
+
+    if (!a.system.is_ua_ability && b.system.is_ua_ability) {
+      return -1;
+    }
+    if (a.system.is_ua_ability && !b.system.is_ua_ability) {
+      return 1;
+    }
+
+    // Sort by remaining criteria
+    return WickedHelpers.specialAbilitySort(a, b);
+  }
+
+  static specialAbilitySortUA(a, b) {
+    if (!(a.system.ability_group == "group_ext") && (b.system.ability_group == "group_ext")) {
+      return -1;
+    }
+    if ((a.system.ability_group == "group_ext") && !(b.system.ability_group == "group_ext")) {
+      return 1;
+    }
+
+    if (a.system.is_ua_ability && !b.system.is_ua_ability) {
+      return -1;
+    }
+    if (!a.system.is_ua_ability && b.system.is_ua_ability) {
+      return 1;
+    }
+
+    // Sort by remaining criteria
+    return WickedHelpers.specialAbilitySort(a, b);
+  }
+
+  static specialAbilitySort(a, b) {
 
     if (!WickedHelpers.isPrimalCalling(a.system.source) && WickedHelpers.isPrimalCalling(b.system.source)) {
       return -1;
@@ -351,6 +383,40 @@ export class WickedHelpers {
     }
     if (!(a.system.upgrade_type == "path") && (b.system.upgrade_type == "path")) {
       return 1;
+    }
+
+    if (a.name < b.name) {
+      return -1;
+    }
+    if (a.name > b.name) {
+      return 1;
+    }
+
+    // names must be equal
+    return 0;
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Sorts Conquest Abilities by Domain, Core and then Alphabet
+   */
+  static conquestAbilitySort(a, b) {
+
+    if (a.system.domain < b.system.domain) {
+      return -1;
+    }
+
+    if (a.system.domain > b.system.domain) {
+      return 1;
+    }
+
+    if (!(a.system.is_core) && (b.system.is_core)) {
+      return 1;
+    }
+
+    if ((a.system.is_core) && !(b.system.is_core)) {
+      return -1;
     }
 
     if (a.name < b.name) {

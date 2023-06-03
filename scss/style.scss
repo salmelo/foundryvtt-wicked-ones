@@ -7,9 +7,11 @@
 @import 'minion-sheet.scss';
 @import 'dungeon-sheet.scss';
 @import 'faction-sheet.scss';
+@import 'faction-ua-sheet.scss';
 @import 'party-sheet.scss';
 @import 'clock-sheet.scss';
 @import 'gm-sheet.scss';
+@import 'conquest-sheet.scss';
 
 @import 'attributes.scss';
 @import 'item-sheets.scss';
@@ -296,6 +298,14 @@ textarea {
         outline: none;
         box-shadow: 0 0 5px $orange;
         background: $orange;
+    }
+
+    &:disabled {
+        outline: none;
+        border-top: 1px outset $gray;
+        border-bottom: 2px outset $gray;
+        box-shadow: none;
+        background: $gray;
     }
 }
 

@@ -1,7 +1,88 @@
 {
   "Actor": {
-    "types": [ "character", "minion_pack", "dungeon", "faction", "party", "clock", "gm_sheet" ],
+    "types": [ "character", "minion_pack", "dungeon", "faction", "party", "gm_sheet", "conquest_ua", "faction_ua", "clock" ],
+    "templates": {
+      "attributes_template": {
+        "attributes": {
+          "brains": {
+            "shocked": false,
+            "label": "FITD.SkillsBrains",
+            "skills": {
+              "scan": {
+                "label": "FITD.SkillsScan",
+                "value": 0,
+                "practice": 0
+              },
+              "tinker": {
+                "label": "FITD.SkillsTinker",
+                "value": 0,
+                "practice": 0
+              },
+              "trick": {
+                "label": "FITD.SkillsTrick",
+                "value": 0,
+                "practice": 0
+              }
+            }
+          },
+          "muscles": {
+            "shocked": false,
+            "label": "FITD.SkillsMuscles",
+            "skills": {
+              "finesse": {
+                "label": "FITD.SkillsFinesse",
+                "value": 0,
+                "practice": 0
+              },
+              "skulk": {
+                "label": "FITD.SkillsSkulk",
+                "value": 0,
+                "practice": 0
+              },
+              "smash": {
+                "label": "FITD.SkillsSmash",
+                "value": 0,
+                "practice": 0
+              }
+            }
+          },
+          "guts": {
+            "shocked": false,
+            "label": "FITD.SkillsGuts",
+            "skills": {
+              "banter": {
+                "label": "FITD.SkillsBanter",
+                "value": 0,
+                "practice": 0
+              },
+              "threaten": {
+                "label": "FITD.SkillsThreaten",
+                "value": 0,
+                "practice": 0
+              },
+              "horrify": {
+                "label": "FITD.SkillsHorrify",
+                "value": 0,
+                "practice": 0
+              },
+              "command": {
+                "label": "FITD.SkillsCommand",
+                "value": 0,
+                "practice": 0
+              },
+              "invoke": {
+                "label": "FITD.SkillsInvoke",
+                "value": 0,
+                "practice": 0
+              }
+            }
+          }
+        }
+      }
+    },
     "character": {
+      "templates": [ "attributes_template" ],
+      "pc_type": "wicked_one",
       "look": "",
       "vilefriend": "",
       "minionpack": "",
@@ -25,92 +106,35 @@
         "max": 6
       },
       "bloodied": false,
-      "dark_hearts": {
-        "min": 0,
-        "value": 0,
-        "max": 2
-      },
-      "downtime_action_used": false,
-      "gold": {
-        "min": 0,
-        "value": 0,
-        "max": 3
-      },
-      "goldmonger_size": 0,
-      "goldmonger_pleased": false,
       "supply": {
         "min": 0,
         "value": 0,
         "max": 2
       },
       "attribute_max_value": 3,
-      "attributes": {
-        "brains": {
-          "shocked": false,
-          "label": "FITD.SkillsBrains",
-          "skills": {
-            "scan": {
-              "label": "FITD.SkillsScan",
-              "value": 0,
-              "practice": 0
-            },
-            "tinker": {
-              "label": "FITD.SkillsTinker",
-              "value": 0,
-              "practice": 0
-            },
-            "trick": {
-              "label": "FITD.SkillsTrick",
-              "value": 0,
-              "practice": 0
-            }
-          }
-        },
-        "muscles": {
-          "shocked": false,
-          "label": "FITD.SkillsMuscles",
-          "skills": {
-            "finesse": {
-              "label": "FITD.SkillsFinesse",
-              "value": 0,
-              "practice": 0
-            },
-            "skulk": {
-              "label": "FITD.SkillsSkulk",
-              "value": 0,
-              "practice": 0
-            },
-            "smash": {
-              "label": "FITD.SkillsSmash",
-              "value": 0,
-              "practice": 0
-            }
-          }
-        },
-        "guts": {
-          "shocked": false,
-          "label": "FITD.SkillsGuts",
-          "skills": {
-            "banter": {
-              "label": "FITD.SkillsBanter",
-              "value": 0,
-              "practice": 0
-            },
-            "invoke": {
-              "label": "FITD.SkillsInvoke",
-              "value": 0,
-              "practice": 0
-            },
-            "threaten": {
-              "label": "FITD.SkillsThreaten",
-              "value": 0,
-              "practice": 0
-            }
-          }
-        }
-      }
+      "downtime_action_used": false,
+      "dark_hearts": {
+        "min": 0,
+        "value": 0,
+        "max": 2
+      },
+      "gold": {
+        "min": 0,
+        "value": 0,
+        "max": 3
+      },
+      "rot": {
+        "min": 1,
+        "value": 1,
+        "max": 4
+      },
+      "goldmonger_size": 0,
+      "goldmonger_pleased": false
     },
     "minion_pack": {
+      "templates": [ "attributes_template" ],
+      "mp_type": "normal",
+      "ua_job": "",
       "bloodied": false,
       "morale": false,
       "number": {
@@ -118,60 +142,7 @@
         "value": 4,
         "max": 10
       },
-      "attribute_max_value": 2,
-      "attributes": {
-        "brains": {
-          "label": "FITD.SkillsBrains",
-          "skills": {
-            "scan": {
-              "label": "FITD.SkillsScan",
-              "value": 0
-            },
-            "tinker": {
-              "label": "FITD.SkillsTinker",
-              "value": 0
-            },
-            "trick": {
-              "label": "FITD.SkillsTrick",
-              "value": 0
-            }
-          }
-        },
-        "muscles": {
-          "label": "FITD.SkillsMuscles",
-          "skills": {
-            "finesse": {
-              "label": "FITD.SkillsFinesse",
-              "value": 0
-            },
-            "skulk": {
-              "label": "FITD.SkillsSkulk",
-              "value": 0
-            },
-            "smash": {
-              "label": "FITD.SkillsSmash",
-              "value": 0
-            }
-          }
-        },
-        "guts": {
-          "label": "FITD.SkillsGuts",
-          "skills": {
-            "banter": {
-              "label": "FITD.SkillsBanter",
-              "value": 0
-            },
-            "invoke": {
-              "label": "FITD.SkillsInvoke",
-              "value": 0
-            },
-            "threaten": {
-              "label": "FITD.SkillsThreaten",
-              "value": 0
-            }
-          }
-        }
-      }
+      "attribute_max_value": 2
     },
     "dungeon": {
       "tier": {
@@ -195,6 +166,43 @@
         "step6": ""
       }
     },
+    "conquest_ua": {
+      "theme_txt": "",
+      "horde_txt": "",
+      "horror_txt": "",
+      "corruption_txt": "",
+      "origin_txt": "",
+      "history_txt_1": "",
+      "history_txt_2": "",
+      "dark_plan_txt": "",
+      "candle_progress": {
+        "min": 0,
+        "value": 0,
+        "max": 6
+      },
+      "horde_value": {
+        "min": 1,
+        "value": 1,
+        "max": 3
+      },
+      "horde_empowered": false,
+      "horde_threatened": false,
+      "horror_value": {
+        "min": 1,
+        "value": 1,
+        "max": 3
+      },
+      "horror_empowered": false,
+      "horror_threatened": false,
+      "corruption_value": {
+        "min": 1,
+        "value": 1,
+        "max": 3
+      },
+      "corruption_empowered": false,
+      "corruption_threatened": false,
+      "notes": ""
+    },
     "faction": {
       "category": "neutral",
       "tier": {
@@ -215,6 +223,14 @@
         "text": ""
       }
     },
+    "faction_ua": {
+      "is_primary": true,
+      "domain": "",
+      "defense1": "",
+      "defense2": "",
+      "defense3": "",
+      "notes": ""
+    },
     "clock": {
       "name": "",
       "type": 4,
@@ -231,7 +247,7 @@
     }
   },
   "Item": {
-    "types": [ "adventurer", "calling", "defense", "project", "duty", "dungeon_theme", "gearsupply", "goldmonger_type", "invasion", "minionimpulse", "minion_type", "minion_upgrade", "monster_race", "revelry", "specialability", "tier3room", "wickedimpulse" ],
+    "types": [ "adventurer", "awakened_type", "calling", "conquest_ability", "defense", "project", "duty", "dungeon_theme", "gearsupply", "goldmonger_type", "invasion", "minionimpulse", "minion_type", "minion_upgrade", "monster_race", "revelry", "specialability", "tier3room", "wickedimpulse" ],
     "templates": {
       "default": {
         "description": ""
@@ -264,6 +280,38 @@
       "motivation_2": "",
       "motivation_2_custom": ""
     },
+    "awakened_type": {
+      "templates": [ "default" ]
+    },
+    "calling": {
+      "templates": [ "default" ],
+      "flashback_clues": "",
+      "is_ua_calling": false
+    },
+    "conquest_ability": {
+      "templates": [ "default" ],
+      "is_core": false,
+      "domain": ""
+    },
+    "defense": {
+      "templates": [ "default" ],
+      "checked": false
+    },
+    "dungeon_theme": {
+      "templates": [ "default" ],
+      "special_name": "",
+      "special_feature": "",
+      "theme_checkbox_1_text": "",
+      "theme_checkbox_1_checked": false,
+      "theme_checkbox_2_text": "",
+      "theme_checkbox_2_checked": false
+    },
+    "duty": {
+      "templates": [ "default" ],
+      "tier": 0,
+      "type": "",
+      "type_custom": ""
+    },
     "gearsupply": {
       "templates": [ "default" ],
       "gear_or_supply": "gear",
@@ -279,11 +327,37 @@
       "gm_antitype": "",
       "gm_antitype_custom": ""
     },
-    "duty": {
+    "invasion": {
+      "adventurers_lv_0": 0,
+      "adventurers_lv_1": 0,
+      "adventurers_lv_2": 0,
+      "adventurers_lv_3": 0,
+      "adventurers_lv_4": 0,
+      "hirelings": 0
+    },
+    "minionimpulse": {
       "templates": [ "default" ],
-      "tier": 0,
-      "type": "",
-      "type_custom": ""
+      "is_for_ua": false
+    },
+    "minion_job": {
+      "templates": [ "default" ]
+    },
+    "minion_upgrade": {
+      "templates": [ "default" ],
+      "upgrade_type": "regular",
+      "upgrade_checkbox_text": "",
+      "upgrade_checkbox_checked": false,
+      "upgrade_checkbox_2_text": "",
+      "upgrade_checkbox_2_checked": false,
+      "upgrade_skill_name": "",
+      "upgrade_skill_value": 2,
+      "is_for_wo": true,
+      "is_for_ua": true
+    },
+    "monster_race": {
+      "templates": [ "default" ],
+      "primal": false,
+      "flashback_clues": ""
     },
     "project": {
       "templates": [ "default" ],
@@ -291,19 +365,16 @@
       "clock_size": 4,
       "clock_progress": 0
     },
-    "defense": {
-      "templates": [ "default" ],
-      "checked": false
-    },
-    "calling": {
-      "templates": [ "default" ],
-      "flashback_clues": ""
+    "revelry": {
+      "templates": [ "default" ]
     },
     "specialability": {
       "templates": [ "default" ],
       "ability_type": "basic",
       "ability_group": "group_general",
+      "flex_slot": false,
       "source": "",
+      "is_ua_ability": false,
       "ability_checkbox_1_text": "",
       "ability_checkbox_1_checked": false,
       "ability_checkbox_2_text": "",
@@ -318,6 +389,11 @@
       "downtime_checkbox_1_checked": false,
       "downtime_checkbox_2_text": "",
       "downtime_checkbox_2_checked": false,
+      "counter": {
+        "value": 0,
+        "max": 2,
+        "text": ""
+      },
       "primal": {
         "be_psi_skill_name": "",
         "be_psi_skill_tooltip": "",
@@ -368,49 +444,9 @@
       "room_checkbox_2_text": "",
       "room_checkbox_2_checked": false
     },
-    "minion_upgrade": {
-      "templates": [ "default" ],
-      "upgrade_type": "regular",
-      "upgrade_checkbox_text": "",
-      "upgrade_checkbox_checked": false,
-      "upgrade_checkbox_2_text": "",
-      "upgrade_checkbox_2_checked": false,
-      "upgrade_skill_name": "",
-      "upgrade_skill_value": 2
-    },
-    "minion_job": {
-      "templates": [ "default" ]
-    },
-    "monster_race": {
-      "templates": [ "default" ],
-      "primal": false,
-      "flashback_clues": ""
-    },
     "wickedimpulse": {
-      "templates": [ "default" ]
-    },
-    "minionimpulse": {
-      "templates": [ "default" ]
-    },
-    "revelry": {
-      "templates": [ "default" ]
-    },
-    "dungeon_theme": {
       "templates": [ "default" ],
-      "special_name": "",
-      "special_feature": "",
-      "theme_checkbox_1_text": "",
-      "theme_checkbox_1_checked": false,
-      "theme_checkbox_2_text": "",
-      "theme_checkbox_2_checked": false
-    },
-    "invasion": {
-      "adventurers_lv_0": 0,
-      "adventurers_lv_1": 0,
-      "adventurers_lv_2": 0,
-      "adventurers_lv_3": 0,
-      "adventurers_lv_4": 0,
-      "hirelings": 0
+      "is_for_ua": false
     }
   }
 }

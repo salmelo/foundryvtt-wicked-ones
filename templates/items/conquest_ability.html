@@ -1,0 +1,39 @@
+<form class="{{cssClass}} item-sheet conquest-ability-sheet" autocomplete="off">
+  <header class="sheet-header">
+    <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}"/>
+    <div class="header-fields">
+      <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'FITD.Name'}}"/></h1>
+    </div>
+  </header>
+    
+  {{!-- Sheet Body --}}
+  <section class="sheet-body flex-vertical">
+
+    {{!-- Ability Domain --}}
+    <div class="flex-vertical">
+      <label class="label-stripe">{{localize "FITD.UA_CONQUEST_SHEET.Domain"}}</label>
+      <div class="form-group">
+        <select id="ability-domain-select" name="system.domain">
+          {{#select system.domain}}
+          {{#each config.ua_conquest_domains as |name domain|}}
+          <option value="{{domain}}">{{localize name}}</option>
+          {{/each}}
+          {{/select}}
+        </select>
+      </div>
+    </div>
+
+    {{!-- Description --}}
+    <div class="flex-vertical">
+      <label class="label-stripe">{{localize "FITD.Description"}}</label>
+      <textarea name="system.description">{{system.description}}</textarea>
+    </div>
+
+    {{!-- Core Ability --}}
+    <div class="flex-vertical">
+      <label class="label-stripe">{{localize "FITD.UA_CONQUEST_SHEET.CoreAbility"}}</label>
+      <input type="checkbox" name="system.is_core" {{checked system.is_core}}>
+      <label>{{localize "FITD.UA_CONQUEST_SHEET.CoreAbilityHint"}}</label>
+    </div>
+  </section>
+</form>

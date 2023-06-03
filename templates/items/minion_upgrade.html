@@ -58,4 +58,18 @@
   </section>
   {{/if}}
 
+  {{!-- WO & UA Applicability --}}
+  <section class="flex-vertical">
+    <label class="label-stripe">{{localize "FITD.NormalMinions"}}</label>
+    <div>
+      <input type="checkbox" name="system.is_for_wo" {{checked system.is_for_wo}}>
+      <label>{{localize "FITD.NormalMinionsHint"}}</label>
+    </div>
+    <label class="label-stripe">{{localize "FITD.UAMinions"}}</label>
+    <div>
+      <input type="checkbox" name="system.is_for_ua" {{checked system.is_for_ua}}>
+      <label>{{localize "FITD.UAMinionsHint"}}</label>
+    </div>
+  </section>
+
 </form>

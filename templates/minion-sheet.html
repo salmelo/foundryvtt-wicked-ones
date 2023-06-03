@@ -1,4 +1,18 @@
 <form class="{{cssClass}} actor-sheet minion-sheet" autocomplete="off">
+  <div class="top-bar flex-horizontal">
+    {{!-- Minion Sheet Type Selection --}}
+    <div class="sheet-type">
+      <select name="system.mp_type">
+        {{#select system.mp_type}}
+        <option value="normal">{{localize "FITD.Normal_MP"}}</option>
+        <option value="undead">{{localize "FITD.Undead_MP"}}</option>
+        {{/select}}
+      </select>
+    </div>
+    <div class="top-decoration">
+      {{!-- Empty space for background decoration --}}
+    </div>
+  </div>
 
   {{!-- Minion Pack Name --}}
   <div id="name" class="large-name">
@@ -11,11 +25,50 @@
         <table class="base-info">
           <tr>
             <td>
-              {{!-- Monster Race --}}
-              <div class="item-block flex-vertical">
-                <div class="item-class-label draggable-items"><a class="item-add-popup" data-distinct="true" data-item-type="monster_race">{{localize "FITD.MonsterRace"}}</a></div>
+              {{#unless system.is_undead}}
+                {{!-- Monster Race --}}
+                <div class="item-block flex-vertical">
+                  <div class="item-class-label draggable-items"><a class="item-add-popup" data-distinct="true" data-item-type="monster_race">{{localize "FITD.MonsterRace"}}</a></div>
+                  {{#each actor.items as |item id|}}
+                  {{#if (eq item.type "monster_race")}}
+                  <div class="item flex-horizontal" data-item-id="{{item._id}}">
+                    <div class="item-body flex-horizontal">
+                      <div class="item-name item-open-editor">{{item.name}}</div>
+                    </div>
+                    <a class="item-control item-delete" title="{{localize 'FITD.TitleDeleteItem'}}"><i class="fas fa-trash"></i></a>
+                  </div>
+                  {{/if}}
+                  {{/each}}
+                </div>
+              {{else}}
+                {{!-- Awakened Type for undead minion packs --}}
+                <div class="item-block flex-vertical draggable-items">
+                  <div class="item-class-label"><a class="item-add-popup" data-distinct="true" data-item-type="awakened_type">{{localize "FITD.Type"}}</a></div>
+                  {{#each actor.items as |item id|}}
+                    {{#if (eq item.type "awakened_type")}}
+                      <div class="item flex-horizontal" data-item-id="{{item._id}}">
+                        <div class="item-body flex-horizontal">
+                          <div class="item-name item-open-editor">{{item.name}}</div>
+                        </div>
+                        <a class="item-control item-delete" title="{{localize 'FITD.TitleDeleteItem'}}"><i class="fas fa-trash"></i></a>
+                      </div>
+                    {{/if}}
+                  {{/each}}
+                </div>
+              {{/unless}}
+            </td>
+            <td id="picture-td" rowspan="4">
+              {{!-- Large Profile Picture --}}
+              <img class="profile-img profile-big" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
+            </td>
+          </tr>
+          <tr>
+            {{#unless system.is_undead}}
+              <td class="draggable-items">
+                {{!-- Minion Type --}}
+                <div class="item-class-label"><a class="item-add-popup" data-distinct="true" data-item-type="minion_type">{{localize "FITD.Type"}}</a></div>
                 {{#each actor.items as |item id|}}
-                {{#if (eq item.type "monster_race")}}
+                {{#if (eq item.type "minion_type")}}
                 <div class="item flex-horizontal" data-item-id="{{item._id}}">
                   <div class="item-body flex-horizontal">
                     <div class="item-name item-open-editor">{{item.name}}</div>
@@ -24,28 +77,16 @@
                 </div>
                 {{/if}}
                 {{/each}}
-              </div>
-            </td>
-            <td id="picture-td" rowspan="4">
-              {{!-- Large Profile Picture --}}
-              <img class="profile-img profile-big" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
-            </td>
-          </tr>
-          <tr>
-            <td class="draggable-items">
-              {{!-- Minion Type --}}
-              <div class="item-class-label"><a class="item-add-popup" data-distinct="true" data-item-type="minion_type">{{localize "FITD.Type"}}</a></div>
-              {{#each actor.items as |item id|}}
-              {{#if (eq item.type "minion_type")}}
-              <div class="item flex-horizontal" data-item-id="{{item._id}}">
-                <div class="item-body flex-horizontal">
-                  <div class="item-name item-open-editor">{{item.name}}</div>
+              </td>
+            {{else}}
+              {{!-- Job --}}
+              <td>
+                <div class="text-input" id="job">
+                  <label for="character-{{actor._id}}-job">{{localize "FITD.UA_Job"}}</label>
+                  <input type="text" id="character-{{actor._id}}-job" name="system.ua_job" value="{{system.ua_job}}">
                 </div>
-                <a class="item-control item-delete" title="{{localize 'FITD.TitleDeleteItem'}}"><i class="fas fa-trash"></i></a>
-              </div>
-              {{/if}}
-              {{/each}}
-            </td>
+              </td>
+            {{/unless}}
           </tr>
           <tr>
             <td>

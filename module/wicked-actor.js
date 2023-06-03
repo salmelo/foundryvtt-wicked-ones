@@ -22,8 +22,10 @@ export class WickedActor extends Actor {
         case "character":
         case "dungeon":
         case "faction":
+        case "faction_ua":
         case "minion_pack":
         case "party":
+        case "conquest_ua":
           // Replace default image
           data.img = data.img || `systems/wicked-ones/styles/assets/default-images/${data.type}.webp`;
           data.prototypeToken.texture.src = data.prototypeToken.texture.src || `systems/wicked-ones/styles/assets/default-images/${data.type}-token.webp`;
@@ -67,6 +69,7 @@ export class WickedActor extends Actor {
     if (this.type === 'character') this._prepareWickedOneData();
     if (this.type === 'dungeon') this._prepareDungeonData();
     if (this.type === 'faction') this._prepareFactionData();
+    if (this.type === 'faction_ua') this._prepareFactionUAData();
   }
 
 
@@ -103,12 +106,12 @@ export class WickedActor extends Actor {
       if (items[i].type == "specialability" && items[i].system.ability_group == "group_general") {
         if (data.is_primal_monster) {
           if (items[i].system.source != data.primal_monster_type) {
-            items[i].system.ability_group = "group_flex";
+            items[i].system.flex_slot = true;
           } else {
-            items[i].system.ability_group = "group_general";
+            items[i].flex_slot = false;
           }
         } else if (items[i].system.source != data.calling_name) {
-          items[i].system.ability_group = "group_flex";
+          items[i].system.flex_slot = true;
         }
       } else if (items[i].type == "calling" && data.is_primal_monster) {
         removeAt = i;
@@ -158,6 +161,17 @@ export class WickedActor extends Actor {
 
   /* -------------------------------------------- */
 
+  /**
+   * Prepare UA Faction data
+   */
+  _prepareFactionUAData() {
+    const data = this.system;
+
+    // Make modifications to data here.
+
+  }
+
+  /* -------------------------------------------- */
   /** @override */
   getRollData() {
     const data = super.getRollData();

@@ -46,8 +46,14 @@ export class WickedItem extends Item {
         case "adventurer":
           path += 'Icon.1_05';
           break;
+        case "awakened_type":
+          path += 'Icon.1_57';
+          break;
         case "calling":
           path += 'Icon.1_66';
+          break;
+        case "conquest_ability":
+          path += 'Icon.2_57';
           break;
         case "defense":
           path += 'Icon.1_04';
@@ -98,7 +104,7 @@ export class WickedItem extends Item {
           path = "";
       }
       if (path != "") {
-          data.img = path + `.png`;
+        data.img = data.img || path + `.png`;
       }
 
     }

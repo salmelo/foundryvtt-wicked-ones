@@ -39,6 +39,8 @@
     <div class="flex-vertical">
       <label class="label-stripe">{{localize "FITD.Source"}}</label>
       <input id="ability-source" type="text" name="system.source" value="{{system.source}}" placeholder="{{localize 'FITD.SourceExample'}}">
+      <input type="checkbox" name="system.is_ua_ability" {{checked system.is_ua_ability}}>
+      <label>{{localize "FITD.IsUAAbilityHint"}}</label>
     </div>
   </section>
   {{/if}}
@@ -64,13 +66,25 @@
       <div class="flex-vertical">
         <label class="label-stripe">{{localize "FITD.Source"}}</label>
         <input id="ability-source" type="text" name="system.source" value="{{system.source}}" placeholder="{{localize 'FITD.SourceExample'}}">
+        <input type="checkbox" name="system.is_ua_ability" {{checked system.is_ua_ability}}>
+      <label>{{localize "FITD.IsUAAbilityHint"}}</label>
       </div>
 
       <div class="flex-vertical">
+        {{!-- Checkboxes --}}
         <label class="label-stripe">{{localize "FITD.Checkbox"}} 1</label>
         <input id="ability-chbx-1" type="text" name="system.ability_checkbox_1_text" value="{{system.ability_checkbox_1_text}}" placeholder="{{localize 'FITD.CheckboxExample'}}">
         <label class="label-stripe">{{localize "FITD.Checkbox"}} 2</label>
         <input id="ability-chbx-2" type="text" name="system.ability_checkbox_2_text" value="{{system.ability_checkbox_2_text}}" placeholder="{{localize 'FITD.CheckboxExample'}}">
+      </div>
+
+      <div class="flex-vertical">
+        {{!-- Value Range --}}
+        <label class="label-stripe">{{localize "FITD.ValueTracker"}}</label>
+        <label>{{ localize "FITD.DisplayName" }}</label>
+        <input id="ability-vtrk" type="text" name="system.counter.text" value="{{system.counter.text}}" placeholder="{{localize 'FITD.ValueTrackerExample'}}">
+        <label>{{ localize "FITD.MaximumValue" }}</label>
+        <input type="number" name="system.counter.max" value="{{system.counter.max}}" min="2" max="9">
       </div>
     </div>
 

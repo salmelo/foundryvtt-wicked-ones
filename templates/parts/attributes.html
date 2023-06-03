@@ -53,15 +53,27 @@
   {{#if (eq actor.type "minion_pack")}}
   <div id="attributes-bloodied" class="attribute flex-horizontal">
     <div class="tooltip" data-tooltip="{{{escdq (localize "FITD.TOOLTIP.BloodiedMinions")}}}">
-      <div class="bloodied-minion">
-        <input type="checkbox" id="{{actor._id}}-bloodied" name="system.bloodied" {{checked system.bloodied}}>
-        <label for="{{actor._id}}-bloodied"></label>
-        <i class="splash"></i>
-      </div>
+      {{#unless system.is_undead}}
+        <div class="bloodied-minion">
+          <input type="checkbox" id="{{actor._id}}-bloodied" name="system.bloodied" {{checked system.bloodied}}>
+          <label for="{{actor._id}}-bloodied"></label>
+          <i class="splash"></i>
+        </div>
+      {{else}}
+        <div class="exposed-minion">
+          <input type="checkbox" id="{{actor._id}}-exposed" name="system.bloodied" {{checked system.bloodied}}>
+          <label for="{{actor._id}}-exposed"></label>
+          <i class="splash"></i>
+        </div>
+      {{/unless}}
     </div>
     <div class="main">
       <div class="stripe">
+        {{#unless system.is_undead}}
         <label class="attribute-label">{{localize "FITD.Bloodied"}}</label>
+        {{else}}
+        <label class="attribute-label">{{localize "FITD.Exposed"}}</label>
+        {{/unless}}
       </div>
     </div>
   </div>
@@ -81,15 +93,27 @@
   {{else}}
   <div id="attributes-bloodied" class="attribute flex-horizontal">
     <div class="tooltip" data-tooltip="{{{escdq (localize "FITD.TOOLTIP.Bloodied")}}}">
-      <div class="bloodied">
-        <input type="checkbox" id="{{actor._id}}-bloodied" name="system.bloodied" {{checked system.bloodied}}>
-        <label for="{{actor._id}}-bloodied"></label>
-        <i class="splash"></i>
-      </div>
+      {{#unless system.is_awakened}}
+        <div class="bloodied">
+          <input type="checkbox" id="{{actor._id}}-bloodied" name="system.bloodied" {{checked system.bloodied}}>
+          <label for="{{actor._id}}-bloodied"></label>
+          <i class="splash"></i>
+        </div>
+      {{else}}
+        <div class="exposed">
+          <input type="checkbox" id="{{actor._id}}-exposed" name="system.bloodied" {{checked system.bloodied}}>
+          <label for="{{actor._id}}-exposed"></label>
+          <i class="splash"></i>
+        </div>
+      {{/unless}}
     </div>
     <div class="main">
       <div class="stripe">
+        {{#unless system.is_awakened}}
         <label class="attribute-label">{{localize "FITD.Bloodied"}}</label>
+        {{else}}
+        <label class="attribute-label">{{localize "FITD.Exposed"}}</label>
+        {{/unless}}
       </div>
     </div>
   </div>
@@ -97,8 +121,9 @@
     <div class="main" id="hearts-display">
 	    <div id="attributes-darkhearts">
 	      <div class="flex-horizontal heart-container">
-		      {{#multiboxes system.dark_hearts.value}}
+          {{#unless system.is_awakened}}
 
+          {{#multiboxes system.dark_hearts.value}}
 		      {{#times_from_0 system.dark_hearts.max}}
 		      <input type="radio" id="{{../actor._id}}-dark-hearts-{{this}}" name="system.dark_hearts.value" value="{{this}}">
 		      <label class="dark-heart tooltip" for="{{../actor._id}}-dark-hearts-{{this}}"
@@ -109,12 +134,32 @@
             {{/if}}>
           </label>
 		      {{/times_from_0}}
-
 		      {{/multiboxes}}
+
+          {{else}}
+
+          {{#multiboxes system.dark_hearts.value}}
+		      {{#times_from_0 system.dark_hearts.max}}
+		      <input type="radio" id="{{../actor._id}}-essence-{{this}}" name="system.dark_hearts.value" value="{{this}}">
+		      <label class="essence tooltip" for="{{../actor._id}}-essence-{{this}}"
+            {{#if (eq this 0)}}
+              data-tooltip="{{{escdq (localize "FITD.TOOLTIP.Reset")}}}"
+            {{else}}
+              data-tooltip="{{{escdq (localize "FITD.TOOLTIP.Essence")}}}"
+            {{/if}}>
+          </label>
+		      {{/times_from_0}}
+		      {{/multiboxes}}
+
+          {{/unless}}
 	      </div>
 		  </div>
       <div id="hearts-footer" class="stripe">
+        {{#unless system.is_awakened}}
         <label class="attribute-label">{{localize "FITD.DarkHearts"}}</label>
+        {{else}}
+        <label class="attribute-label">{{localize "FITD.Essence"}}</label>
+        {{/unless}}
 	    </div>
     </div>
   </div>

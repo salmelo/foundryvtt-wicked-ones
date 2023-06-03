@@ -1,0 +1,63 @@
+<form class="{{cssClass}} actor-sheet faction-ua-sheet" autocomplete="off">
+
+
+  <section id="faction-sheet" class="flex-vertical">
+    <table class="name-and-image">
+      <tr>
+        <td id="name" class="large-name">
+            <input type="text" id="faction-{{actor._id}}-name" name="name" value="{{actor.name}}">
+        </td>
+        <td>
+          <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
+        </td>
+      </tr>
+    </table>
+
+    <div class="primary-domain flex-vertical">
+
+      <div class="standard-checkbox flex-horizontal">
+        {{localize "FITD.UA_CONQUEST_SHEET.PrimaryFaction"}}
+        <input type="checkbox" id="faction-{{actor._id}}-primary" name="system.is_primary" value="system.is_primary" {{checked system.is_primary}}>
+        <label for="faction-{{actor._id}}-primary"></label>
+      </div>
+      <div class="text-input flex-horizontal">
+        <label for="faction-{{actor._id}}-domain">{{localize "FITD.UA_CONQUEST_SHEET.Domain"}}</label>
+        <select class="" id="faction-{{actor._id}}-domain" name="system.domain">
+          {{#select system.domain}}
+          <option value="none">{{localize "FITD.NoneParentheses"}}</option>
+          <option value="horde">{{localize "FITD.UA_CONQUEST_SHEET.Horde"}}</option>
+          <option value="horror">{{localize "FITD.UA_CONQUEST_SHEET.Horror"}}</option>
+          <option value="corruption">{{localize "FITD.UA_CONQUEST_SHEET.Corruption"}}</option>
+          {{/select}}
+        </select>
+      </div>
+    </div>
+
+    {{!-- Defenses --}}
+    <div id="faction-{{actor._id}}-notes" class="flex-vertical">
+      <div class="label-stripe">
+        <p>{{localize "FITD.Defenses"}}</p>
+      </div>
+      <div class="text-input">
+        <label>{{localize "FITD.Defense"}} 1</label>
+        <input type="text" id="faction-{{actor._id}}-def1-input" name="system.defense1" value="{{system.defense1}}" placeholder="{{localize 'FITD.DefensePlaceholder'}}">
+      </div>
+      <div class="text-input">
+        <label>{{localize "FITD.Defense"}} 2</label>
+        <input type="text" id="faction-{{actor._id}}-def2-input" name="system.defense2" value="{{system.defense2}}" placeholder="{{localize 'FITD.DefensePlaceholder'}}">
+      </div>
+      <div class="text-input">
+        <label>{{localize "FITD.Defense"}} 3</label>
+        <input type="text" id="faction-{{actor._id}}-def3-input" name="system.defense3" value="{{system.defense3}}" placeholder="{{localize 'FITD.DefensePlaceholder'}}">
+      </div>
+    </div>
+
+    {{!-- Notes --}}
+    <div id="faction-{{actor._id}}-notes" class="flex-vertical">
+      <div class="label-stripe">
+        <p>{{localize "FITD.Notes"}}</p>
+      </div>
+      {{editor notes target="system.description" button=true owner=owner editable=editable}}
+    </div>
+  </section>
+</form>

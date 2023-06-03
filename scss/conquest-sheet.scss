@@ -1,0 +1,98 @@
+// Imports
+@import 'variables.scss';
+@import 'fonts.scss';
+@import 'mixin.scss';
+
+
+form.conquest-sheet {
+    // Domains
+    .big-teeth {
+        //@include toothradio(11px, 32px, "assets/teeth/xp-tooth-3-5-7-empty.png", "assets/teeth/xp-tooth-3-5-7-filled.png");
+        justify-content: center;
+        align-items: center;
+
+        // Domains
+        &.domain {
+            @include toothradio(20px, 20px, "assets/boxes/box-empty.png", "assets/boxes/box-filled.png");
+
+            & label {
+                margin-right: 0px;
+            }
+
+            & input:checked:nth-of-type(1) ~ label {
+                &:nth-of-type(2) {
+                    background-image: url("assets/boxes/box-filled.png");
+                }
+            }
+        }
+    }
+
+    .empowered {
+        label {
+            @include custom-label("assets/boxes/empowered-empty.png", 32px, 24px);
+            padding-left: 26px;
+            margin-right: 5px;
+        }
+
+        input[type="checkbox"]:checked + label {
+            background-image: url("assets/boxes/empowered-red.png");
+        }
+    }
+
+    .threatened{
+        label {
+            @include custom-label("assets/boxes/threatened-empty.png", 32px, 24px);
+            padding-left: 26px;
+            margin-right: 5px;
+        }
+
+        input[type="checkbox"]:checked + label {
+            background-image: url("assets/boxes/threatened-red.png");
+        }
+    }
+
+    .group-core {
+        background-color: $mud3f;
+    }
+
+    // Campaign Theme Bar
+    #campaign-theme-bar {
+        font-size: 18px;
+        display: table-row;
+
+        td:first-child {
+            background-color: $mud;
+            width: 100%;
+            padding-left: 10px;
+            align-self: center;
+            height: 33px;
+        }
+
+        td:last-child {
+            padding: 0px;
+        }
+
+        tr:hover {
+            .item-add-popup {
+                transition: opacity 0.5s;
+                opacity: 1;
+            }
+        }
+
+        tr .item-add-popup {
+            transition: opacity 0.5s;
+            opacity: $add-opacity;
+        }
+    }
+    
+    table.candle {
+        .highlighted {
+            background-color: $mud3f;
+        }
+
+        img {
+            border: hidden;
+        }
+
+    }
+}

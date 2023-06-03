@@ -6,6 +6,7 @@
   "authors": [
     {
       "name": "Spearhead",
+      "email": "Eike.Hanus@T-Online.de",
       "discord": "Spearhead#4288"
     },
     {
@@ -67,6 +68,14 @@
       "label": "Monster Races",
       "system": "wicked-ones",
       "path": "packs/monsterraces.db",
+      "type": "Item",
+      "private": false
+    },
+    {
+      "name": "awakened_type",
+      "label": "Awakened Types",
+      "system": "wicked-ones",
+      "path": "packs/awakened-types.db",
       "type": "Item",
       "private": false
     },
@@ -139,6 +148,14 @@
       "label": "Special Abilities",
       "system": "wicked-ones",
       "path": "packs/specialabilities.db",
+      "type": "Item",
+      "private": false
+    },
+    {
+      "name": "conquest_ability",
+      "label": "Conquest Abilities (UA)",
+      "system": "wicked-ones",
+      "path": "packs/conquestabilities.db",
       "type": "Item",
       "private": false
     },
@@ -226,6 +243,7 @@
   "id": "wicked-ones",
   "compatibility": {
     "minimum": "10",
-    "verified": "10.278"
+    "verified": "11.300",
+    "maximum": "12"
   }
 }
