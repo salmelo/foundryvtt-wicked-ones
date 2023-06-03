@@ -6,6 +6,7 @@
   "authors": [
     {
       "name": "Spearhead",
+      "email": "Eike.Hanus@T-Online.de",
       "discord": "Spearhead#4288"
     },
     {
@@ -242,6 +243,7 @@
   "id": "wicked-ones",
   "compatibility": {
     "minimum": "10",
-    "verified": "10.286"
+    "verified": "11.300",
+    "maximum": "12"
   }
 }
