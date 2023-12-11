@@ -544,7 +544,7 @@
 
       "STARTING": {
         "Name": "Starting Location Roll",
-        "Critical": "StartingLoc Roll",
+        "Critical": "A success starts you off in a good position. You begin in the exact dungeon room you want to be in with weapons nearby.",
         "Success": "A success starts you off in a good position. You begin in the exact dungeon room you want to be in with weapons nearby.",
         "Mixed": "A mixed starts you off in a less than ideal situation. You might not have weapons or maybe just not begin in a great location. You're likely busy doing some other task.",
         "Failure": "A failure starts you off in a terrible position. You're far from the action, rather distracted by something you're doing, likely without weapons, or maybe even sleeping. The adventurers have a decisive advantage against you."
