@@ -18,7 +18,7 @@ export async function wickedRoll(dice_amount, attribute_name = "", position = "d
   let r = new Roll( `${dice_amount}d6`, {} );
 
   r.evaluate({async: true});
-  showChatRollMessage(r, zeromode, attribute_name, position, effect, type, char_name)
+  return await showChatRollMessage(r, zeromode, attribute_name, position, effect, type, char_name)
 
 }
 
@@ -132,6 +132,7 @@ async function showChatRollMessage(r, zeromode, attribute_name = "", position = 
   const messageOptions = { rollMode: rMode };
 
   CONFIG.ChatMessage.documentClass.create(messageData, messageOptions)
+  return {roll: r, result: roll_status}
 }
 
 /**
