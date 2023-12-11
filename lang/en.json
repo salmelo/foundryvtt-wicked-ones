@@ -552,9 +552,9 @@
 
       "PATHING": {
         "Name": "Pathing Roll",
-        "CriticalSuccess": "Pathing Roll",
+        "Critical": "On a mixed or success, the adventurers go the way the players want them to.",
         "Success": "On a mixed or success, the adventurers go the way the players want them to.",
-        "MixedSuccess": "On a mixed or success, the adventurers go the way the players want them to.",
+        "Mixed": "On a mixed or success, the adventurers go the way the players want them to.",
         "Failure": "On a mixed or success, the adventurers go the way the players want them to. On a failure, <strong>they go the other way.</strong>"
       },
 
