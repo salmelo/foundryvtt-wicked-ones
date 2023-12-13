@@ -1195,6 +1195,7 @@
           <thead>
             <tr>
               <td>{{localize "FITD.Tier"}}</td>
+              <td></td>
               <td>{{localize "FITD.Type"}}</td>
               <td>{{localize "FITD.Description"}}</td>
               <td></td>
@@ -1206,6 +1207,13 @@
             <tr class="item" data-item-id="{{item._id}}">
               <td class="item-body">
                 <span class="item-open-editor">{{item.system.tier}}</span>
+              </td>
+              <td class="item-body">
+                {{#if (eq item.system.type_custom "Trick")}}
+                <i class="rollable-text roll-die-attribute fas fa-dice" data-roll-attribute="Tier" data-roll-value="{{@item.system.tier}}" data-roll-type="fortune" data-roll-for="{{@item.name}}"></i>
+                {{else}}
+                <i class="rollable-text roll-die-attribute fas fa-dice" data-roll-attribute="Tier" data-roll-value="{{@item.system.tier}}" data-roll-type="{{@item.system.type_custom}}" data-roll-for="{{@item.name}}"></i>
+                {{/if}}
               </td>
               <td class="item-body">
                 <span class="item-open-editor">{{item.system.type_custom}}</span>
