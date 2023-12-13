@@ -2644,6 +2644,12 @@ form.party-sheet .trait-tags label.negative {
 form.party-sheet .trait-tags label.motivation {
   color: #191919;
 }
+form.party-sheet td.moves-radio div label.rollable-text {
+  background-image: none !important;
+  text-align: center;
+  line-height: 1.5;
+  color: darkblue;
+}
 
 /*
  * Fonts
@@ -4218,6 +4224,8 @@ form.special-ability-sheet #ray-selection div.ray-line select:nth-child(2) {
   margin: 0;
   margin-left: auto;
   border-top-left-radius: 5px;
+  flex: 1 1 min-content;
+  max-width: max-content;
 }
 #chat .wicked-die-tooltip .die {
   text-transform: uppercase;

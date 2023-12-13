@@ -252,14 +252,17 @@ export class WickedSheet extends ActorSheet {
    */
   async _onRollAttributeDieClick(event) {
 
-    const attribute_name = $(event.currentTarget).data("rollAttribute");
-    const attribute_value = $(event.currentTarget).data("rollValue");
+    let target = $(event.currentTarget)
+    const attribute_name = target.data("rollAttribute");
+    const attribute_value = target.data("rollValue");
+    const roll_type = target.data("rollType");
+    const roll_for = target.data("rollFor");
 
     // Check if an attribute value was passed on the roll
     if (attribute_value) {
-      this.document.rollAttributePopup(attribute_name, attribute_value);
+      this.document.rollAttributePopup(attribute_name, attribute_value, roll_type, roll_for);
     } else {
-      this.document.rollAttributePopup(attribute_name);
+      this.document.rollAttributePopup(attribute_name, null, roll_type, roll_for);
     }
 
   }
