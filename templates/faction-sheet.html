@@ -15,7 +15,7 @@
 
     <div class="tier-side flex-horizontal">
       <div class="text-input flex-horizontal" id="number">
-        <label for="faction-{{actor._id}}-tier">{{localize "FITD.Tier"}}</label>
+        <label class="rollable-text roll-die-attribute" data-roll-attribute="tier" data-roll-value="{{actor.system.tier.value}}" data-roll-type="fortune">{{localize "FITD.Tier"}}</label>
         <input type="number" id="faction-{{actor._id}}-tier" name="system.tier.value" value="{{system.tier.value}}" min="0" max="4">
       </div>
       <div class="text-input flex-horizontal">
