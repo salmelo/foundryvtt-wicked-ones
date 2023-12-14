@@ -29,6 +29,7 @@
         </td>
         <td>
           <div id="dungeon-tier">
+            <i class="rollable-text roll-die-attribute fa-regular fa-dice" data-roll-attribute="Tier" data-roll-value="{{system.tier.value}}" data-roll-type="fortune"></i>
             {{#multiboxes system.tier.value}}
             <input type="radio" id="dungeon-{{actor._id}}-tier-0" name="system.tier.value" value="0" dtype="Radio">
             <label class="black-label" for="dungeon-{{actor._id}}-tier-0">{{localize "FITD.Tier"}}</label>
