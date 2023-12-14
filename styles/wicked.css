@@ -1138,15 +1138,16 @@ form.wicked-one-sheet #project-clocks-table tr td:nth-of-type(2) {
 form.wicked-one-sheet #project-clocks-table tr td:nth-of-type(4) {
   width: 20px;
 }
-form.wicked-one-sheet #duties-table tr td:nth-of-type(1) {
+form.wicked-one-sheet #duties-table tr td:nth-of-type(1),
+form.wicked-one-sheet #duties-table tr td:nth-of-type(2) {
   text-align: center;
   width: 5%;
 }
-form.wicked-one-sheet #duties-table tr td:nth-of-type(2) {
+form.wicked-one-sheet #duties-table tr td:nth-of-type(3) {
   text-align: center;
   width: 12%;
 }
-form.wicked-one-sheet #duties-table tr td:nth-of-type(4) {
+form.wicked-one-sheet #duties-table tr td:nth-of-type(5) {
   width: 20px;
 }
 form.wicked-one-sheet #duties-table tbody td:nth-of-type(1) {
@@ -2608,6 +2609,12 @@ form.party-sheet td.moves-radio div input:checked + label.practice-one {
 form.party-sheet td.moves-radio div input:checked + label.practice-two {
   background-image: url("assets/boxes/box-crossed.png");
 }
+form.party-sheet td.moves-radio div label.rollable-text {
+  background-image: none !important;
+  text-align: center;
+  line-height: 1.5;
+  color: darkblue;
+}
 form.party-sheet td.moves-radio:hover > div.attributes-container label {
   transition: opacity 1s;
   opacity: 1;
@@ -2643,12 +2650,6 @@ form.party-sheet .trait-tags label.negative {
 }
 form.party-sheet .trait-tags label.motivation {
   color: #191919;
-}
-form.party-sheet td.moves-radio div label.rollable-text {
-  background-image: none !important;
-  text-align: center;
-  line-height: 1.5;
-  color: darkblue;
 }
 
 /*

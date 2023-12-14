@@ -118,6 +118,8 @@
             margin: 0;
             margin-left: auto;
             border-top-left-radius: 5px;
+            flex: 1 1 min-content;
+            max-width: max-content;
         }
 
         .die {
