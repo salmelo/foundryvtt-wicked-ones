@@ -1530,6 +1530,9 @@ form.dungeon-sheet #dungeon-theme-bar td:first-child {
 form.dungeon-sheet #dungeon-theme-bar td:last-child {
   padding: 0px;
 }
+form.dungeon-sheet #dungeon-theme-bar td:nth-of-type(2) {
+  background-color: #68332c;
+}
 form.dungeon-sheet #dungeon-theme-bar tr:hover .item-add-popup {
   transition: opacity 0.5s;
   opacity: 1;
