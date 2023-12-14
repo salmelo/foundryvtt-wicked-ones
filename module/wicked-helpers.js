@@ -198,7 +198,9 @@ export class WickedHelpers {
    */
   static getAttributeLabel(attribute_name) {
     // Calculate Dice to throw.
-    let attribute_labels = {};
+    let attribute_labels = {
+      tier: "FITD.Tier"
+    };
     const attributes = game.system.model.Actor.character.attributes;
 
     for (var attibute_name in attributes) {

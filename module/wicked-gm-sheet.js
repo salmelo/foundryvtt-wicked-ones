@@ -1,4 +1,4 @@
-
+import { wickedRoll } from "./wicked-roll.js";
 import { WickedSheet } from "./wicked-sheet.js";
 
 /**

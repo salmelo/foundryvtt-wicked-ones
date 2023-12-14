@@ -56,6 +56,7 @@
               <label for="adventurer-{{@item._id}}-move-{{this}}"></label>
               {{/times_from_0}}
               {{/multiboxes}}
+              <label class="rollable-text roll-die-attribute fas fa-shield" data-roll-attribute="Tier" data-roll-value="{{@item.system.tier}}" data-roll-type="defensive" data-roll-for="{{@item.name}}"></label>
             </div>
           </td>
           <td><label class="item-open-editor">{{item.system.passive}}</label></td>

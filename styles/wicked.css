@@ -684,16 +684,16 @@ form.wicked-one-sheet #abilities-list tr td:nth-of-type(3), form.wicked-one-shee
   width: 20px;
 }
 form.wicked-one-sheet #abilities-list .group-core {
-  background-color: #68332c3f;
+  background-color: rgba(104, 51, 44, 0.2470588235);
 }
 form.wicked-one-sheet #abilities-list .group-flex {
-  background-color: #9999993f;
+  background-color: rgba(153, 153, 153, 0.2470588235);
 }
 form.wicked-one-sheet #abilities-list .group-flex td.item-body i {
   font-size: 14px;
 }
 form.wicked-one-sheet #abilities-list .group-ext {
-  background-color: #9999993f;
+  background-color: rgba(153, 153, 153, 0.2470588235);
 }
 form.wicked-one-sheet #abilities-list .group-ext td.item-body i {
   font-size: 14px;
@@ -953,7 +953,7 @@ form.wicked-one-sheet #abilities .flashback-clues {
   text-align: center;
 }
 form.wicked-one-sheet #loadout .group-ability {
-  background-color: #9999993f;
+  background-color: rgba(153, 153, 153, 0.2470588235);
 }
 form.wicked-one-sheet #loadout .group-ability td.item-body i {
   font-size: 14px;
@@ -1138,15 +1138,16 @@ form.wicked-one-sheet #project-clocks-table tr td:nth-of-type(2) {
 form.wicked-one-sheet #project-clocks-table tr td:nth-of-type(4) {
   width: 20px;
 }
-form.wicked-one-sheet #duties-table tr td:nth-of-type(1) {
+form.wicked-one-sheet #duties-table tr td:nth-of-type(1),
+form.wicked-one-sheet #duties-table tr td:nth-of-type(2) {
   text-align: center;
   width: 5%;
 }
-form.wicked-one-sheet #duties-table tr td:nth-of-type(2) {
+form.wicked-one-sheet #duties-table tr td:nth-of-type(3) {
   text-align: center;
   width: 12%;
 }
-form.wicked-one-sheet #duties-table tr td:nth-of-type(4) {
+form.wicked-one-sheet #duties-table tr td:nth-of-type(5) {
   width: 20px;
 }
 form.wicked-one-sheet #duties-table tbody td:nth-of-type(1) {
@@ -1366,7 +1367,7 @@ form.minion-sheet #picture-td {
   text-align: right;
 }
 form.minion-sheet #abilities-list .group-ext {
-  background-color: #9999993f;
+  background-color: rgba(153, 153, 153, 0.2470588235);
 }
 form.minion-sheet #abilities-list .group-ext td.item-body i {
   font-size: 14px;
@@ -1538,7 +1539,7 @@ form.dungeon-sheet #dungeon-theme-bar tr .item-add-popup {
   opacity: 0.1;
 }
 form.dungeon-sheet #dungeon-tier {
-  background-color: #68332c3f;
+  background-color: rgba(104, 51, 44, 0.2470588235);
   height: 33px;
   width: 145px;
   display: flex;
@@ -1585,11 +1586,11 @@ form.dungeon-sheet .profile-img {
 form.dungeon-sheet .item-special-feature {
   margin: 0px 10px;
   border-radius: 20px;
-  background: #68332c3f;
+  background: rgba(104, 51, 44, 0.2470588235);
   padding: 10px;
 }
 form.dungeon-sheet #rooms .group-flex {
-  background-color: #9999993f;
+  background-color: rgba(153, 153, 153, 0.2470588235);
 }
 form.dungeon-sheet #rooms .group-flex td.item-body i {
   font-size: 14px;
@@ -2608,6 +2609,12 @@ form.party-sheet td.moves-radio div input:checked + label.practice-one {
 form.party-sheet td.moves-radio div input:checked + label.practice-two {
   background-image: url("assets/boxes/box-crossed.png");
 }
+form.party-sheet td.moves-radio div label.rollable-text {
+  background-image: none !important;
+  text-align: center;
+  line-height: 1.5;
+  color: #04578f;
+}
 form.party-sheet td.moves-radio:hover > div.attributes-container label {
   transition: opacity 1s;
   opacity: 1;
@@ -3264,7 +3271,7 @@ form.conquest-sheet .threatened input[type=checkbox]:checked + label {
   background-image: url("assets/boxes/threatened-red.png");
 }
 form.conquest-sheet .group-core {
-  background-color: #68332c3f;
+  background-color: rgba(104, 51, 44, 0.2470588235);
 }
 form.conquest-sheet #campaign-theme-bar {
   font-size: 18px;
@@ -3289,7 +3296,7 @@ form.conquest-sheet #campaign-theme-bar tr .item-add-popup {
   opacity: 0.1;
 }
 form.conquest-sheet table.candle .highlighted {
-  background-color: #68332c3f;
+  background-color: rgba(104, 51, 44, 0.2470588235);
 }
 form.conquest-sheet table.candle img {
   border: hidden;
@@ -4152,7 +4159,7 @@ form.special-ability-sheet #ray-selection div.ray-line select:nth-child(2) {
   font-size: 14px;
   background: url(../styles/assets/images/background-light.webp) repeat;
   background-size: 300px;
-  box-shadow: inset 0 0 9px 1px #4000004f;
+  box-shadow: inset 0 0 9px 1px rgba(64, 0, 0, 0.3098039216);
 }
 #chat .chat-message.whisper {
   background: #e8e8ef;
@@ -4218,6 +4225,8 @@ form.special-ability-sheet #ray-selection div.ray-line select:nth-child(2) {
   margin: 0;
   margin-left: auto;
   border-top-left-radius: 5px;
+  flex: 1 1 min-content;
+  max-width: max-content;
 }
 #chat .wicked-die-tooltip .die {
   text-transform: uppercase;
@@ -4459,14 +4468,14 @@ form.special-ability-sheet #ray-selection div.ray-line select:nth-child(2) {
 }
 #items-to-add > flex-horizontal {
   padding: 3px;
-  border-bottom: 1px solid #4000005c;
+  border-bottom: 1px solid rgba(64, 0, 0, 0.3607843137);
 }
 #items-to-add label.cross-system:nth-of-type(2n),
 #items-to-add label.external:nth-of-type(2n) {
-  background: #9999993f;
+  background: rgba(153, 153, 153, 0.2470588235);
 }
 #items-to-add label:nth-of-type(2n) {
-  background: #68332c3f;
+  background: rgba(104, 51, 44, 0.2470588235);
 }
 #items-to-add .fa-question-circle {
   padding: 2px 3px;
@@ -4517,9 +4526,9 @@ form.special-ability-sheet #ray-selection div.ray-line select:nth-child(2) {
 
 /* Overlay-Style for visibility for dialogs (else borders disrupt readability) */
 .dialog-content {
-  background-color: #fffaf096;
+  background-color: rgba(255, 250, 240, 0.5882352941);
   border-radius: 5px;
-  box-shadow: 0 0 6px 7px #fffaf096;
+  box-shadow: 0 0 6px 7px rgba(255, 250, 240, 0.5882352941);
 }
 
 section {
@@ -5089,7 +5098,7 @@ div.item i.fa-trash, tr.item i.fa-trash {
   padding: 3px 0;
   line-height: 48px;
   border-top: 1px solid transparent;
-  border-bottom: 1px solid #4000005c;
+  border-bottom: 1px solid rgba(64, 0, 0, 0.3607843137);
   box-shadow: none;
 }
 
@@ -5116,7 +5125,7 @@ nav.tabs.flex-horizontal {
 nav.tabs.flex-horizontal .item {
   text-align: center;
   color: black;
-  background-color: #8080803d;
+  background-color: rgba(128, 128, 128, 0.2392156863);
   line-height: 2rem;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
