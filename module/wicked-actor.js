@@ -390,6 +390,50 @@ export class WickedActor extends Actor {
 
     wickedRoll(dice_amount, attribute_name, position, effect, type, for_name ? for_name : this.name);
   }
+  
+  rollBasicPopup(roll_type = "fortune", default_dice = 0, max_dice = 4) {
+    new Dialog({
+      title: `Dice Roller`,
+      content: `
+        <h2>${game.i18n.localize("FITD.RollSomeDice")}</h2>
+        <p>${game.i18n.localize("FITD.RollTokenDescription")}</p>
+        <form id="dice-roller">
+      <div class="form-group">
+      <label>${game.i18n.localize('FITD.RollType')}:</label>
+      <select id="type" name="type">
+        <option value="${roll_type}" selected>${game.i18n.localize('FITD.ROLL.' + roll_type.toUpperCase() + '.Name')}</option>
+      </select>
+      </div>
+          <div class="form-group">
+            <label>${game.i18n.localize("FITD.RollNumberOfDice")}:</label>
+            <select id="qty" name="qty">
+              ${Array(max_dice + 1).fill().map((item, i) => `<option value="${i}" ${default_dice == i ? 'selected' : ''}>${i}D</option>`).join('')}
+            </select>
+          </div>
+        </form>
+      `,
+      buttons: {
+        yes: {
+          icon: "<i class='fas fa-check'></i>",
+          label: `Roll`,
+          callback: (html) => {
+            let diceQty = html.find('[name="qty"]')[0].value;
+            let type = html.find('[name="type"]')[0].value;
+            wickedRoll(diceQty, "", "default", "default", type, this.name);
+          },
+        },
+        no: {
+          icon: "<i class='fas fa-times'></i>",
+          label: game.i18n.localize('Cancel'),
+        },
+      },
+      default: "yes"
+    }).render(true);
+  }
+
+  rollBasic(roll_type = "fortune", dice = 1) {
+    wickedRoll(dice, "", "default", "default", roll_type, this.name);
+  }
 
   /* -------------------------------------------- */
 

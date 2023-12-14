@@ -552,9 +552,9 @@
 
       "PATHING": {
         "Name": "Pathing Roll",
-        "CriticalSuccess": "Pathing Roll",
+        "Critical": "On a mixed or success, the adventurers go the way the players want them to.",
         "Success": "On a mixed or success, the adventurers go the way the players want them to.",
-        "MixedSuccess": "On a mixed or success, the adventurers go the way the players want them to.",
+        "Mixed": "On a mixed or success, the adventurers go the way the players want them to.",
         "Failure": "On a mixed or success, the adventurers go the way the players want them to. On a failure, <strong>they go the other way.</strong>"
       },
 
@@ -564,6 +564,14 @@
         "Success": "It's an ideal situation as you get what you were hoping for.",
         "Mixed": "It's pretty good, but not perfect, with a tinge of disappointment.",
         "Failure": "Things go about as poorly as they could."
+      },
+
+      "SLUMBER": {
+        "Name": "Slumber Roll",
+        "Critical": "Also, you awaken invigorated and can increase a type effect's tier by 1 once this cycle!",
+        "Success": "You slumber deeply, filling all of your dark hearts as you dream of (choose one): an interesting faction scene - the location of great treasure - secrets of the past. Establish a fact you saw.",
+        "Mixed": "You slumber restlessly, gaining a dark heart.",
+        "Failure": "Your slumber is disturbed and you overdo it, wreaking havoc on the dungeon or surrounding countryside in some way."
       }
     },
 

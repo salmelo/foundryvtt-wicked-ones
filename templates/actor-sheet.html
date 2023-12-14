@@ -1082,6 +1082,11 @@
       <div id="duties-tab" class="tab flex-vertical" data-tab="duties">
         <div class="label-stripe flex-horizontal">
           <p><label>{{localize "FITD.DowntimeActions"}}</label></p>
+          {{#if (eq actor.system.primal_monster_type (localize "FITD.GAME_LOGIC.Goldmonger"))}}
+          <p class="rollable-text roll-basic" data-roll-type="slumber" data-roll-default="0" data-roll-max="10">{{localize "FITD.ROLL.SLUMBER.Name"}}<i class="fa-light fa-dice"></i></p>
+          {{else}}
+          <p class="rollable-text roll-basic" data-roll-type="loot" data-roll-default="0" data-roll-max="10">{{localize "FITD.ROLL.LOOT.Name"}}<i class="fa-light fa-dice"></i></p>
+          {{/if}}
         </div>
         <table id="downtime-abilities-list">
           <tbody class="draggable-items">

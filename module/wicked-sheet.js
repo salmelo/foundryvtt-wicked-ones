@@ -37,6 +37,7 @@ export class WickedSheet extends ActorSheet {
     }
 
     html.find(".roll-die-attribute").click(this._onRollAttributeDieClick.bind(this));
+    html.find(".roll-basic").click(this._onBasicRollClick.bind(this));
   }
 
 
@@ -437,6 +438,15 @@ export class WickedSheet extends ActorSheet {
     // pressed_button.click();
   }
 
+  async _onBasicRollClick(event){
+    let target = $(event.currentTarget)
+    const roll_type = target.data("rollType");
+    const roll_default = target.data("rollDefault") ?? 2;
+    const roll_max = target.data("rollMax") ?? 4;
+
+    this.document.rollBasicPopup(roll_type, roll_default, roll_max);
+  }
+  
   /* -------------------------------------------- */
 
 
