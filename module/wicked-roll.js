@@ -7,7 +7,7 @@
  * @param {string} type
  * @param {string} char_name
  */
-export async function wickedRoll(dice_amount, attribute_name = "", position = "default", effect = "default", type = "fortune", char_name = "") {
+export async function wickedRoll(dice_amount, attribute_name = "", position = "default", effect = "default", type = "fortune", char_name = "", dice3dDelay = false) {
 
   let zeromode = false;
   if (dice_amount <= 0) {
@@ -18,7 +18,7 @@ export async function wickedRoll(dice_amount, attribute_name = "", position = "d
   let r = new Roll( `${dice_amount}d6`, {} );
 
   r.evaluate({async: true});
-  return await showChatRollMessage(r, zeromode, attribute_name, position, effect, type, char_name)
+  return await showChatRollMessage(r, zeromode, attribute_name, position, effect, type, char_name, dice3dDelay)
 
 }
 
@@ -33,7 +33,7 @@ export async function wickedRoll(dice_amount, attribute_name = "", position = "d
  * @param {string} type
  * @param {string} char_name
  */
-async function showChatRollMessage(r, zeromode, attribute_name = "", position = "", effect = "", type="", char_name="") {
+async function showChatRollMessage(r, zeromode, attribute_name = "", position = "", effect = "", type="", char_name="", dice3dDelay = false) {
 
   let speaker = ChatMessage.getSpeaker();
   if (speaker.alias == char_name) {
@@ -120,8 +120,10 @@ async function showChatRollMessage(r, zeromode, attribute_name = "", position = 
     speaker: speaker,
     content: result,
     type: CONST.CHAT_MESSAGE_TYPES.ROLL,
-    sound: CONFIG.sounds.dice,
-    roll: r
+  }
+  if (!game.dice3d || !dice3dDelay){
+    messageData.roll = r
+    messageData.sound = CONFIG.sounds.dice
   }
 
   // Prepare message options
@@ -130,9 +132,11 @@ async function showChatRollMessage(r, zeromode, attribute_name = "", position = 
     messageData.whisper = ChatMessage.getWhisperRecipients("GM");
   }
   const messageOptions = { rollMode: rMode };
-
-  CONFIG.ChatMessage.documentClass.create(messageData, messageOptions)
-  return {roll: r, result: roll_status}
+  if (game.dice3d && dice3dDelay){
+    await game.dice3d.showForRoll(r);
+  }
+  let chat = await CONFIG.ChatMessage.documentClass.create(messageData, messageOptions)
+  return {roll: r, result: roll_status, chat: chat}
 }
 
 /**
