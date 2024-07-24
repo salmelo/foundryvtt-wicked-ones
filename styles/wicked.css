@@ -1162,7 +1162,6 @@ form.wicked-one-sheet #duties-table tbody td:nth-of-type(1) {
   grid-column-gap: 20px;
   font-family: Piedra;
   text-transform: uppercase;
-  color: black;
 }
 #tongue-grid div:first-child {
   color: #68332c;
