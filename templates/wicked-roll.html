@@ -5,7 +5,9 @@
 			<div class="label-type">{{roll_type}}{{#if char_name}}<br />{{localize "FITD.For"}} {{char_name}}{{/if}}</div>
 		</div>
 		{{else}} 
-<div class="chat-label label-stripe-chat">{{roll_type}}</div>
+<div class="chat-label label-stripe-chat">{{roll_type}}{{#if char_name}}
+	<div class="label-type">{{localize "FITD.For"}} {{char_name}}</div>
+	{{/if}}</div>
 	{{/if}}
 
 	{{#if (eq roll_type (localize "FITD.ROLL.ACTION.Name"))}}
